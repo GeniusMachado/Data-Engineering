@@ -1,0 +1,50 @@
+﻿In today’s class 01-13-2026, I had a hard time turning on my camera at first as I had joined through my new PC and then I was asked to leave the meeting as I had joined via my phone for camera as well as my PC. But then I was able to locate the hidden privacy shutter on the PC and turn on my camera which allowed me to rejoin the meeting and attend the session. I had already missed the first class so I did not want to miss out another one. 
+
+
+The class began with Ruchit explaining the fundamentals of Data engineering and especially getting into the depths of the terminology/word “data” itself and the overall lifecycle process of how data undergoes various phases till the destination where it is consumed by its user. 
+
+
+What is data ? I would say data in the beginning or say at its purest from is raw data which is coming from APIs, files, videos, databases, livestreams, etc. Now this could be in three types : 1) Structured Data 2) Unstructured data 3) Semi-structured data. 
+
+
+Then he explained the roles of individuals who play with this data and manage or manipulate it where in we have data engineers and data scientists and also data analysts, etc. In this training we would be focusing more on Data Engineering aspect. 
+
+
+We were walked through the multiple layers of data processing like right from ingestion, pooling , transformation and loading of data and etc. 
+
+
+A new new concept was introduced which is basically a classification of how and what types of data can we extract or say is ingested into our system. For example, time sensitive or live. So we were told the two main types of data capturing or processes: 1) Real-time data synchronization and 2) Batch processing. 
+
+
+For understanding realtime data (live) we can consider the example of Uber/Ola cab services where in every second or minute of the live data coming from a rider or the driver is important to be present and whereas in Batch processing we have time or say event driven CRON jobs or S3 buckets which our ran hourly or at specific time-frame intervals and then we just load that accumulated data in batches into our database/warehouse. 
+
+
+Also, there are multiple types other tools in Data engineering which our used as an industry standard practice by developers/engineers to streamline this data flow. They are like Apache airflow, nive, kafka, AWS glue, etc.
+
+
+But what really is important is that we understand the ETL( Extraction Transform Load) & ELT ( Extraction Load Transform) pipelines in data engineering. So they are both strategies that are implemented while designing data pipelines depending upon the use case or say business requirements. 
+
+
+We reserve the transformation layer of data processing on premisses when we are using expensive cloud platforms like AWS or GCP or Azure to avoid heavy computation costs or say PHI compliance or reduce response time from servers if our cloud servers are in USA and the users are located in Hyderabad. This is a very good example that was explained by Ruchit Sir when I asked him the main difference between ETL and ELT. Also when we do the transformation on premises we need to have more employees to do it on site and also get the transformation layer up and running before we load any of the data into the cloud database. Whereas in some cases we prefer to do this operations using cloud services on the cloud itself like snowflake computation engine, etc. 
+
+
+Now there are two main tyes of databases where we store data. For that we have structured data which we can use to store in well organized Relational Database or linked data in MySQL or PostgreSQL databases and then on the other hand we have unstructured data where we can store videos, text files, strings, JSON, etc. and for this unstructured data or call it non-relational databases we can use limited sources like MongoDB and Cassandra.
+
+
+We also discussed the other aspects of data like its security and compliance which should not be exposed to the outside world which can be a crime depending upon the NDA (Non-disclosure Agreements) signed and we are not allowed to put or paste the data or code containing any sensitive parts into chatgpt, etc. 
+
+
+Also, towards the end of the pipelines after all the transformations and loading of the data is done we have the consumers of it which could be PowerBI dashboards or AI/ML analytics or say the end user who is waiting for his cab to arrive while trying to track the location and then obviously there is databases and data warehouses and even data marts. 
+
+
+While saving data into databases we uses data schemas and data facts like the two main methods are star schema and snowflake schema where in the data tables/rows/columns are connected to its relational tables/rows/columns. This happens in relational databases RDBMS. 
+
+
+One thing that was not covered in the class but I would like to add from my own experience that if we ever want to scale a Relational Database the we have the option of buying an entirely bigger system which is nothing but Vertical Scaling as per industry Norms. While in unstructured data we call it horizontal scaling where we can buy more small sized disks or storage equipment and connect them to the existing database. 
+
+
+Towards the end of the lecture, Ruchit Sir also touched some version controlling systems like github and jenkins. And he also recommended that we have our class notes in digital format so that we can maintain a github repo and push our notes and code into there which will be tracked into an excel sheet ultimately by the moderators. This part excites me honestly for collaborative thinking. 
+
+
+Apart from this, I had a doubt which I kept towards the end of the session where I wanted clarity on Orchestration and automation which was explained by Ruchit Sir very nicely by enlightening the need of error logging and deep stack tracing in our pipelines in an instance where the pipelines breakdown so we need to know what broke when. In automation we cannot have time triggered jobs that are logged and saved when our pipelines run. 
+Being my first training session I would keep the notes short and will research more on the terms and technologies mentioned during class on Youtube and OpenAI until we meet next on Friday for the follow up session. Big thanks to Sir Ruchit for explaining things in Depth and clearing my doubts as well :)
