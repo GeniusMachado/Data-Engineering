@@ -1,0 +1,79 @@
+Class begins an hour early today the Friday 01-16-2026.
+
+Hello there I am taking notes now .
+
+When data gets bigger like in Terabyte or even say like petabyte we need to introduce Big data. 
+
+For distributed data on different systems.
+
+1) Hadoop architecture : HDFS
+2) Spark architecture
+
+1) HDFS has two components: Map() and Reduce()
+
+File is broken down into 128 MB chunks and then dristributed into multiple blocks 
+
+Name node and data nodes
+
+Name node basically holds the meta data of where or which file is getting stored. 
+
+Basically a master and slaves concept.
+
+So namenode(master) and Datanode (slaves)
+
+Inside the Hadoop architecture it also follows the YARN architecture
+
+Hadoop has map() and reduce()
+
+what map() will do is basically do is give index the all the words or text inputs and then reduce() will see which words are getting repeated and then it will see which words are being repeated.
+
+So reduce takes care of summarizing or giving us the output when we pass the comment and then it has to be understood by the name node and then go hit the data nodes and then it has to apply the reduce() and all of this is ultimately happening on the disk storage which is HDFS so it will be a bit slow. it is a time consuming process.
+
+Good point of hadoop architecture is that there will always be a backup of data because each data node has three clones of it for backup so when one goes corrupt there is still two more datanodes of the same data in backup. 
+
+Prefered in banking sectors where data is crucial and cant be lost 
+
+It is good but when we consider the drawback it is slow. So that is when people came up with Spark architecture. 
+
+that is unified - in - memory computation framework. 
+
+Spark also has HDFS but instead of having map() and reduce() , it will have in memory which is the RAM memory itself instead of the disk operations. So the time of disk I/O is reduced in parallel processing . 
+
+Spark will have Driver Program and the second is cluster Manager and third is workd nodes also known as executers. 
+
+Spark uses RDD (resilent Distributed datasets ) a good example is the Dataframe that we import from Pandas in our ram memory for doing computation. 
+
+Cluster manager allocates the resources (YARN , Kubernetes )
+
+so Hadoop is disk based operations and when it comes to Spark it is happening in the Ram memory which is RDD architecture. 
+
+So Spark is faster than Hadoop. 
+
+Spark is also cost effecient . 
+
+We got lost for about 20 minutes in answering questions of other students doubts which were mainly the difference between the cluster manager in Spark and also the master/name node in Hadoop.
+
+So a good example here to better explain is for fraud detection and where the computation speed is must and so if we have to consider banking operations where a users OTP is being hacked so we need to be implementing Spark architecture because if we use Hadoop then it will take a lot of time to do the disk I/O operations and slow down the process till the time the fraud has already taken place and Hadoop will be just busy doing disk I/O operations. So we implement spark architecture over there. 
+
+Snowflake and NoSQL are built on Spark architecture but SQL is based on Hadoop architecture. 
+
+We learnt Data masking and encryption at rest and encryption on network like SSL and TLS on HTTPS protocols. 
+
+Data quality and testing done by the analysts to maintain and check the integrity of data. 
+
+Data consumption the final layer where we use PowerBI or Tableau or other summarizing or reporting or data visualization sofwares. 
+
+Data in the production stage has to be exposed via creating a fastAPI or Flask to the vendor where they can use the data and thats where you keep the development environment separate from the production environment. 
+
+Real-time data engineering is something that has to be orchestrated on a live stream and in real time. 
+
+I asked my doubts about the realtime data engineering and the quesions about how can we see Kinesis and Kafka this cloud tools in action so that we have some familiarity about them if asked in interview questions. Upon which he said that they are all paid services so we can just watch YouTube videos about them or else we will have to pay for the subscription. 
+
+I also asked the major advantage of Hadoop distributed File System over Spark which is its ability of datanodes replication for backup which saves two or three copies of the data so we have backup but he said that is also present in Spark as it is built on top of Hadoop architecture and it was built to overcome the drawbacks of speed due to I/O costs and time and that just becuase Spark is modern is has more users and advantageous but there was a time when Hadoop ran the legacy of being at the top just like Spark is today. 
+
+
+
+The next session will be conducted on Tuesday where we will be going through SQL so we need to have the following installed and setup and on our computer: 
+1) download mysql workbench 
+2) donwload mysql server
+3) download sakila database
