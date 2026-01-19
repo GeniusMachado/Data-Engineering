@@ -35,6 +35,8 @@ Prefered in banking sectors where data is crucial and cant be lost
 
 It is good but when we consider the drawback it is slow. So that is when people came up with Spark architecture. 
 
+2) Spark architecture
+
 that is unified - in - memory computation framework. 
 
 Spark also has HDFS but instead of having map() and reduce() , it will have in memory which is the RAM memory itself instead of the disk operations. So the time of disk I/O is reduced in parallel processing . 
