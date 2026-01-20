@@ -1,0 +1,46 @@
+Today Tuesday 01-20-2026
+
+types of data : Structured data and Unstructured data and semi-structured data
+So there are databases that are used to store in relational and non-relational databases
+Databaes are stored on Servers
+DBMS is something that we used to connect to the database servers
+And SQL language is the language to communicate with our database. 
+Workbench - Server - Database - Schema - Tables - Columns/rows
+DDL(Dta Definition Language), DML(Data Manipulation Language), DQL(Data Query Language), DCL(Data Control Language), TCL (Tannsaction Control Language)
+
+DDL : 
+
+CREATE DATABASE company_db;
+CREATE Table company_db.test_table(
+    id INT,
+    name VARCHAR(100)
+);
+SELECT * FROM company_db.test_table;
+INSERT INTO company_db.test_table (id, name)
+VALUES
+(1,'alice')
+(2,'welborn')
+(3,'heop');
+ALTER TABLE company_db.test_table
+ADD Email varchar(255)
+RENAME COLUMN Email to email_id;
+DROP TABLE IF EXISTS company_db.persons;
+
+Primary key and foreign key concept
+DOUBT : The concept of Foreing key can be implementd at database levels or just table level ? Like can a primary key from another database be used in different database ?
+
+We saw the keywords like RESTRICT where we dont let the child table operations delete the primary key in the parent table which is used as FOREIGN Key references.
+And then if we want to make sure that we also update the record in the parent table as well then we use the keyword CASCADE like for example to update the phone number of a person in all the tables and references where it as to be updated universally which we use the CASCADE keyword. 
+
+Then we also have the DEFAULT keyword to keep some value by default unless provided.
+
+There is also another keyword CHECK which is condition checker like for example:
+Age INT CHECK (Age>18)
+
+DROP means the entire table will delete. 
+DELETE means you have to give the WHERE condition and delete that particular record like the row.
+TRUNCATE means quickly delete all rows from a table while keeping the table's structure (columns, constraints, and indexes) intact for future use.
+
+homework is to do the Create, Read and Update operations on our local database mySQL database server and to not touch any tables of Sakila database. 
+
+We meet on Thursday for the next session. 
