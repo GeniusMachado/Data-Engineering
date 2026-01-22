@@ -11,23 +11,27 @@ DDL(Dta Definition Language), DML(Data Manipulation Language), DQL(Data Query La
 DDL : 
 
 CREATE DATABASE company_db;
+
 CREATE Table company_db.test_table(
     id INT,
     name VARCHAR(100)
 );
 SELECT * FROM company_db.test_table;
+
 INSERT INTO company_db.test_table (id, name)
 VALUES
 (1,'alice')
 (2,'welborn')
 (3,'heop');
+
 ALTER TABLE company_db.test_table
 ADD Email varchar(255)
 RENAME COLUMN Email to email_id;
+
 DROP TABLE IF EXISTS company_db.persons;
 
 Primary key and foreign key concept
-DOUBT : The concept of Foreing key can be implementd at database levels or just table level ? Like can a primary key from another database be used in different database ?
+DOUBT : The concept of Foreing key can be implementd at database levels or just table level ? Like can a primary key from another database be used in different database ? No it can only be implemented at the table level and not database level in SQL.
 
 We saw the keywords like RESTRICT where we dont let the child table operations delete the primary key in the parent table which is used as FOREIGN Key references.
 And then if we want to make sure that we also update the record in the parent table as well then we use the keyword CASCADE like for example to update the phone number of a person in all the tables and references where it as to be updated universally which we use the CASCADE keyword. 

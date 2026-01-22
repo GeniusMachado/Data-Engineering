@@ -1,0 +1,94 @@
+Good morning ! 
+We had Ritesh Reddy give us a quick recap of what we learnt in the last lecture about SQL language.
+DISTINCT keyword is used to query along with SELECT keyword to identify only the unique records
+COUNT is another keyword used to get the total number of entries
+
+SELECT COUNT(DISTINCT(TITLE)) FROM SAKILA.FILM;
+
+SELECT COUNT(TITLE) FROM SAKILA.FILM;
+
+then we also have the LIMIT keyword which can only return 5 or any specific number limit provided for select query
+
+SELECT first_name, last_name FROM SAKILA.FILM LIMIT 50;
+
+SELECT * FROM SAKILA.FILM WHERE RATING ='R' AND LENGTH ?=91;
+
+SELECT * FROM SAKILA.FILM ORDER BY RENTAL_RATE DESC;
+
+SELECT * FROM SAKILA.FILM
+WHERE RATING ='PG' AND RENTA_DURATION = 4
+ORDER BY RENTAL_RATE ASC;
+
+SELECT * FROM SAKILA.FILM
+WHERE RATING ='PG' OR RENTA_DURATION = 4
+ORDER BY RENTAL_RATE ASC;
+
+Lets see some examples of NOT conditions: 
+
+1)
+
+SELECT * FROM SAKILA.FILM
+WHERE NOT RENTAL_DURATION = 4
+ORDER BY RENTAL_RATE ASC;
+
+2)
+
+SELECT * FROM SAKILA.FILM
+WHERE RENTAL_DURATION != 4
+ORDER BY RENTAL_RATE ASC;
+
+3)
+
+SELECT * FROM SAKILA.FILM
+WHERE RENTAL_DURATION <> 4
+ORDER BY RENTAL_RATE ASC;
+
+
+Just some data profiling using SQL using OR, NOT and AND conditions 
+
+there is something called Wild Card that are mainly two which are used along with WHERE clause and LIKE keyword 
+they are % and _
+% means it could be one or multiple characters 
+_ means just one unkown character
+
+SELECT CITY FROM SAKILA.CITY WHERE CITY LIKE 'A%S';
+this query means we are looking for something that starts with A and there could me anything in between and then it ends with S.
+
+
+SELECT CITY FROM SAKILA.CITY WHERE CITY LIKE '_S___D%';
+This query means it starts with one unknown character and then followed by S and then again three unknown characters and then D and the it could end with % which means anything anytime. 
+
+This wild cards help us to query using regular expression like concept. 
+
+Then we deal with NULL values.
+
+SELECT RENTAL_ID, INVENTORY_ID, CUSTOMER_ID, RETURN_DATE
+FROM SAKILA.RENTAL
+WEHRE RETURN_DATE IS NULL;
+This qeury helps us find the person or people who did not return the items and then they are still yet to return the item. Thats where Null comes handy. 
+
+Next keyword is BETWEEN  which can be used for range. 
+SELECT RENTAL_ID, INVENTORY_ID, CUSTOMER_ID, RETURN_DATE
+FROM SAKILA.RENTAL
+WHERE RETURN_DATE BETWEEN '2005-9-22' AND '2025-08-12';
+
+Next importan concept is GROUP BY and HAVING keywords
+
+SELECT CUSTOMER_ID, COUNT (*) AS COUNT
+FROM SAKILA.RENTAL
+GROUP BY CUSTOMER_ID
+HAVING COUNT (*) <= 30
+ORDER BY COUNT DESC;
+
+The flow of execution in SQL:
+
+FROM TABLE => JOIN => WHERE => GROUP BY => HAVING => SELECT => ORDER BY => LIMIT
+
+
+Also count(*) means the total number of unique primary key records. 
+
+The keyword HAVING can not be used alone and has to be used with GROUP BY keywords alongside. 
+
+Homework: We will be provided with a drive link that will be the first assessment of the training and which will help us strengthen our SQL knowledge and also we were told towards the end of the lecture that SQL will be going on for the next two weeks and then followed by Python for the next two weeks and once the entire class builds a foundation of These two programming languages is when we will start building projects that was mentioned by Amar Sir about SDD. 
+The assignment is due by Sunday. 
+We meet tomorrow again for next class. 
