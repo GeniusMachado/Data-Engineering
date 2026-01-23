@@ -1,0 +1,89 @@
+We begin the class at 9 am PST.
+We also received the Drive links to the first assignment which I covered up half the questions before this class. 
+Krushi presented her notes giving us a recap of what we did in the last class which was yesterday. 
+We are going to expore the builtin functions of SQL for String and other numerical data types. 
+The first type is String data type. 
+We are learning Padding for strings. 
+there will be scenarios while working with clients that they expect 20 characters in teh UI so we need to pull the data in a way that returns 20 character string so that is where we use Padding. 
+Left padding and right padding. 
+
+SELECT title, RPAD(title, 20, '*') AS left_padded
+FROM sakila.film
+LIMIT 5;
+
+SELECT title, LPAD(RPAD(title, 20, '*'),20,'*') AS left_padded
+FROM sakila.film
+LIMIT 5;
+
+there is also somehting called SUBSTRING function
+
+SELECT title, SUBSTRING(title, 1, 9) AS short_title
+FROM sakila.film;
+
+CONCAT is another builtin function for concatenation 
+
+SELECT CONCAT(first_name, '@', last_name) AS full_name
+FROM sakila.customer;
+
+Then we have the REVERSE builtin function 
+
+SELECT title, REVERSE(title) AS reversed_title
+FROM sakila.film
+LIMIT 5;
+
+Then we have the length builtin function
+
+SELECT title, LENGTH(title) AS title_length
+FROM sakila.film
+WHERE LENGTH(title)=8;
+
+One more builtin function which is LOCATE
+
+SELECT email, 
+        SUBSTRING(email, LOCATE('@', email)+1) AS domain
+FROM sakila.customer;
+
+we also have builtin functions like string_index and also UPPER and LOWER for upper case and lower case.
+
+Two more built in functions like LEFT and RIGHT to get the leftmost or rightmost characters of the string.
+
+SELECT LEFT(TITLE, 2) AS FIRST_LETTER, RIGHT(TITLE, 3) AS LAST_LETTER, COUNT(*) AS FILM_COUNT
+FROM SAKIA.FILM
+GROUP BY LEFT(TITLE, 2), RIGHT(TITLE,3)
+ORDER BY FILM_COUNT DESC;
+
+
+the next concept of CASE condition where the condition is satisfied. 
+
+![alt text](image.png)
+
+
+SELECT LAST_NAME,
+    CASE
+        WHEN LEFT(LAST_NAME, 1) BETWEEN 'A' AND 'M' THEN 'GROUP A-M'
+        WHEN LEFT(LAST_NAME, 1) BETWEEN 'N' AND 'Z' THEN 'GROUP N-Z'
+        ESLE 'OTHER'
+    END AS GROUP_LABEL
+FROM SAKILA.CUSTOMER;
+
+We also have a REPLACE function which is Builtin as well.
+
+
+we also have REGEXP builtin function for regular expressions where we can obtain 100% dynamic query.
+
+![alt text](image-1.png)
+
+
+In REGEX the syntax is $ for anything that ends with 
+and then for not condition we have a cap ^
+[] this means containing the list.
+
+And there are many other REGEX syntaxes which we should memorize and always references from the documentation. 
+
+Doubt : Considering the modern ETL pipleilines and their architectures, How often do we see a Data Engineer writing Regex on SQL/Database level or the application Layer or Python ? What is prefered ?
+
+We also saw FLOOR, CEIL, RAND, MOD, ROUND, POWER, DATEDIFF, MONTHNAME, DAY, YEAR, YEARWEEK built-in functions for numerical data types.
+
+We are asked to check how to cast Columns in tables like cast a column of String datatype to integer or vice versa. 
+
+We meet next on Monday where we shall go with Advanced topics like CTEs and Stored Procedures and subqueries, etc. 
