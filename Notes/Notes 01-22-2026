@@ -1,3 +1,4 @@
+-- Active: 1769107379136@@127.0.0.1@3306@sakila
 Good morning ! 
 We had Ritesh Reddy give us a quick recap of what we learnt in the last lecture about SQL language.
 DISTINCT keyword is used to query along with SELECT keyword to identify only the unique records
@@ -11,7 +12,7 @@ then we also have the LIMIT keyword which can only return 5 or any specific numb
 
 SELECT first_name, last_name FROM SAKILA.FILM LIMIT 50;
 
-SELECT * FROM SAKILA.FILM WHERE RATING ='R' AND LENGTH ?=91;
+SELECT * FROM SAKILA.FILM WHERE RATING ='R' AND LENGTH >=91;
 
 SELECT * FROM SAKILA.FILM ORDER BY RENTAL_RATE DESC;
 
