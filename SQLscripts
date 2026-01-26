@@ -242,3 +242,45 @@ WHERE length IS NOT NULL;
 select * from sakila.film;
 ---------------------------------
 
+SELECT customer_id, (RAND() * 100), FLOOR(RAND() * 100) AS random_score
+FROM sakila.customer
+LIMIT 5;
+
+----
+SELECT film_id,rental_duration, POWER(rental_duration, 2) AS squared_duration
+FROM sakila.film
+LIMIT 5;
+
+------
+SELECT film_id,length, MOD(length, 60) AS minutes_over_hour
+FROM sakila.film;
+
+-------------
+SELECT rental_rate, CEIL(rental_rate) AS ceil_value, FLOOR(rental_rate) AS floor_value
+FROM sakila.film;
+----------
+SELECT rental_rate, ROUND(replacement_cost / rental_rate, 0),ROUND(replacement_cost / rental_rate, 1) AS ratio
+FROM sakila.film;
+
+#date diff 
+
+SELECT rental_id, return_date,rental_date, DATEDIFF(return_date, rental_date) AS days_rented
+FROM sakila.rental
+WHERE return_date IS NOT NULL;
+
+#date time 
+
+select last_update,dayname(last_update),monthname(last_update) from sakila.film;
+
+SELECT 
+    rental_date, year(rental_date)
+FROM
+   sakila.rental;
+
+
+SELECT payment_date FROM sakila.payment;
+
+SELECT payment_date, date(payment_date) AS pay_date, SUM(amount) AS total_paid
+FROM sakila.payment
+GROUP BY DATE(payment_date),payment_date
+ORDER BY pay_date DESC;

@@ -1,0 +1,29 @@
+Today the class began at 8 am PST. 
+Suma Pranitha shared her screen and was not able to revise everything but just the string operations and she missed out on Math functions and date functions. 
+Also it was made clear that we should make our own notes and use professor's notes only for reference. 
+Today we will be discussing about subqueries and joins it seems.
+When data is separated in different tables and needs to be brought together. 
+We can use subqueries to check where clause and also use it to avoid joins to get data from two different tables. 
+We can write subqueries in Where clause and also in Select statement when we want to bring another column from different table. 
+and then if you are okay with using joins then you dont need to do the subquery part and just join the tables using joins. 
+The new table after joining will be called a derived table. 
+Seems like when you have more than 2 subqueries then the complexity gets worse for computation. 
+There is times when subqueries can fail like when the outer query is having more/less rows than the innermost query so we have to limit the subquery or we have to use a where clause to match the rows of outermost queries. 
+This is where we need joins. 
+We also saw what is corelation queries where innermost subquery refers to the column from the outer query.
+We do have to use a where clause in the co-related subqueries. 
+the limitation of subqueries is scope at query level itself and also complexity and also reusability. 
+So we use joins which is beter. 
+We learnt what is cardinality.
+That is relationships. 
+there are 4 main types of cardinality. 
+1:1, 1:many, many:1 , many : many
+this cardinality helps us to choose the appropriate type of joins on the tables when we go forward in types of joins. 
+![alt text](image-2.png)
+
+We will go through the types of Joins in the next session. Where in we will choose the correct type of joins depending upon their cardinality or say their relationship with other table. 
+
+Cardinality is always used when we pull data from the ETL pipelines while working as a data engineer and then design the appropriate Schema design we create the database design and schema. 
+The second assignment on Builtin functions with 8 questions was released today. 
+
+And we meet next on thursday now for the next class.
