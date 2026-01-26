@@ -87,3 +87,158 @@ FROM SAKILA.actor
 WHERE first_name BETWEEN 'A' AND 'D'
 GROUP BY first_name
 HAVING COUNT(*) > 1;
+
+select title from sakila.film; 
+
+SELECT title, LPAD(RPAD(title, 20, '*'),25,'*') AS left_padded
+FROM sakila.film
+LIMIT 5;
+
+SELECT title, LPAD(title, 20, '*') AS left_padded
+FROM sakila.film
+LIMIT 5;
+
+-----------------------------------------
+#Substring 
+SELECT title, SUBSTRING(title, 1,9)  AS short_title 
+FROM sakila.film;
+
+#concatination
+
+SELECT CONCAT(first_name, '-', last_name) AS full_name 
+FROM sakila.customer;
+--------------------------
+
+SELECT title, REVERSE(title) AS reversed_title
+FROM sakila.film
+LIMIT 5;
+
+SELECT title, LENGTH(title) AS title_length 
+FROM sakila.film
+WHERE LENGTH(title) =9;
+
+#substring with locate 
+select email from sakila.customer;
+
+SELECT email,
+       SUBSTRING(email, LOCATE('@', email) +1) AS domain
+FROM sakila.customer;
+
+SELECT  email, LOCATE('@', email) AS at_position
+FROM sakila.customer;
+
+
+SELECT 
+  email,
+  substring_index(SUBSTRING(email, LOCATE('@', email) + 1), '.', 1) AS domain
+FROM 
+  sakila.customer;
+
+
+#substring_index
+select substring_index(email,'@', 1) from sakila.customer;
+
+--------------------------
+SELECT title, UPPER(title),lower(title)
+FROM sakila.film
+WHERE UPPER(title) LIKE '%LOVELY%' or UPPER(title) LIKE '%MAN';
+
+select title, lower(title) as lower_titles
+FROM sakila.film;
+--------------------------------------------------
+SELECT LEFT(title, 2) AS first_letter, right(title,3) as last_letter,  COUNT(*) AS film_count
+FROM sakila.film
+GROUP BY LEFT(title, 2), right(title,3)
+ORDER BY film_count DESC;
+
+-----
+SELECT LEFT(title,2) AS first_letter, right(title, 3) as last_letter, title 
+from sakila.film;
+
+-------------------
+SELECT last_name,
+       CASE 
+           WHEN LEFT(last_name, 1) BETWEEN 'A' AND 'M' THEN 'Group A-M'
+           WHEN LEFT(last_name, 1) BETWEEN 'N' AND 'Z' THEN 'Group N-Z'
+           ELSE 'Other'
+       END AS group_label
+FROM sakila.customer;
+
+SELECT title, REPLACE(title, 'A', 'x') AS cleaned_title
+FROM sakila.film
+WHERE title LIKE '%' '%';
+
+
+SELECT title, REPLACE(title, 'A', 'x') AS cleaned_title
+FROM sakila.film;
+
+-----------------
+-- not contains 3 consecutive vowels 
+SELECT customer_id, last_name
+FROM sakila.customer
+WHERE last_name NOT REGEXP '[^aeiouAEIOU]{3}'; 
+
+-- ends with vowel
+SELECT lower(title)
+FROM sakila.film
+WHERE title REGEXP '[aeiouAEIOU]$';
+
+SELECT CAST(RENTAL_DURATION AS CHAR) AS rental_duration_str
+FROM SAKILA.FILM;
+
+SELECT CAST(DESCRIPTION)
+FROM SAKILA.FILM;
+
+select title, right(title,2)
+FROM sakila.film
+WHERE title REGEXP '[eE]$';
+
+
+-- count 
+
+select right(title,1) AS ENDING, count(*)
+FROM sakila.film
+WHERE title REGEXP '[aeiouAEIOU]$' 
+group by right(title,1);
+
+
+SELECT title AS ending, right(title,1)
+FROM sakila.film
+WHERE title REGEXP '[Ee]$';
+
+
+--------------------------------
+#math 
+
+SELECT title, rental_rate, rental_rate ^ 3 AS double_rate   -- debug why its allwoing string + integer
+FROM sakila.film;
+
+select amount,CAST(amount AS signed) AS amount_str from sakila.payment;  -- check type casting in mysql 
+
+-- I was doing some debugging on the SQL queries on built-in functions that we learnt on Friday last session and found out that -> MySQL uses implicit type conversion (coercion) to make operands compatible. So like when we perform an arithmetic or bitwise operation on a string column (like a VARCHAR or DECIMAL from the Sakila.film table) then MySQL automatically converts that string to a number. That is the reason it is showing some integer output in double_rate column as you can see in my Screenshot. Also if we take a close look then I see that the answer which is not an exact exponent or say power of the rental_rate field is incorrect and the reason behind this happening is MSQL rule of Leading Digits. So when SQL is parsed from left to right, it by default does the mathematical operation on the very first number it encounters. I thought of sharing this information. If anyone else was able to dig deeper on typecasting from String to integer explicitly then please share & correct me if I am wrong !
+--------------------------------
+
+SELECT customer_id,
+       COUNT(payment_id) AS payments,
+       SUM(amount) AS total_paid,
+       SUM(amount) / COUNT(payment_id) AS avg_payment
+       
+FROM sakila.payment
+GROUP BY customer_id;
+------------
+
+
+ALTER TABLE sakila.film
+ADD COLUMN cost_efficiency_dup1 DECIMAL(6,2);
+------------
+select rental_duration,cost_efficiency_dup1 from sakila.film;
+
+select rental_duration from sakila.film;
+
+UPDATE sakila.film
+SET cost_efficiency_dup1 = rental_duration * 2
+WHERE length IS NOT NULL;
+
+select * from sakila.film;
+---------------------------------
+
