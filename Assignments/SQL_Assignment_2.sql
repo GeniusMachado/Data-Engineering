@@ -18,6 +18,9 @@ Empty set (0.009 sec)
 
 
 
+
+
+
 2. Number of times letter 'a' is repeated in film descriptions
 MariaDB [sakila]> SELECT description,(LENGTH(description) - LENGTH(REPLACE(description, 'a', ''))) AS count_of_a FROM film limit 5;
 +-----------------------------------------------------------------------------------------------------------------------+------------+
@@ -46,6 +49,9 @@ I also thought of a better way of doing this by concatinating the entire descrip
 
 
 
+
+
+
 3. Number of times each vowel is repeated in film descriptions 
 My approach will be to have 5 columns for each individual vowel to show its count. Also, will have to be mindful of using the string LOWER() function to consider any capital alphabets of vowels too.
 MariaDB [sakila]> SELECT 
@@ -60,7 +66,7 @@ MariaDB [sakila]> SELECT
 +---------+---------+---------+---------+---------+
 |   11492 |    5944 |    4938 |    5915 |    3191 |
 +---------+---------+---------+---------+---------+
-1 row in set (0.025 sec)
+
 
 if I had to make it more informative than I would use group by description to show the individual description values as well using an obvious LIMIT clause:
 
@@ -89,7 +95,9 @@ MariaDB [sakila]> SELECT     description, SUM(LENGTH(description) - LENGTH(REPLA
 | A Action-Packed Panorama of a Mad Scientist And a Robot who must Challenge a Student in Nigeria                          |      13 |       6 |       6 |       6 |       2 |
 | A Action-Packed Panorama of a Technical Writer And a Man who must Build a Forensic Psychologist in A Manhattan Penthouse |      16 |       6 |       7 |       8 |       3 |
 +--------------------------------------------------------------------------------------------------------------------------+---------+---------+---------+---------+---------+
-20 rows in set (0.039 sec)
+
+
+
 
 
 
@@ -137,7 +145,9 @@ LIMIT 25;
 |          45 |       68.88 |             8 |
 |         150 |       68.84 |             8 |
 +-------------+-------------+---------------+
-25 rows in set (0.043 sec)
+
+
+
 
 
 
@@ -165,7 +175,8 @@ LIMIT 10;
 |         516 |       5.98 |         2006 |
 |         576 |       5.98 |         2006 |
 +-------------+------------+--------------+
-10 rows in set (0.032 sec)
+
+
 
 
 
@@ -198,6 +209,10 @@ LIMIT 10;
 
 
 
+
+
+
+
 5. Check if any given year is a leap year or not. You need not consider any table from sakila database. Write within the select query with hardcoded date
 
 MariaDB [sakila]> SELECT     2026 AS year,     CASE         WHEN (2026 % 4 = 0 AND 2026 % 100 != 0) OR (2026 % 400 = 0) THEN 'Leap Year'         ELSE 'Not a Leap Year'     END AS result;
@@ -224,6 +239,7 @@ PS: I had to look online for the leap conditions exactly as I was unaware of the
 
 
 
+
 6. Display number of days remaining in the current year from today.
 MariaDB [sakila]> select DATEDIFF('2026-12-31', '2026-01-28');
 +--------------------------------------+
@@ -243,7 +259,35 @@ PS: I am hardcoding today's date and also the end of the year date in the select
 
 7. Display quarter number(Q1,Q2,Q3,Q4) for the payment dates from payment table. 
 
+SELECT 
+    payment_id, 
+    payment_date, 
+    MONTH(payment_date) AS Month,
+    CASE 
+        WHEN MONTH(payment_date) BETWEEN 1 AND 3 THEN 'Q1'
+        WHEN MONTH(payment_date) BETWEEN 4 AND 6 THEN 'Q2'
+        WHEN MONTH(payment_date) BETWEEN 7 AND 9 THEN 'Q3'
+        WHEN MONTH(payment_date) BETWEEN 10 AND 12 THEN 'Q4'
+        ELSE 'calendar only has 12 months'
+    END AS Quarter
+FROM sakila.payment;
++------------+---------------------+-------+---------+
+| payment_id | payment_date        | Month | Quarter |
++------------+---------------------+-------+---------+
+|          1 | 2005-05-25 11:30:37 |     5 | Q2      |
+|          2 | 2005-05-28 10:35:23 |     5 | Q2      |
+|          3 | 2005-06-15 00:54:12 |     6 | Q2      |
+|          4 | 2005-06-15 18:02:53 |     6 | Q2      |
+|          5 | 2005-06-15 21:08:46 |     6 | Q2      |
+|          6 | 2005-06-16 15:18:57 |     6 | Q2      |
+|          7 | 2005-06-18 08:41:48 |     6 | Q2      |
+|          8 | 2005-06-18 13:33:59 |     6 | Q2      |
+|          9 | 2005-06-21 06:24:45 |     6 | Q2      |
+|         10 | 2005-07-08 03:17:05 |     7 | Q3      |
++------------+---------------------+-------+---------+
 
+
+PS: A funny observation I made by adding a where clause to the above query and found out there were no payments made in the fourth Quarter which is Year End when people spend the most ;)
 
 
 
@@ -255,3 +299,37 @@ PS: I am hardcoding today's date and also the end of the year date in the select
 
 8. Display the age in year, months, days based on your date of birth. 
    For example: 21 years, 4 months, 12 days
+
+SELECT 
+    '1998-06-14' AS DOB,
+    '2026-01-28' AS Today,
+    TIMESTAMPDIFF(YEAR, '1998-06-14', '2026-01-28') AS Years,
+    TIMESTAMPDIFF(MONTH, '1998-06-14', '2026-01-28') % 12 AS Months,
+    mod(mod(datediff('2026-01-28','1998-06-14'),365),30) AS Days;
++------------+------------+-------+--------+------+
+| DOB        | Today      | Years | Months | Days |
++------------+------------+-------+--------+------+
+| 1998-06-14 | 2026-01-28 |    27 |      7 |   25 |
++------------+------------+-------+--------+------+
+
+
+
+PS: I tried implementing first with DATEDIFF() but was running into accuracy errors with days so then I had to look up documentation for TIMESTAMPDIFF()
+MariaDB [sakila]> select '1998-06-14','2026-01-28', mod(mod(datediff('2026-01-28','1998-06-14'),365),12);
+
+Also my MOD() logic is not accurate and leap year proof becuase there were some leap years in my lifespan and also the logic of MOD() assumes that every year is exactly 365 days and every month has exactly 30 days. I know this is not perfect and I would like to learn the correct way of finding the number of remaining days in the next class. I will save this at the end of the next session for doubt ! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
