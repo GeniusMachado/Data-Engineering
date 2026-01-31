@@ -1,6 +1,28 @@
+
+
+
+
 1. display all customer details who have made more than 5 payments.
+
+select * from customer where customer_id in ( select customer_id from payment group by customer_id having count(payment_id)>5);
+
+
+
+
+
 2. Find the names of actors who have acted in more than 10 films.
+
+select * from actor where actor_id in (select actor_id from film_actor group by actor_id having count(film_id)>10);
+
+
+
+
 3. Find the names of customers who never made a payment.
+
+
+
+
+
 4. List all films whose rental rate is higher than the average rental rate of all films.
 5. List the titles of films that were never rented.
 6. Display the customers who rented films in the same month as customer with ID 5.
