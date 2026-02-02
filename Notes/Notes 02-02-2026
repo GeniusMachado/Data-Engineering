@@ -1,0 +1,48 @@
+We started the class today at around 9 am PST and then Yashwanth gave us a recap of last calss where we went over the different types of Joins and their cardinalities.
+So something even better than Joins is CTE which are common table expressions which have even more better readability and speed. 
+The complexity and reusablility is better with CTE and also execution is not at the query level. 
+CTEs are supposed to use with the WITH keyword and then they can only be used with the select, create, update or insert or delete query.
+The scope of CTE is also around the query level itself. But readablility and reusability is reduced. 
+Using CTE we can define the subqueries inside the WITH statement and then we can use them later in our SQL query. 
+The limitation is still there becuase the scope is just at the query level. 
+We can use concept of RECURSIVE CTE to obtain the conecpt of recursion. 
+Recursive CTE can be used to generate the last 10 days data for example. 
+We are still having one limitation of scope even after introduction of CTE concepts and we have to reuse it multiple times throughout the session that concept is called TEMPORARY TABLES.
+So now the temporary tables created can be accessed anywhere in the session level and now we have achieved something above the query level. 
+We can do update, select, insert or delete on the temporary tables at the session level. 
+But still there is a limitation of session level only. 
+For that we have VIEWS where we can control the data and control its acess to the users. 
+Also view gets stored at the database hardware. 
+Views are having advantage over CTE and Temporary tables which is data abstraction so you decide to choose what data is displayed in the view so to hide from the original raw column names so we have abstraction here and called data abstraction to hide sensitive information for security.So the VIEW does not exactly store the exact individual data fields stored in the VIEW rather it stores the queries and that it only saves the schema. So when the view is accessed then the VIEW will exectute query and then get the data from the actual tables and then display in the tabular form. 
+So with the VIEWS we have increased the storage capacity, Readablity, security and the complexity as well at the readablity level.
+So with the VIEWS now we have overcome the limitation of access even outside the session level. 
+So the heirarchy evolved from: 
+
+Subquery -> CTE -> TEMPORARY Table -> View 
+
+So the SQL has evolved over the course of time depending upon how much scope we need with our data from subqueries to CTE to Temporary Tables to VIEWS.
+
+Just like we have wrapper functions in Python in similar way we have Views which wrap our raw data tables with what we choose to be given access.
+
+So the assignments of Subqueries/joins we have to replicate their questions with CTE and Temporary Tables and Joins. 
+
+We connect tomorrow for the next session and Ruchik sir told us that by the end of this week in the next two sessions we will be wrapping up with SQL. Then we will have an exam as well. Class ended at 10:24 am PST.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
