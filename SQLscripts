@@ -284,3 +284,2604 @@ SELECT payment_date, date(payment_date) AS pay_date, SUM(amount) AS total_paid
 FROM sakila.payment
 GROUP BY DATE(payment_date),payment_date
 ORDER BY pay_date DESC;
+
+
+MariaDB [sakila]> show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.001 sec)
+
+MariaDB [sakila]> show columns from sakila.staff;
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| Field       | Type                 | Null | Key | Default             | Extra                         |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| staff_id    | tinyint(3) unsigned  | NO   | PRI | NULL                | auto_increment                |
+| first_name  | varchar(45)          | NO   |     | NULL                |                               |
+| last_name   | varchar(45)          | NO   |     | NULL                |                               |
+| address_id  | smallint(5) unsigned | NO   | MUL | NULL                |                               |
+| picture     | blob                 | YES  |     | NULL                |                               |
+| email       | varchar(50)          | YES  |     | NULL                |                               |
+| store_id    | tinyint(3) unsigned  | NO   | MUL | NULL                |                               |
+| active      | tinyint(1)           | NO   |     | 1                   |                               |
+| username    | varchar(16)          | NO   |     | NULL                |                               |
+| password    | varchar(40)          | YES  |     | NULL                |                               |
+| last_update | timestamp            | NO   |     | current_timestamp() | on update current_timestamp() |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+11 rows in set (0.002 sec)
+
+MariaDB [sakila]> show columns from sakila.customer;
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| Field       | Type                 | Null | Key | Default             | Extra                         |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| customer_id | smallint(5) unsigned | NO   | PRI | NULL                | auto_increment                |
+| store_id    | tinyint(3) unsigned  | NO   | MUL | NULL                |                               |
+| first_name  | varchar(45)          | NO   |     | NULL                |                               |
+| last_name   | varchar(45)          | NO   | MUL | NULL                |                               |
+| email       | varchar(50)          | YES  |     | NULL                |                               |
+| address_id  | smallint(5) unsigned | NO   | MUL | NULL                |                               |
+| active      | tinyint(1)           | NO   |     | 1                   |                               |
+| create_date | datetime             | NO   |     | NULL                |                               |
+| last_update | timestamp            | YES  |     | current_timestamp() | on update current_timestamp() |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+9 rows in set (0.002 sec)
+
+MariaDB [sakila]> select f.title, c.category_id as category_id, rc.name as category_type   from film f left join film_category c on f.film_id = c.film_id left join category
+    -> rc on rc.category_id = c.category_id;
++-----------------------------+-------------+---------------+
+| title                       | category_id | category_type |
++-----------------------------+-------------+---------------+
+| ACADEMY DINOSAUR            |           6 | Documentary   |
+| ACE GOLDFINGER              |          11 | Horror        |
+| ADAPTATION HOLES            |           6 | Documentary   |
+| AFFAIR PREJUDICE            |          11 | Horror        |
+| AFRICAN EGG                 |           8 | Family        |
+| AGENT TRUMAN                |           9 | Foreign       |
+| AIRPLANE SIERRA             |           5 | Comedy        |
+| AIRPORT POLLOCK             |          11 | Horror        |
+| ALABAMA DEVIL               |          11 | Horror        |
+| ALADDIN CALENDAR            |          15 | Sports        |
+| ALAMO VIDEOTAPE             |           9 | Foreign       |
+| ALASKA PHANTOM              |          12 | Music         |
+| ALI FOREVER                 |          11 | Horror        |
+| ALICE FANTASIA              |           4 | Classics      |
+| ALIEN CENTER                |           9 | Foreign       |
+| ALLEY EVOLUTION             |           9 | Foreign       |
+| ALONE TRIP                  |          12 | Music         |
+| ALTER VICTORY               |           2 | Animation     |
+| AMADEUS HOLY                |           1 | Action        |
+| AMELIE HELLFIGHTERS         |          12 | Music         |
+| AMERICAN CIRCUS             |           1 | Action        |
+| AMISTAD MIDSUMMER           |          13 | New           |
+| ANACONDA CONFESSIONS        |           2 | Animation     |
+| ANALYZE HOOSIERS            |          11 | Horror        |
+| ANGELS LIFE                 |          13 | New           |
+| ANNIE IDENTITY              |          14 | Sci-Fi        |
+| ANONYMOUS HUMAN             |          15 | Sports        |
+| ANTHEM LUKE                 |           5 | Comedy        |
+| ANTITRUST TOMATOES          |           1 | Action        |
+| ANYTHING SAVANNAH           |          11 | Horror        |
+| APACHE DIVINE               |           8 | Family        |
+| APOCALYPSE FLAMINGOS        |          13 | New           |
+| APOLLO TEEN                 |           7 | Drama         |
+| ARABIA DOGMA                |          11 | Horror        |
+| ARACHNOPHOBIA ROLLERCOASTER |          11 | Horror        |
+| ARGONAUTS TOWN              |           2 | Animation     |
+| ARIZONA BANG                |           4 | Classics      |
+| ARK RIDGEMONT               |           1 | Action        |
+| ARMAGEDDON LOST             |          14 | Sci-Fi        |
+| ARMY FLINTSTONES            |           6 | Documentary   |
+| ARSENIC INDEPENDENCE        |          16 | Travel        |
+| ARTIST COLDBLOODED          |          15 | Sports        |
+| ATLANTIS CAUSE              |           8 | Family        |
+| ATTACKS HATE                |          14 | Sci-Fi        |
+| ATTRACTION NEWTON           |          13 | New           |
+| AUTUMN CROW                 |          10 | Games         |
+| BABY HALL                   |           9 | Foreign       |
+| BACKLASH UNDEFEATED         |           3 | Children      |
+| BADMAN DAWN                 |          14 | Sci-Fi        |
+| BAKED CLEOPATRA             |           8 | Family        |
+| BALLOON HOMEWARD            |          12 | Music         |
+| BALLROOM MOCKINGBIRD        |           9 | Foreign       |
+| BANG KWAI                   |           8 | Family        |
+| BANGER PINOCCHIO            |          12 | Music         |
+| BARBARELLA STREETCAR        |          14 | Sci-Fi        |
+| BAREFOOT MANCHURIAN         |           1 | Action        |
+| BASIC EASY                  |          16 | Travel        |
+| BEACH HEARTBREAKERS         |           6 | Documentary   |
+| BEAR GRACELAND              |           3 | Children      |
+| BEAST HUNCHBACK             |           4 | Classics      |
+| BEAUTY GREASE               |           7 | Drama         |
+| BED HIGHBALL                |           6 | Documentary   |
+| BEDAZZLED MARRIED           |           8 | Family        |
+| BEETHOVEN EXORCIST          |           7 | Drama         |
+| BEHAVIOR RUNAWAY            |          11 | Horror        |
+| BENEATH RUSH                |           3 | Children      |
+| BERETS AGENT                |           1 | Action        |
+| BETRAYED REAR               |           3 | Children      |
+| BEVERLY OUTLAW              |          14 | Sci-Fi        |
+| BIKINI BORROWERS            |           2 | Animation     |
+| BILKO ANONYMOUS             |           8 | Family        |
+| BILL OTHERS                 |           6 | Documentary   |
+| BINGO TALENTED              |          14 | Sci-Fi        |
+| BIRCH ANTITRUST             |          12 | Music         |
+| BIRD INDEPENDENCE           |          16 | Travel        |
+| BIRDCAGE CASPER             |          12 | Music         |
+| BIRDS PERDITION             |          13 | New           |
+| BLACKOUT PRIVATE            |           2 | Animation     |
+| BLADE POLISH                |           7 | Drama         |
+| BLANKET BEVERLY             |           8 | Family        |
+| BLINDNESS GUN               |          14 | Sci-Fi        |
+| BLOOD ARGONAUTS             |           8 | Family        |
+| BLUES INSTINCT              |           8 | Family        |
+| BOILED DARES                |          16 | Travel        |
+| BONNIE HOLOCAUST            |           6 | Documentary   |
+| BOOGIE AMELIE               |          12 | Music         |
+| BOONDOCK BALLROOM           |          16 | Travel        |
+| BORN SPINAL                 |          16 | Travel        |
+| BORROWERS BEDAZZLED         |           2 | Animation     |
+| BOULEVARD MOB               |          13 | New           |
+| BOUND CHEAPER               |           4 | Classics      |
+| BOWFINGER GABLES            |          11 | Horror        |
+| BRANNIGAN SUNRISE           |          13 | New           |
+| BRAVEHEART HUMAN            |           8 | Family        |
+| BREAKFAST GOLDFINGER        |          13 | New           |
+| BREAKING HOME               |          13 | New           |
+| BRIDE INTRIGUE              |           1 | Action        |
+| BRIGHT ENCOUNTERS           |           7 | Drama         |
+| BRINGING HYSTERICAL         |           5 | Comedy        |
+| BROOKLYN DESERT             |           9 | Foreign       |
+| BROTHERHOOD BLANKET         |           6 | Documentary   |
+| BUBBLE GROSSE               |          15 | Sports        |
+| BUCKET BROTHERHOOD          |          16 | Travel        |
+| BUGSY SONG                  |           9 | Foreign       |
+| BULL SHAWSHANK              |           1 | Action        |
+| BULWORTH COMMANDMENTS       |          10 | Games         |
+| BUNCH MINDS                 |           7 | Drama         |
+| BUTCH PANTHER               |          13 | New           |
+| BUTTERFLY CHOCOLAT          |          13 | New           |
+| CABIN FLASH                 |           3 | Children      |
+| CADDYSHACK JEDI             |           1 | Action        |
+| CALENDAR GUNFIGHT           |           9 | Foreign       |
+| CALIFORNIA BIRDS            |          15 | Sports        |
+| CAMELOT VACATION            |          14 | Sci-Fi        |
+| CAMPUS REMEMBER             |           1 | Action        |
+| CANDIDATE PERDITION         |           4 | Classics      |
+| CANDLES GRAPES              |          10 | Games         |
+| CANYON STOCK                |           2 | Animation     |
+| CAPER MOTIONS               |           5 | Comedy        |
+| CARIBBEAN LIBERTY           |          15 | Sports        |
+| CAROL TEXAS                 |           2 | Animation     |
+| CARRIE BUNCH                |          11 | Horror        |
+| CASABLANCA SUPER            |          16 | Travel        |
+| CASPER DRAGONFLY            |           3 | Children      |
+| CASSIDY WYOMING             |          16 | Travel        |
+| CASUALTIES ENCINO           |           1 | Action        |
+| CAT CONEHEADS               |           5 | Comedy        |
+| CATCH AMISTAD               |           9 | Foreign       |
+| CAUSE DATE                  |           6 | Documentary   |
+| CELEBRITY HORN              |           1 | Action        |
+| CENTER DINOSAUR             |           4 | Classics      |
+| CHAINSAW UPTOWN             |          14 | Sci-Fi        |
+| CHAMBER ITALIAN             |          12 | Music         |
+| CHAMPION FLATLINERS         |           2 | Animation     |
+| CHANCE RESURRECTION         |          15 | Sports        |
+| CHAPLIN LICENSE             |          13 | New           |
+| CHARADE DUFFEL              |          14 | Sci-Fi        |
+| CHARIOTS CONSPIRACY         |          14 | Sci-Fi        |
+| CHASING FIGHT               |           8 | Family        |
+| CHEAPER CLYDE               |          14 | Sci-Fi        |
+| CHICAGO NORTH               |          10 | Games         |
+| CHICKEN HELLFIGHTERS        |           6 | Documentary   |
+| CHILL LUCK                  |           7 | Drama         |
+| CHINATOWN GLADIATOR         |          13 | New           |
+| CHISUM BEHAVIOR             |           8 | Family        |
+| CHITTY LOCK                 |           7 | Drama         |
+| CHOCOLAT HARRY              |           8 | Family        |
+| CHOCOLATE DUCK              |           9 | Foreign       |
+| CHRISTMAS MOONSHINE         |           3 | Children      |
+| CIDER DESIRE                |           6 | Documentary   |
+| CINCINATTI WHISPERER        |          14 | Sci-Fi        |
+| CIRCUS YOUTH                |           3 | Children      |
+| CITIZEN SHREK               |          14 | Sci-Fi        |
+| CLASH FREDDY                |           2 | Animation     |
+| CLEOPATRA DEVIL             |          13 | New           |
+| CLERKS ANGELS               |           6 | Documentary   |
+| CLOCKWORK PARADISE          |           3 | Children      |
+| CLONES PINOCCHIO            |          12 | Music         |
+| CLOSER BANG                 |           5 | Comedy        |
+| CLUB GRAFFITI               |           2 | Animation     |
+| CLUE GRAIL                  |          12 | Music         |
+| CLUELESS BUCKET             |           1 | Action        |
+| CLYDE THEORY                |          13 | New           |
+| COAST RAINBOW               |           6 | Documentary   |
+| COLDBLOODED DARLING         |          14 | Sci-Fi        |
+| COLOR PHILADELPHIA          |           4 | Classics      |
+| COMA HEAD                   |          16 | Travel        |
+| COMANCHEROS ENEMY           |           3 | Children      |
+| COMFORTS RUSH               |          16 | Travel        |
+| COMMAND DARLING             |           9 | Foreign       |
+| COMMANDMENTS EXPRESS        |          11 | Horror        |
+| CONEHEADS SMOOCHY           |           7 | Drama         |
+| CONFESSIONS MAGUIRE         |           7 | Drama         |
+| CONFIDENTIAL INTERVIEW      |          12 | Music         |
+| CONFUSED CANDLES            |           8 | Family        |
+| CONGENIALITY QUEST          |          15 | Sports        |
+| CONNECTICUT TRAMP           |          14 | Sci-Fi        |
+| CONNECTION MICROCOSMOS      |           5 | Comedy        |
+| CONQUERER NUTS              |           7 | Drama         |
+| CONSPIRACY SPIRIT           |           4 | Classics      |
+| CONTACT ANONYMOUS           |          16 | Travel        |
+| CONTROL ANTHEM              |           5 | Comedy        |
+| CONVERSATION DOWNHILL       |           8 | Family        |
+| CORE SUIT                   |           4 | Classics      |
+| COWBOY DOOM                 |           9 | Foreign       |
+| CRAFT OUTFIELD              |           7 | Drama         |
+| CRANES RESERVOIR            |          15 | Sports        |
+| CRAZY HOME                  |           5 | Comedy        |
+| CREATURES SHAKESPEARE       |          10 | Games         |
+| CREEPERS KANE               |           4 | Classics      |
+| CROOKED FROGMEN             |           3 | Children      |
+| CROSSING DIVORCE            |           9 | Foreign       |
+| CROSSROADS CASUALTIES       |           2 | Animation     |
+| CROW GREASE                 |           1 | Action        |
+| CROWDS TELEMARK             |          14 | Sci-Fi        |
+| CRUELTY UNFORGIVEN          |           4 | Classics      |
+| CRUSADE HONEY               |          15 | Sports        |
+| CRYSTAL BREAKING            |           9 | Foreign       |
+| CUPBOARD SINNERS            |           6 | Documentary   |
+| CURTAIN VIDEOTAPE           |          10 | Games         |
+| CYCLONE FAMILY              |           9 | Foreign       |
+| DADDY PITTSBURGH            |           5 | Comedy        |
+| DAISY MENAGERIE             |          14 | Sci-Fi        |
+| DALMATIONS SWEDEN           |           7 | Drama         |
+| DANCES NONE                 |           1 | Action        |
+| DANCING FEVER               |           6 | Documentary   |
+| DANGEROUS UPTOWN            |           9 | Foreign       |
+| DARES PLUTO                 |           2 | Animation     |
+| DARKNESS WAR                |           7 | Drama         |
+| DARKO DORADO                |           1 | Action        |
+| DARLING BREAKING            |          10 | Games         |
+| DARN FORRESTER              |           1 | Action        |
+| DATE SPEED                  |           8 | Family        |
+| DAUGHTER MADIGAN            |           3 | Children      |
+| DAWN POND                   |          10 | Games         |
+| DAY UNFAITHFUL              |          13 | New           |
+| DAZED PUNK                  |          10 | Games         |
+| DECEIVER BETRAYED           |           7 | Drama         |
+| DEEP CRUSADE                |           6 | Documentary   |
+| DEER VIRGINIAN              |          12 | Music         |
+| DELIVERANCE MULHOLLAND      |           6 | Documentary   |
+| DESERT POSEIDON             |          11 | Horror        |
+| DESIRE ALIEN                |           2 | Animation     |
+| DESPERATE TRAINSPOTTING     |          16 | Travel        |
+| DESTINATION JERK            |           7 | Drama         |
+| DESTINY SATURDAY            |          13 | New           |
+| DETAILS PACKER              |          10 | Games         |
+| DETECTIVE VISION            |           4 | Classics      |
+| DEVIL DESIRE                |           1 | Action        |
+| DIARY PANIC                 |           7 | Drama         |
+| DINOSAUR SECRETARY          |           8 | Family        |
+| DIRTY ACE                   |          10 | Games         |
+| DISCIPLE MOTHER             |          16 | Travel        |
+| DISTURBING SCARFACE         |          14 | Sci-Fi        |
+| DIVIDE MONSTER              |          14 | Sci-Fi        |
+| DIVINE RESURRECTION         |          10 | Games         |
+| DIVORCE SHINING             |          15 | Sports        |
+| DOCTOR GRAIL                |           3 | Children      |
+| DOGMA FAMILY                |           2 | Animation     |
+| DOLLS RAGE                  |          14 | Sci-Fi        |
+| DONNIE ALLEY                |           2 | Animation     |
+| DOOM DANCING                |           5 | Comedy        |
+| DOORS PRESIDENT             |           2 | Animation     |
+| DORADO NOTTING              |          12 | Music         |
+| DOUBLE WRATH                |           2 | Animation     |
+| DOUBTFIRE LABYRINTH         |           9 | Foreign       |
+| DOWNHILL ENOUGH             |           5 | Comedy        |
+| DOZEN LION                  |           6 | Documentary   |
+| DRACULA CRYSTAL             |           4 | Classics      |
+| DRAGON SQUAD                |           1 | Action        |
+| DRAGONFLY STRANGERS         |          13 | New           |
+| DREAM PICKUP                |           1 | Action        |
+| DRIFTER COMMANDMENTS        |           1 | Action        |
+| DRIVER ANNIE                |          15 | Sports        |
+| DRIVING POLISH              |          12 | Music         |
+| DROP WATERFRONT             |          15 | Sports        |
+| DRUMLINE CYCLONE            |          16 | Travel        |
+| DRUMS DYNAMITE              |          11 | Horror        |
+| DUCK RACER                  |           2 | Animation     |
+| DUDE BLINDNESS              |          15 | Sports        |
+| DUFFEL APOCALYPSE           |           6 | Documentary   |
+| DUMBO LUST                  |           8 | Family        |
+| DURHAM PANKY                |          15 | Sports        |
+| DWARFS ALTER                |          10 | Games         |
+| DYING MAKER                 |           5 | Comedy        |
+| DYNAMITE TARZAN             |           4 | Classics      |
+| EAGLES PANKY                |          13 | New           |
+| EARLY HOME                  |           2 | Animation     |
+| EARRING INSTINCT            |           8 | Family        |
+| EARTH VISION                |          13 | New           |
+| EASY GLADIATOR              |           1 | Action        |
+| EDGE KISSING                |           7 | Drama         |
+| EFFECT GLADIATOR            |           8 | Family        |
+| EGG IGBY                    |           6 | Documentary   |
+| EGYPT TENENBAUMS            |          11 | Horror        |
+| ELEMENT FREDDY              |           5 | Comedy        |
+| ELEPHANT TROJAN             |          11 | Horror        |
+| ELF MURDER                  |          12 | Music         |
+| ELIZABETH SHANE             |          15 | Sports        |
+| EMPIRE MALKOVICH            |           3 | Children      |
+| ENCINO ELF                  |          10 | Games         |
+| ENCOUNTERS CURTAIN          |           7 | Drama         |
+| ENDING CROWDS               |          13 | New           |
+| ENEMY ODDS                  |          12 | Music         |
+| ENGLISH BULWORTH            |          14 | Sci-Fi        |
+| ENOUGH RAGING               |          16 | Travel        |
+| ENTRAPMENT SATISFACTION     |           1 | Action        |
+| ESCAPE METROPOLIS           |          16 | Travel        |
+| EVE RESURRECTION            |          13 | New           |
+| EVERYONE CRAFT              |           9 | Foreign       |
+| EVOLUTION ALTER             |          15 | Sports        |
+| EXCITEMENT EVE              |           1 | Action        |
+| EXORCIST STING              |          15 | Sports        |
+| EXPECATIONS NATURAL         |          16 | Travel        |
+| EXPENDABLE STALLION         |           6 | Documentary   |
+| EXPRESS LONELY              |          14 | Sci-Fi        |
+| EXTRAORDINARY CONQUERER     |           4 | Classics      |
+| EYES DRIVING                |          14 | Sci-Fi        |
+| FACTORY DRAGON              |          16 | Travel        |
+| FALCON VOLUME               |           2 | Animation     |
+| FAMILY SWEET                |          11 | Horror        |
+| FANTASIA PARK               |          10 | Games         |
+| FANTASY TROOPERS            |           1 | Action        |
+| FARGO GANDHI                |           3 | Children      |
+| FATAL HAUNTED               |          13 | New           |
+| FEATHERS METAL              |          10 | Games         |
+| FELLOWSHIP AUTUMN           |          16 | Travel        |
+| FERRIS MOTHER               |           5 | Comedy        |
+| FEUD FROGMEN                |           8 | Family        |
+| FEVER EMPIRE                |          10 | Games         |
+| FICTION CHRISTMAS           |           9 | Foreign       |
+| FIDDLER LOST                |          14 | Sci-Fi        |
+| FIDELITY DEVIL              |          11 | Horror        |
+| FIGHT JAWBREAKER            |           2 | Animation     |
+| FINDING ANACONDA            |           8 | Family        |
+| FIRE WOLVES                 |          10 | Games         |
+| FIREBALL PHILADELPHIA       |           5 | Comedy        |
+| FIREHOUSE VIETNAM           |           1 | Action        |
+| FISH OPUS                   |          14 | Sci-Fi        |
+| FLAMINGOS CONNECTICUT       |          13 | New           |
+| FLASH WARS                  |          13 | New           |
+| FLATLINERS KILLER           |          15 | Sports        |
+| FLIGHT LIES                 |          15 | Sports        |
+| FLINTSTONES HAPPINESS       |           5 | Comedy        |
+| FLOATS GARDEN               |           2 | Animation     |
+| FLYING HOOK                 |           2 | Animation     |
+| FOOL MOCKINGBIRD            |           1 | Action        |
+| FOREVER CANDIDATE           |           3 | Children      |
+| FORREST SONS                |           1 | Action        |
+| FORRESTER COMANCHEROS       |           2 | Animation     |
+| FORWARD TEMPLE              |          10 | Games         |
+| FRANKENSTEIN STRANGER       |           5 | Comedy        |
+| FREAKY POCUS                |          12 | Music         |
+| FREDDY STORM                |          11 | Horror        |
+| FREEDOM CLEOPATRA           |           5 | Comedy        |
+| FRENCH HOLIDAY              |           6 | Documentary   |
+| FRIDA SLIPPER               |           9 | Foreign       |
+| FRISCO FORREST              |          14 | Sci-Fi        |
+| FROGMEN BREAKING            |          16 | Travel        |
+| FRONTIER CABIN              |          13 | New           |
+| FROST HEAD                  |           4 | Classics      |
+| FUGITIVE MAGUIRE            |          16 | Travel        |
+| FULL FLATLINERS             |           3 | Children      |
+| FURY MURDER                 |           3 | Children      |
+| GABLES METROPOLIS           |           8 | Family        |
+| GALAXY SWEETHEARTS          |           4 | Classics      |
+| GAMES BOWFINGER             |          16 | Travel        |
+| GANDHI KWAI                 |           8 | Family        |
+| GANGS PRIDE                 |           2 | Animation     |
+| GARDEN ISLAND               |          14 | Sci-Fi        |
+| GASLIGHT CRUSADE            |          11 | Horror        |
+| GATHERING CALENDAR          |          10 | Games         |
+| GENTLEMEN STAGE             |           9 | Foreign       |
+| GHOST GROUNDHOG             |           3 | Children      |
+| GHOSTBUSTERS ELF            |           2 | Animation     |
+| GIANT TROOPERS              |           3 | Children      |
+| GILBERT PELICAN             |           4 | Classics      |
+| GILMORE BOILED              |           4 | Classics      |
+| GLADIATOR WESTWARD          |           8 | Family        |
+| GLASS DYING                 |           1 | Action        |
+| GLEAMING JAWBREAKER         |          15 | Sports        |
+| GLORY TRACY                 |          10 | Games         |
+| GO PURPLE                   |          12 | Music         |
+| GODFATHER DIARY             |          13 | New           |
+| GOLD RIVER                  |           5 | Comedy        |
+| GOLDFINGER SENSIBILITY      |           7 | Drama         |
+| GOLDMINE TYCOON             |          14 | Sci-Fi        |
+| GONE TROUBLE                |           7 | Drama         |
+| GOODFELLAS SALUTE           |          14 | Sci-Fi        |
+| GORGEOUS BINGO              |           3 | Children      |
+| GOSFORD DONNIE              |           1 | Action        |
+| GRACELAND DYNAMITE          |          15 | Sports        |
+| GRADUATE LORD               |           3 | Children      |
+| GRAFFITI LOVE               |          14 | Sci-Fi        |
+| GRAIL FRANKENSTEIN          |           1 | Action        |
+| GRAPES FURY                 |           9 | Foreign       |
+| GREASE YOUTH                |           8 | Family        |
+| GREATEST NORTH              |          12 | Music         |
+| GREEDY ROOTS                |           7 | Drama         |
+| GREEK EVERYONE              |           9 | Foreign       |
+| GRINCH MASSAGE              |          10 | Games         |
+| GRIT CLOCKWORK              |          10 | Games         |
+| GROOVE FICTION              |          15 | Sports        |
+| GROSSE WONDERFUL            |          12 | Music         |
+| GROUNDHOG UNCUT             |           5 | Comedy        |
+| GUMP DATE                   |          16 | Travel        |
+| GUN BONNIE                  |          10 | Games         |
+| GUNFIGHT MOON               |           5 | Comedy        |
+| GUNFIGHTER MUSSOLINI        |          15 | Sports        |
+| GUYS FALCON                 |          14 | Sci-Fi        |
+| HALF OUTFIELD               |           8 | Family        |
+| HALL CASSIDY                |           3 | Children      |
+| HALLOWEEN NUTS              |           6 | Documentary   |
+| HAMLET WISDOM               |          14 | Sci-Fi        |
+| HANDICAP BOONDOCK           |           1 | Action        |
+| HANGING DEEP                |           7 | Drama         |
+| HANKY OCTOBER               |          14 | Sci-Fi        |
+| HANOVER GALAXY              |          12 | Music         |
+| HAPPINESS UNITED            |           9 | Foreign       |
+| HARDLY ROBBERS              |           6 | Documentary   |
+| HAROLD FRENCH               |           7 | Drama         |
+| HARPER DYING                |           2 | Animation     |
+| HARRY IDAHO                 |           7 | Drama         |
+| HATE HANDICAP               |           5 | Comedy        |
+| HAUNTED ANTITRUST           |          16 | Travel        |
+| HAUNTING PIANIST            |          10 | Games         |
+| HAWK CHILL                  |           6 | Documentary   |
+| HEAD STRANGER               |          10 | Games         |
+| HEARTBREAKERS BRIGHT        |           3 | Children      |
+| HEAVEN FREEDOM              |           5 | Comedy        |
+| HEAVENLY GUN                |          12 | Music         |
+| HEAVYWEIGHTS BEAST          |           6 | Documentary   |
+| HEDWIG ALTER                |           5 | Comedy        |
+| HELLFIGHTERS SIERRA         |           9 | Foreign       |
+| HIGH ENCINO                 |          11 | Horror        |
+| HIGHBALL POTTER             |           9 | Foreign       |
+| HILLS NEIGHBORS             |           1 | Action        |
+| HOBBIT ALIEN                |           7 | Drama         |
+| HOCUS FRIDA                 |           8 | Family        |
+| HOLES BRANNIGAN             |          15 | Sports        |
+| HOLIDAY GAMES               |           9 | Foreign       |
+| HOLLOW JEOPARDY             |          14 | Sci-Fi        |
+| HOLLYWOOD ANONYMOUS         |           3 | Children      |
+| HOLOCAUST HIGHBALL          |           3 | Children      |
+| HOLY TADPOLE                |           4 | Classics      |
+| HOME PITY                   |          12 | Music         |
+| HOMEWARD CIDER              |           6 | Documentary   |
+| HOMICIDE PEACH              |           8 | Family        |
+| HONEY TIES                  |          15 | Sports        |
+| HOOK CHARIOTS               |           2 | Animation     |
+| HOOSIERS BIRDCAGE           |           9 | Foreign       |
+| HOPE TOOTSIE                |           4 | Classics      |
+| HORN WORKING                |           2 | Animation     |
+| HORROR REIGN                |          16 | Travel        |
+| HOTEL HAPPINESS             |           9 | Foreign       |
+| HOURS RAGE                  |          13 | New           |
+| HOUSE DYNAMITE              |           8 | Family        |
+| HUMAN GRAFFITI              |          10 | Games         |
+| HUNCHBACK IMPOSSIBLE        |           7 | Drama         |
+| HUNGER ROOF                 |           9 | Foreign       |
+| HUNTER ALTER                |           6 | Documentary   |
+| HUNTING MUSKETEERS          |           8 | Family        |
+| HURRICANE AFFAIR            |           5 | Comedy        |
+| HUSTLER PARTY               |           5 | Comedy        |
+| HYDE DOCTOR                 |           4 | Classics      |
+| HYSTERICAL GRAIL            |          15 | Sports        |
+| ICE CROSSING                |          10 | Games         |
+| IDAHO LOVE                  |          13 | New           |
+| IDENTITY LOVER              |          14 | Sci-Fi        |
+| IDOLS SNATCHERS             |           3 | Children      |
+| IGBY MAKER                  |          16 | Travel        |
+| ILLUSION AMELIE             |           9 | Foreign       |
+| IMAGE PRINCESS              |          15 | Sports        |
+| IMPACT ALADDIN              |          12 | Music         |
+| IMPOSSIBLE PREJUDICE        |           9 | Foreign       |
+| INCH JET                    |           2 | Animation     |
+| INDEPENDENCE HOTEL          |           6 | Documentary   |
+| INDIAN LOVE                 |           8 | Family        |
+| INFORMER DOUBLE             |           9 | Foreign       |
+| INNOCENT USUAL              |           9 | Foreign       |
+| INSECTS STONE               |           2 | Animation     |
+| INSIDER ARIZONA             |          12 | Music         |
+| INSTINCT AIRPORT            |          15 | Sports        |
+| INTENTIONS EMPIRE           |           2 | Animation     |
+| INTERVIEW LIAISONS          |          13 | New           |
+| INTOLERABLE INTENTIONS      |           6 | Documentary   |
+| INTRIGUE WORST              |           9 | Foreign       |
+| INVASION CYCLONE            |           3 | Children      |
+| IRON MOON                   |           4 | Classics      |
+| ISHTAR ROCKETEER            |           2 | Animation     |
+| ISLAND EXORCIST             |           4 | Classics      |
+| ITALIAN AFRICAN             |          16 | Travel        |
+| JACKET FRISCO               |           7 | Drama         |
+| JADE BUNCH                  |          15 | Sports        |
+| JAPANESE RUN                |          11 | Horror        |
+| JASON TRAP                  |           8 | Family        |
+| JAWBREAKER BROOKLYN         |          12 | Music         |
+| JAWS HARRY                  |           5 | Comedy        |
+| JEDI BENEATH                |           8 | Family        |
+| JEEPERS WEDDING             |           4 | Classics      |
+| JEKYLL FROGMEN              |          13 | New           |
+| JEOPARDY ENCINO             |           4 | Classics      |
+| JERICHO MULAN               |          10 | Games         |
+| JERK PAYCHECK               |           4 | Classics      |
+| JERSEY SASSY                |           3 | Children      |
+| JET NEIGHBORS               |           9 | Foreign       |
+| JINGLE SAGEBRUSH            |           4 | Classics      |
+| JOON NORTHWEST              |          15 | Sports        |
+| JUGGLER HARDLY              |           2 | Animation     |
+| JUMANJI BLADE               |          13 | New           |
+| JUMPING WRATH               |           3 | Children      |
+| JUNGLE CLOSER               |          13 | New           |
+| KANE EXORCIST               |           9 | Foreign       |
+| KARATE MOON                 |          11 | Horror        |
+| KENTUCKIAN GIANT            |          11 | Horror        |
+| KICK SAVANNAH               |          16 | Travel        |
+| KILL BROTHERHOOD            |           6 | Documentary   |
+| KILLER INNOCENT             |           8 | Family        |
+| KING EVOLUTION              |           8 | Family        |
+| KISS GLORY                  |           9 | Foreign       |
+| KISSING DOLLS               |           1 | Action        |
+| KNOCK WARLOCK               |           5 | Comedy        |
+| KRAMER CHOCOLATE            |          15 | Sports        |
+| KWAI HOMEWARD               |           7 | Drama         |
+| LABYRINTH LEAGUE            |           3 | Children      |
+| LADY STAGE                  |          11 | Horror        |
+| LADYBUGS ARMAGEDDON         |          10 | Games         |
+| LAMBS CINCINATTI            |          10 | Games         |
+| LANGUAGE COWBOY             |           3 | Children      |
+| LAWLESS VISION              |           2 | Animation     |
+| LAWRENCE LOVE               |           1 | Action        |
+| LEAGUE HELLFIGHTERS         |           4 | Classics      |
+| LEATHERNECKS DWARFS         |          16 | Travel        |
+| LEBOWSKI SOLDIERS           |           7 | Drama         |
+| LEGALLY SECRETARY           |           3 | Children      |
+| LEGEND JEDI                 |          12 | Music         |
+| LESSON CLEOPATRA            |          15 | Sports        |
+| LIAISONS SWEET              |          16 | Travel        |
+| LIBERTY MAGNIFICENT         |          15 | Sports        |
+| LICENSE WEEKEND             |          14 | Sci-Fi        |
+| LIES TREATMENT              |           7 | Drama         |
+| LIFE TWISTED                |           5 | Comedy        |
+| LIGHTS DEER                 |           4 | Classics      |
+| LION UNCUT                  |           5 | Comedy        |
+| LOATHING LEGALLY            |           4 | Classics      |
+| LOCK REAR                   |          16 | Travel        |
+| LOLA AGENT                  |          11 | Horror        |
+| LOLITA WORLD                |           8 | Family        |
+| LONELY ELEPHANT             |           5 | Comedy        |
+| LORD ARIZONA                |           1 | Action        |
+| LOSE INCH                   |           9 | Foreign       |
+| LOSER HUSTLER               |          15 | Sports        |
+| LOST BIRD                   |           9 | Foreign       |
+| LOUISIANA HARRY             |           8 | Family        |
+| LOVE SUICIDES               |          11 | Horror        |
+| LOVELY JINGLE               |           4 | Classics      |
+| LOVER TRUMAN                |           4 | Classics      |
+| LOVERBOY ATTACKS            |          13 | New           |
+| LUCK OPUS                   |           7 | Drama         |
+| LUCKY FLYING                |          12 | Music         |
+| LUKE MUMMY                  |           2 | Animation     |
+| LUST LOCK                   |           1 | Action        |
+| MADIGAN DORADO              |          16 | Travel        |
+| MADISON TRAP                |           6 | Documentary   |
+| MADNESS ATTACKS             |           9 | Foreign       |
+| MADRE GABLES                |          10 | Games         |
+| MAGIC MALLRATS              |           3 | Children      |
+| MAGNIFICENT CHITTY          |           4 | Classics      |
+| MAGNOLIA FORRESTER          |           1 | Action        |
+| MAGUIRE APACHE              |           8 | Family        |
+| MAIDEN HOME                 |          13 | New           |
+| MAJESTIC FLOATS             |           6 | Documentary   |
+| MAKER GABLES                |           3 | Children      |
+| MALKOVICH PET               |           4 | Classics      |
+| MALLRATS UNITED             |           5 | Comedy        |
+| MALTESE HOPE                |          10 | Games         |
+| MANCHURIAN CURTAIN          |           8 | Family        |
+| MANNEQUIN WORST             |          13 | New           |
+| MARRIED GO                  |          14 | Sci-Fi        |
+| MARS ROMAN                  |          10 | Games         |
+| MASK PEACH                  |          13 | New           |
+| MASKED BUBBLE               |          12 | Music         |
+| MASSACRE USUAL              |          10 | Games         |
+| MASSAGE IMAGE               |           2 | Animation     |
+| MATRIX SNOWMAN              |           9 | Foreign       |
+| MAUDE MOD                   |           9 | Foreign       |
+| MEET CHOCOLATE              |           9 | Foreign       |
+| MEMENTO ZOOLANDER           |           5 | Comedy        |
+| MENAGERIE RUSHMORE          |           2 | Animation     |
+| MERMAID INSECTS             |          15 | Sports        |
+| METAL ARMAGEDDON            |           6 | Documentary   |
+| METROPOLIS COMA             |          14 | Sci-Fi        |
+| MICROCOSMOS PARADISE        |           3 | Children      |
+| MIDNIGHT WESTWARD           |           1 | Action        |
+| MIDSUMMER GROUNDHOG         |           6 | Documentary   |
+| MIGHTY LUCK                 |           6 | Documentary   |
+| MILE MULAN                  |          15 | Sports        |
+| MILLION ACE                 |           4 | Classics      |
+| MINDS TRUMAN                |           1 | Action        |
+| MINE TITANS                 |          13 | New           |
+| MINORITY KISS               |          12 | Music         |
+| MIRACLE VIRTUAL             |           2 | Animation     |
+| MISSION ZOOLANDER           |           2 | Animation     |
+| MIXED DOORS                 |           9 | Foreign       |
+| MOB DUFFEL                  |           7 | Drama         |
+| MOCKINGBIRD HOLLYWOOD       |           1 | Action        |
+| MOD SECRETARY               |           6 | Documentary   |
+| MODEL FISH                  |           3 | Children      |
+| MODERN DORADO               |           6 | Documentary   |
+| MONEY HAROLD                |          13 | New           |
+| MONSOON CAUSE               |          10 | Games         |
+| MONSTER SPARTACUS           |          12 | Music         |
+| MONTEREY LABYRINTH          |          11 | Horror        |
+| MONTEZUMA COMMAND           |           1 | Action        |
+| MOON BUNCH                  |           9 | Foreign       |
+| MOONSHINE CABIN             |          10 | Games         |
+| MOONWALKER FOOL             |          10 | Games         |
+| MOSQUITO ARMAGEDDON         |          15 | Sports        |
+| MOTHER OLEANDER             |          15 | Sports        |
+| MOTIONS DETAILS             |          11 | Horror        |
+| MOULIN WAKE                 |          16 | Travel        |
+| MOURNING PURPLE             |          14 | Sci-Fi        |
+| MOVIE SHAKESPEARE           |           8 | Family        |
+| MULAN MOON                  |           5 | Comedy        |
+| MULHOLLAND BEAST            |           9 | Foreign       |
+| MUMMY CREATURES             |          15 | Sports        |
+| MUPPET MILE                 |           9 | Foreign       |
+| MURDER ANTITRUST            |           3 | Children      |
+| MUSCLE BRIGHT               |          16 | Travel        |
+| MUSIC BOONDOCK              |           8 | Family        |
+| MUSKETEERS WAIT             |           4 | Classics      |
+| MUSSOLINI SPOILERS          |          15 | Sports        |
+| MYSTIC TRUMAN               |           5 | Comedy        |
+| NAME DETECTIVE              |          10 | Games         |
+| NASH CHOCOLAT               |           2 | Animation     |
+| NATIONAL STORY              |           6 | Documentary   |
+| NATURAL STOCK               |           8 | Family        |
+| NECKLACE OUTBREAK           |           7 | Drama         |
+| NEIGHBORS CHARADE           |          15 | Sports        |
+| NEMO CAMPUS                 |          14 | Sci-Fi        |
+| NETWORK PEAK                |           8 | Family        |
+| NEWSIES STORY               |           6 | Documentary   |
+| NEWTON LABYRINTH            |           9 | Foreign       |
+| NIGHTMARE CHILL             |          10 | Games         |
+| NONE SPIKING                |          14 | Sci-Fi        |
+| NOON PAPI                   |           3 | Children      |
+| NORTH TEQUILA               |           6 | Documentary   |
+| NORTHWEST POLISH            |          15 | Sports        |
+| NOTORIOUS REUNION           |           6 | Documentary   |
+| NOTTING SPEAKEASY           |           7 | Drama         |
+| NOVOCAINE FLIGHT            |          15 | Sports        |
+| NUTS TIES                   |          13 | New           |
+| OCTOBER SUBMARINE           |           4 | Classics      |
+| ODDS BOOGIE                 |           8 | Family        |
+| OKLAHOMA JUMANJI            |          13 | New           |
+| OLEANDER CLUE               |          12 | Music         |
+| OPEN AFRICAN                |          14 | Sci-Fi        |
+| OPERATION OPERATION         |           5 | Comedy        |
+| OPPOSITE NECKLACE           |           8 | Family        |
+| OPUS ICE                    |           9 | Foreign       |
+| ORANGE GRAPES               |           9 | Foreign       |
+| ORDER BETRAYED              |          16 | Travel        |
+| ORIENT CLOSER               |           7 | Drama         |
+| OSCAR GOLD                  |           2 | Animation     |
+| OTHERS SOUP                 |          16 | Travel        |
+| OUTBREAK DIVINE             |          10 | Games         |
+| OUTFIELD MASSACRE           |          12 | Music         |
+| OUTLAW HANKY                |          16 | Travel        |
+| OZ LIAISONS                 |           2 | Animation     |
+| PACIFIC AMISTAD             |           6 | Documentary   |
+| PACKER MADIGAN              |           2 | Animation     |
+| PAJAMA JAWBREAKER           |           4 | Classics      |
+| PANIC CLUB                  |          11 | Horror        |
+| PANKY SUBMARINE             |          10 | Games         |
+| PANTHER REDS                |          14 | Sci-Fi        |
+| PAPI NECKLACE               |          16 | Travel        |
+| PARADISE SABRINA            |           5 | Comedy        |
+| PARIS WEEKEND               |          11 | Horror        |
+| PARK CITIZEN                |           1 | Action        |
+| PARTY KNOCK                 |           5 | Comedy        |
+| PAST SUICIDES               |           9 | Foreign       |
+| PATHS CONTROL               |           7 | Drama         |
+| PATIENT SISTER              |           4 | Classics      |
+| PATRIOT ROMAN               |           1 | Action        |
+| PATTON INTERVIEW            |          11 | Horror        |
+| PAYCHECK WAIT               |           7 | Drama         |
+| PEACH INNOCENT              |          15 | Sports        |
+| PEAK FOREVER                |          15 | Sports        |
+| PEARL DESTINY               |           9 | Foreign       |
+| PELICAN COMFORTS            |           6 | Documentary   |
+| PERDITION FARGO             |          15 | Sports        |
+| PERFECT GROOVE              |           5 | Comedy        |
+| PERSONAL LADYBUGS           |          12 | Music         |
+| PET HAUNTING                |           9 | Foreign       |
+| PHANTOM GLORY               |          13 | New           |
+| PHILADELPHIA WIFE           |          15 | Sports        |
+| PIANIST OUTFIELD            |          13 | New           |
+| PICKUP DRIVING              |          15 | Sports        |
+| PILOT HOOSIERS              |           8 | Family        |
+| PINOCCHIO SIMON             |           5 | Comedy        |
+| PIRATES ROXANNE             |          15 | Sports        |
+| PITTSBURGH HUNCHBACK        |           8 | Family        |
+| PITY BOUND                  |           7 | Drama         |
+| PIZZA JUMANJI               |          10 | Games         |
+| PLATOON INSTINCT            |          13 | New           |
+| PLUTO OLEANDER              |          13 | New           |
+| POCUS PULP                  |           6 | Documentary   |
+| POLISH BROOKLYN             |           3 | Children      |
+| POLLOCK DELIVERANCE         |           9 | Foreign       |
+| POND SEATTLE                |           2 | Animation     |
+| POSEIDON FOREVER            |          15 | Sports        |
+| POTLUCK MIXED               |           2 | Animation     |
+| POTTER CONNECTICUT          |           2 | Animation     |
+| PREJUDICE OLEANDER          |           4 | Classics      |
+| PRESIDENT BANG              |           8 | Family        |
+| PRIDE ALAMO                 |           2 | Animation     |
+| PRIMARY GLASS               |           1 | Action        |
+| PRINCESS GIANT              |           6 | Documentary   |
+| PRIVATE DROP                |          10 | Games         |
+| PRIX UNDEFEATED             |           8 | Family        |
+| PSYCHO SHRUNK               |          10 | Games         |
+| PULP BEVERLY                |          11 | Horror        |
+| PUNK DIVORCE                |           2 | Animation     |
+| PURE RUNNER                 |           5 | Comedy        |
+| PURPLE MOVIE                |           9 | Foreign       |
+| QUEEN LUKE                  |           7 | Drama         |
+| QUEST MUSSOLINI             |           1 | Action        |
+| QUILLS BULL                 |           6 | Documentary   |
+| RACER EGG                   |           7 | Drama         |
+| RAGE GAMES                  |           8 | Family        |
+| RAGING AIRPLANE             |          14 | Sci-Fi        |
+| RAIDERS ANTITRUST           |           6 | Documentary   |
+| RAINBOW SHOCK               |           6 | Documentary   |
+| RANDOM GO                   |          14 | Sci-Fi        |
+| RANGE MOONWALKER            |           8 | Family        |
+| REAP UNFAITHFUL             |          11 | Horror        |
+| REAR TRADING                |           1 | Action        |
+| REBEL AIRPORT               |          12 | Music         |
+| RECORDS ZORRO               |          15 | Sports        |
+| REDEMPTION COMFORTS         |          13 | New           |
+| REDS POCUS                  |          12 | Music         |
+| REEF SALUTE                 |          11 | Horror        |
+| REIGN GENTLEMEN             |          14 | Sci-Fi        |
+| REMEMBER DIARY              |           8 | Family        |
+| REQUIEM TYCOON              |           4 | Classics      |
+| RESERVOIR ADAPTATION        |           9 | Foreign       |
+| RESURRECTION SILVERADO      |           8 | Family        |
+| REUNION WITCHES             |           7 | Drama         |
+| RIDER CADDYSHACK            |          15 | Sports        |
+| RIDGEMONT SUBMARINE         |          13 | New           |
+| RIGHT CRANES                |           4 | Classics      |
+| RINGS HEARTBREAKERS         |           1 | Action        |
+| RIVER OUTLAW                |          15 | Sports        |
+| ROAD ROXANNE                |           6 | Documentary   |
+| ROBBERS JOON                |           3 | Children      |
+| ROBBERY BRIGHT              |           8 | Family        |
+| ROCK INSTINCT               |          11 | Horror        |
+| ROCKETEER MOTHER            |           9 | Foreign       |
+| ROCKY WAR                   |           7 | Drama         |
+| ROLLERCOASTER BRINGING      |          11 | Horror        |
+| ROMAN PUNK                  |          12 | Music         |
+| ROOF CHAMPION               |          10 | Games         |
+| ROOM ROMAN                  |           2 | Animation     |
+| ROOTS REMEMBER              |           4 | Classics      |
+| ROSES TREASURE              |          15 | Sports        |
+| ROUGE SQUAD                 |          10 | Games         |
+| ROXANNE REBEL               |          10 | Games         |
+| RUGRATS SHAKESPEARE         |           1 | Action        |
+| RULES HUMAN                 |          11 | Horror        |
+| RUN PACIFIC                 |          13 | New           |
+| RUNAWAY TENENBAUMS          |          13 | New           |
+| RUNNER MADIGAN              |          12 | Music         |
+| RUSH GOODFELLAS             |           8 | Family        |
+| RUSHMORE MERMAID            |           5 | Comedy        |
+| SABRINA MIDNIGHT            |           3 | Children      |
+| SADDLE ANTITRUST            |           5 | Comedy        |
+| SAGEBRUSH CLUELESS          |           6 | Documentary   |
+| SAINTS BRIDE                |           7 | Drama         |
+| SALUTE APOLLO               |          13 | New           |
+| SAMURAI LION                |          13 | New           |
+| SANTA PARIS                 |           3 | Children      |
+| SASSY PACKER                |          10 | Games         |
+| SATISFACTION CONFIDENTIAL   |          15 | Sports        |
+| SATURDAY LAMBS              |          15 | Sports        |
+| SATURN NAME                 |           5 | Comedy        |
+| SAVANNAH TOWN               |           7 | Drama         |
+| SCALAWAG DUCK               |          12 | Music         |
+| SCARFACE BANG               |           3 | Children      |
+| SCHOOL JACKET               |           9 | Foreign       |
+| SCISSORHANDS SLUMS          |           9 | Foreign       |
+| SCORPION APOLLO             |           7 | Drama         |
+| SEA VIRGIN                  |           7 | Drama         |
+| SEABISCUIT PUNK             |          15 | Sports        |
+| SEARCHERS WAIT              |           5 | Comedy        |
+| SEATTLE EXPECATIONS         |           7 | Drama         |
+| SECRET GROUNDHOG            |           6 | Documentary   |
+| SECRETARY ROUGE             |          15 | Sports        |
+| SECRETS PARADISE            |           8 | Family        |
+| SENSE GREEK                 |          15 | Sports        |
+| SENSIBILITY REAR            |           8 | Family        |
+| SEVEN SWARM                 |          10 | Games         |
+| SHAKESPEARE SADDLE          |          15 | Sports        |
+| SHANE DARKNESS              |          16 | Travel        |
+| SHANGHAI TYCOON             |          16 | Travel        |
+| SHAWSHANK BUBBLE            |          16 | Travel        |
+| SHEPHERD MIDSUMMER          |           3 | Children      |
+| SHINING ROSES               |          16 | Travel        |
+| SHIP WONDERLAND             |           6 | Documentary   |
+| SHOCK CABIN                 |           9 | Foreign       |
+| SHOOTIST SUPERFLY           |           7 | Drama         |
+| SHOW LORD                   |           6 | Documentary   |
+| SHREK LICENSE               |           9 | Foreign       |
+| SHRUNK DIVINE               |           1 | Action        |
+| SIDE ARK                    |           1 | Action        |
+| SIEGE MADRE                 |           8 | Family        |
+| SIERRA DIVIDE               |          15 | Sports        |
+| SILENCE KANE                |          12 | Music         |
+| SILVERADO GOLDFINGER        |          14 | Sci-Fi        |
+| SIMON NORTH                 |          11 | Horror        |
+| SINNERS ATLANTIS            |          11 | Horror        |
+| SISTER FREDDY               |           3 | Children      |
+| SKY MIRACLE                 |           1 | Action        |
+| SLACKER LIAISONS            |           7 | Drama         |
+| SLEEPING SUSPECTS           |          11 | Horror        |
+| SLEEPLESS MONSOON           |           2 | Animation     |
+| SLEEPY JAPANESE             |          13 | New           |
+| SLEUTH ORIENT               |          10 | Games         |
+| SLING LUKE                  |           4 | Classics      |
+| SLIPPER FIDELITY            |          15 | Sports        |
+| SLUMS DUCK                  |           8 | Family        |
+| SMILE EARRING               |          16 | Travel        |
+| SMOKING BARBARELLA          |           6 | Documentary   |
+| SMOOCHY CONTROL             |          15 | Sports        |
+| SNATCH SLIPPER              |           5 | Comedy        |
+| SNATCHERS MONTEZUMA         |           4 | Classics      |
+| SNOWMAN ROLLERCOASTER       |           2 | Animation     |
+| SOLDIERS EVOLUTION          |          14 | Sci-Fi        |
+| SOMETHING DUCK              |           7 | Drama         |
+| SONG HEDWIG                 |          12 | Music         |
+| SONS INTERVIEW              |           2 | Animation     |
+| SORORITY QUEEN              |           9 | Foreign       |
+| SOUP WISDOM                 |           8 | Family        |
+| SOUTH WAIT                  |           1 | Action        |
+| SPARTACUS CHEAPER           |           8 | Family        |
+| SPEAKEASY DATE              |           1 | Action        |
+| SPEED SUIT                  |          16 | Travel        |
+| SPICE SORORITY              |           7 | Drama         |
+| SPIKING ELEMENT             |           4 | Classics      |
+| SPINAL ROCKY                |           8 | Family        |
+| SPIRIT FLINTSTONES          |          11 | Horror        |
+| SPIRITED CASUALTIES         |          14 | Sci-Fi        |
+| SPLASH GUMP                 |           8 | Family        |
+| SPLENDOR PATTON             |           3 | Children      |
+| SPOILERS HELLFIGHTERS       |           6 | Documentary   |
+| SPY MILE                    |          10 | Games         |
+| SQUAD FISH                  |          15 | Sports        |
+| STAGE WORLD                 |           5 | Comedy        |
+| STAGECOACH ARMAGEDDON       |           1 | Action        |
+| STALLION SUNDANCE           |          14 | Sci-Fi        |
+| STAMPEDE DISTURBING         |          10 | Games         |
+| STAR OPERATION              |          15 | Sports        |
+| STATE WASTELAND             |          10 | Games         |
+| STEEL SANTA                 |           4 | Classics      |
+| STEERS ARMAGEDDON           |          15 | Sports        |
+| STEPMOM DREAM               |           9 | Foreign       |
+| STING PERSONAL              |          13 | New           |
+| STOCK GLASS                 |          13 | New           |
+| STONE FIRE                  |          16 | Travel        |
+| STORM HAPPINESS             |           2 | Animation     |
+| STORY SIDE                  |           1 | Action        |
+| STRAIGHT HOURS              |          15 | Sports        |
+| STRANGELOVE DESIRE          |           3 | Children      |
+| STRANGER STRANGERS          |           3 | Children      |
+| STRANGERS GRAFFITI          |          11 | Horror        |
+| STREAK RIDGEMONT            |           6 | Documentary   |
+| STREETCAR INTENTIONS        |          11 | Horror        |
+| STRICTLY SCARFACE           |           5 | Comedy        |
+| SUBMARINE BED               |           5 | Comedy        |
+| SUGAR WONKA                 |           2 | Animation     |
+| SUICIDES SILENCE            |          14 | Sci-Fi        |
+| SUIT WALLS                  |          10 | Games         |
+| SUMMER SCARFACE             |           4 | Classics      |
+| SUN CONFESSIONS             |          14 | Sci-Fi        |
+| SUNDANCE INVASION           |           3 | Children      |
+| SUNRISE LEAGUE              |           2 | Animation     |
+| SUNSET RACER                |           8 | Family        |
+| SUPER WYOMING               |           8 | Family        |
+| SUPERFLY TRIP               |          16 | Travel        |
+| SUSPECTS QUILLS             |           1 | Action        |
+| SWARM GOLD                  |          11 | Horror        |
+| SWEDEN SHINING              |           5 | Comedy        |
+| SWEET BROTHERHOOD           |          16 | Travel        |
+| SWEETHEARTS SUSPECTS        |           3 | Children      |
+| TADPOLE PARK                |           4 | Classics      |
+| TALENTED HOMICIDE           |          15 | Sports        |
+| TARZAN VIDEOTAPE            |          11 | Horror        |
+| TAXI KICK                   |          12 | Music         |
+| TEEN APOLLO                 |          16 | Travel        |
+| TELEGRAPH VOYAGE            |          12 | Music         |
+| TELEMARK HEARTBREAKERS      |           2 | Animation     |
+| TEMPLE ATTRACTION           |          11 | Horror        |
+| TENENBAUMS COMMAND          |           7 | Drama         |
+| TEQUILA PAST                |           3 | Children      |
+| TERMINATOR CLUB             |          12 | Music         |
+| TEXAS WATCH                 |          11 | Horror        |
+| THEORY MERMAID              |           2 | Animation     |
+| THIEF PELICAN               |           2 | Animation     |
+| THIN SAGEBRUSH              |           6 | Documentary   |
+| TIES HUNGER                 |           3 | Children      |
+| TIGHTS DAWN                 |          15 | Sports        |
+| TIMBERLAND SKY              |           4 | Classics      |
+| TITANIC BOONDOCK            |           2 | Animation     |
+| TITANS JERK                 |          14 | Sci-Fi        |
+| TOMATOES HELLFIGHTERS       |          16 | Travel        |
+| TOMORROW HUSTLER            |           4 | Classics      |
+| TOOTSIE PILOT               |           3 | Children      |
+| TORQUE BOUND                |           7 | Drama         |
+| TOURIST PELICAN             |          15 | Sports        |
+| TOWERS HURRICANE            |           4 | Classics      |
+| TOWN ARK                    |           9 | Foreign       |
+| TRACY CIDER                 |           2 | Animation     |
+| TRADING PINOCCHIO           |          15 | Sports        |
+| TRAFFIC HOBBIT              |          16 | Travel        |
+| TRAIN BUNCH                 |          11 | Horror        |
+| TRAINSPOTTING STRANGERS     |           5 | Comedy        |
+| TRAMP OTHERS                |           5 | Comedy        |
+| TRANSLATION SUMMER          |           7 | Drama         |
+| TRAP GUYS                   |           9 | Foreign       |
+| TREASURE COMMAND            |          11 | Horror        |
+| TREATMENT JEKYLL            |           7 | Drama         |
+| TRIP NEWTON                 |           1 | Action        |
+| TROJAN TOMORROW             |          14 | Sci-Fi        |
+| TROOPERS METAL              |          13 | New           |
+| TROUBLE DATE                |          16 | Travel        |
+| TRUMAN CRAZY                |           1 | Action        |
+| TURN STAR                   |           2 | Animation     |
+| TUXEDO MILE                 |          15 | Sports        |
+| TWISTED PIRATES             |           3 | Children      |
+| TYCOON GATHERING            |          10 | Games         |
+| UNBREAKABLE KARATE          |          13 | New           |
+| UNCUT SUICIDES              |          12 | Music         |
+| UNDEFEATED DALMATIONS       |          11 | Horror        |
+| UNFAITHFUL KILL             |           7 | Drama         |
+| UNFORGIVEN ZOOLANDER        |          14 | Sci-Fi        |
+| UNITED PILOT                |           6 | Documentary   |
+| UNTOUCHABLES SUNRISE        |           6 | Documentary   |
+| UPRISING UPTOWN             |           1 | Action        |
+| UPTOWN YOUNG                |           3 | Children      |
+| USUAL UNTOUCHABLES          |           9 | Foreign       |
+| VACATION BOONDOCK           |          14 | Sci-Fi        |
+| VALENTINE VANISHING         |          16 | Travel        |
+| VALLEY PACKER               |           5 | Comedy        |
+| VAMPIRE WHALE               |          13 | New           |
+| VANILLA DAY                 |          10 | Games         |
+| VANISHED GARDEN             |          13 | New           |
+| VANISHING ROCKY             |          12 | Music         |
+| VARSITY TRIP                |          13 | New           |
+| VELVET TERMINATOR           |           5 | Comedy        |
+| VERTIGO NORTHWEST           |           5 | Comedy        |
+| VICTORY ACADEMY             |          15 | Sports        |
+| VIDEOTAPE ARSENIC           |          10 | Games         |
+| VIETNAM SMOOCHY             |           7 | Drama         |
+| VILLAIN DESPERATE           |           6 | Documentary   |
+| VIRGIN DAISY                |           7 | Drama         |
+| VIRGINIAN PLUTO             |           6 | Documentary   |
+| VIRTUAL SPOILERS            |           8 | Family        |
+| VISION TORQUE               |           9 | Foreign       |
+| VOICE PEACH                 |          13 | New           |
+| VOLCANO TEXAS               |          10 | Games         |
+| VOLUME HOUSE                |           4 | Classics      |
+| VOYAGE LEGALLY              |           4 | Classics      |
+| WAGON JAWS                  |           6 | Documentary   |
+| WAIT CIDER                  |           2 | Animation     |
+| WAKE JAWS                   |          13 | New           |
+| WALLS ARTIST                |           3 | Children      |
+| WANDA CHAMBER               |          10 | Games         |
+| WAR NOTTING                 |           9 | Foreign       |
+| WARDROBE PHANTOM            |           7 | Drama         |
+| WARLOCK WEREWOLF            |           3 | Children      |
+| WARS PLUTO                  |           6 | Documentary   |
+| WASH HEAVENLY               |           9 | Foreign       |
+| WASTELAND DIVINE            |           4 | Classics      |
+| WATCH TRACY                 |           2 | Animation     |
+| WATERFRONT DELIVERANCE      |           1 | Action        |
+| WATERSHIP FRONTIER          |          11 | Horror        |
+| WEDDING APOLLO              |           6 | Documentary   |
+| WEEKEND PERSONAL            |          14 | Sci-Fi        |
+| WEREWOLF LOLA               |           1 | Action        |
+| WEST LION                   |           7 | Drama         |
+| WESTWARD SEABISCUIT         |           4 | Classics      |
+| WHALE BIKINI                |           9 | Foreign       |
+| WHISPERER GIANT             |          14 | Sci-Fi        |
+| WIFE TURN                   |           6 | Documentary   |
+| WILD APOLLO                 |          13 | New           |
+| WILLOW TRACY                |           8 | Family        |
+| WIND PHANTOM                |          10 | Games         |
+| WINDOW SIDE                 |          16 | Travel        |
+| WISDOM WORKER               |           5 | Comedy        |
+| WITCHES PANIC               |           7 | Drama         |
+| WIZARD COLDBLOODED          |          12 | Music         |
+| WOLVES DESIRE               |          16 | Travel        |
+| WOMEN DORADO                |           1 | Action        |
+| WON DARES                   |          12 | Music         |
+| WONDERFUL DROP              |           9 | Foreign       |
+| WONDERLAND CHRISTMAS        |          14 | Sci-Fi        |
+| WONKA SEA                   |           2 | Animation     |
+| WORDS HUNTER                |          12 | Music         |
+| WORKER TARZAN               |          16 | Travel        |
+| WORKING MICROCOSMOS         |          16 | Travel        |
+| WORLD LEATHERNECKS          |          11 | Horror        |
+| WORST BANGER                |           1 | Action        |
+| WRATH MILE                  |           6 | Documentary   |
+| WRONG BEHAVIOR              |           3 | Children      |
+| WYOMING STORM               |          13 | New           |
+| YENTL IDAHO                 |          11 | Horror        |
+| YOUNG LANGUAGE              |           6 | Documentary   |
+| YOUTH KICK                  |          12 | Music         |
+| ZHIVAGO CORE                |          11 | Horror        |
+| ZOOLANDER FICTION           |           3 | Children      |
+| ZORRO ARK                   |           5 | Comedy        |
++-----------------------------+-------------+---------------+
+1000 rows in set (0.022 sec)
+
+MariaDB [sakila]> select c.email, s.email
+    -> from customer c
+    -> left join staff s
+    -> right join staff s
+    -> union all;
+ERROR 1066 (42000): Not unique table/alias: 's'
+MariaDB [sakila]> 
+MariaDB [sakila]> select c.email, s.email from customer c left join staff ls right join staff rs union all;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'union all' at line 1
+MariaDB [sakila]> select c.email, s.email from customer c left join staff ls on ls.staff_id = c.customer_id right join staff rs rs.staff_id = c.customer_id union all;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'rs.staff_id = c.customer_id union all' at line 1
+MariaDB [sakila]> SELECT c.email AS customer_email, s.email AS staff_email
+    -> FROM customer c
+    -> LEFT JOIN staff s ON c.email = s.email
+    -> UNION
+    -> SELECT c.email, s.email
+    -> FROM customer c
+    -> RIGHT JOIN staff s ON c.email = s.email;
++------------------------------------------+------------------------------+
+| customer_email                           | staff_email                  |
++------------------------------------------+------------------------------+
+| MARY.SMITH@sakilacustomer.org            | NULL                         |
+| PATRICIA.JOHNSON@sakilacustomer.org      | NULL                         |
+| LINDA.WILLIAMS@sakilacustomer.org        | NULL                         |
+| BARBARA.JONES@sakilacustomer.org         | NULL                         |
+| ELIZABETH.BROWN@sakilacustomer.org       | NULL                         |
+| JENNIFER.DAVIS@sakilacustomer.org        | NULL                         |
+| MARIA.MILLER@sakilacustomer.org          | NULL                         |
+| SUSAN.WILSON@sakilacustomer.org          | NULL                         |
+| MARGARET.MOORE@sakilacustomer.org        | NULL                         |
+| DOROTHY.TAYLOR@sakilacustomer.org        | NULL                         |
+| LISA.ANDERSON@sakilacustomer.org         | NULL                         |
+| NANCY.THOMAS@sakilacustomer.org          | NULL                         |
+| KAREN.JACKSON@sakilacustomer.org         | NULL                         |
+| BETTY.WHITE@sakilacustomer.org           | NULL                         |
+| HELEN.HARRIS@sakilacustomer.org          | NULL                         |
+| SANDRA.MARTIN@sakilacustomer.org         | NULL                         |
+| DONNA.THOMPSON@sakilacustomer.org        | NULL                         |
+| CAROL.GARCIA@sakilacustomer.org          | NULL                         |
+| RUTH.MARTINEZ@sakilacustomer.org         | NULL                         |
+| SHARON.ROBINSON@sakilacustomer.org       | NULL                         |
+| MICHELLE.CLARK@sakilacustomer.org        | NULL                         |
+| LAURA.RODRIGUEZ@sakilacustomer.org       | NULL                         |
+| SARAH.LEWIS@sakilacustomer.org           | NULL                         |
+| KIMBERLY.LEE@sakilacustomer.org          | NULL                         |
+| DEBORAH.WALKER@sakilacustomer.org        | NULL                         |
+| JESSICA.HALL@sakilacustomer.org          | NULL                         |
+| SHIRLEY.ALLEN@sakilacustomer.org         | NULL                         |
+| CYNTHIA.YOUNG@sakilacustomer.org         | NULL                         |
+| ANGELA.HERNANDEZ@sakilacustomer.org      | NULL                         |
+| MELISSA.KING@sakilacustomer.org          | NULL                         |
+| BRENDA.WRIGHT@sakilacustomer.org         | NULL                         |
+| AMY.LOPEZ@sakilacustomer.org             | NULL                         |
+| ANNA.HILL@sakilacustomer.org             | NULL                         |
+| REBECCA.SCOTT@sakilacustomer.org         | NULL                         |
+| VIRGINIA.GREEN@sakilacustomer.org        | NULL                         |
+| KATHLEEN.ADAMS@sakilacustomer.org        | NULL                         |
+| PAMELA.BAKER@sakilacustomer.org          | NULL                         |
+| MARTHA.GONZALEZ@sakilacustomer.org       | NULL                         |
+| DEBRA.NELSON@sakilacustomer.org          | NULL                         |
+| AMANDA.CARTER@sakilacustomer.org         | NULL                         |
+| STEPHANIE.MITCHELL@sakilacustomer.org    | NULL                         |
+| CAROLYN.PEREZ@sakilacustomer.org         | NULL                         |
+| CHRISTINE.ROBERTS@sakilacustomer.org     | NULL                         |
+| MARIE.TURNER@sakilacustomer.org          | NULL                         |
+| JANET.PHILLIPS@sakilacustomer.org        | NULL                         |
+| CATHERINE.CAMPBELL@sakilacustomer.org    | NULL                         |
+| FRANCES.PARKER@sakilacustomer.org        | NULL                         |
+| ANN.EVANS@sakilacustomer.org             | NULL                         |
+| JOYCE.EDWARDS@sakilacustomer.org         | NULL                         |
+| DIANE.COLLINS@sakilacustomer.org         | NULL                         |
+| ALICE.STEWART@sakilacustomer.org         | NULL                         |
+| JULIE.SANCHEZ@sakilacustomer.org         | NULL                         |
+| HEATHER.MORRIS@sakilacustomer.org        | NULL                         |
+| TERESA.ROGERS@sakilacustomer.org         | NULL                         |
+| DORIS.REED@sakilacustomer.org            | NULL                         |
+| GLORIA.COOK@sakilacustomer.org           | NULL                         |
+| EVELYN.MORGAN@sakilacustomer.org         | NULL                         |
+| JEAN.BELL@sakilacustomer.org             | NULL                         |
+| CHERYL.MURPHY@sakilacustomer.org         | NULL                         |
+| MILDRED.BAILEY@sakilacustomer.org        | NULL                         |
+| KATHERINE.RIVERA@sakilacustomer.org      | NULL                         |
+| JOAN.COOPER@sakilacustomer.org           | NULL                         |
+| ASHLEY.RICHARDSON@sakilacustomer.org     | NULL                         |
+| JUDITH.COX@sakilacustomer.org            | NULL                         |
+| ROSE.HOWARD@sakilacustomer.org           | NULL                         |
+| JANICE.WARD@sakilacustomer.org           | NULL                         |
+| KELLY.TORRES@sakilacustomer.org          | NULL                         |
+| NICOLE.PETERSON@sakilacustomer.org       | NULL                         |
+| JUDY.GRAY@sakilacustomer.org             | NULL                         |
+| CHRISTINA.RAMIREZ@sakilacustomer.org     | NULL                         |
+| KATHY.JAMES@sakilacustomer.org           | NULL                         |
+| THERESA.WATSON@sakilacustomer.org        | NULL                         |
+| BEVERLY.BROOKS@sakilacustomer.org        | NULL                         |
+| DENISE.KELLY@sakilacustomer.org          | NULL                         |
+| TAMMY.SANDERS@sakilacustomer.org         | NULL                         |
+| IRENE.PRICE@sakilacustomer.org           | NULL                         |
+| JANE.BENNETT@sakilacustomer.org          | NULL                         |
+| LORI.WOOD@sakilacustomer.org             | NULL                         |
+| RACHEL.BARNES@sakilacustomer.org         | NULL                         |
+| MARILYN.ROSS@sakilacustomer.org          | NULL                         |
+| ANDREA.HENDERSON@sakilacustomer.org      | NULL                         |
+| KATHRYN.COLEMAN@sakilacustomer.org       | NULL                         |
+| LOUISE.JENKINS@sakilacustomer.org        | NULL                         |
+| SARA.PERRY@sakilacustomer.org            | NULL                         |
+| ANNE.POWELL@sakilacustomer.org           | NULL                         |
+| JACQUELINE.LONG@sakilacustomer.org       | NULL                         |
+| WANDA.PATTERSON@sakilacustomer.org       | NULL                         |
+| BONNIE.HUGHES@sakilacustomer.org         | NULL                         |
+| JULIA.FLORES@sakilacustomer.org          | NULL                         |
+| RUBY.WASHINGTON@sakilacustomer.org       | NULL                         |
+| LOIS.BUTLER@sakilacustomer.org           | NULL                         |
+| TINA.SIMMONS@sakilacustomer.org          | NULL                         |
+| PHYLLIS.FOSTER@sakilacustomer.org        | NULL                         |
+| NORMA.GONZALES@sakilacustomer.org        | NULL                         |
+| PAULA.BRYANT@sakilacustomer.org          | NULL                         |
+| DIANA.ALEXANDER@sakilacustomer.org       | NULL                         |
+| ANNIE.RUSSELL@sakilacustomer.org         | NULL                         |
+| LILLIAN.GRIFFIN@sakilacustomer.org       | NULL                         |
+| EMILY.DIAZ@sakilacustomer.org            | NULL                         |
+| ROBIN.HAYES@sakilacustomer.org           | NULL                         |
+| PEGGY.MYERS@sakilacustomer.org           | NULL                         |
+| CRYSTAL.FORD@sakilacustomer.org          | NULL                         |
+| GLADYS.HAMILTON@sakilacustomer.org       | NULL                         |
+| RITA.GRAHAM@sakilacustomer.org           | NULL                         |
+| DAWN.SULLIVAN@sakilacustomer.org         | NULL                         |
+| CONNIE.WALLACE@sakilacustomer.org        | NULL                         |
+| FLORENCE.WOODS@sakilacustomer.org        | NULL                         |
+| TRACY.COLE@sakilacustomer.org            | NULL                         |
+| EDNA.WEST@sakilacustomer.org             | NULL                         |
+| TIFFANY.JORDAN@sakilacustomer.org        | NULL                         |
+| CARMEN.OWENS@sakilacustomer.org          | NULL                         |
+| ROSA.REYNOLDS@sakilacustomer.org         | NULL                         |
+| CINDY.FISHER@sakilacustomer.org          | NULL                         |
+| GRACE.ELLIS@sakilacustomer.org           | NULL                         |
+| WENDY.HARRISON@sakilacustomer.org        | NULL                         |
+| VICTORIA.GIBSON@sakilacustomer.org       | NULL                         |
+| EDITH.MCDONALD@sakilacustomer.org        | NULL                         |
+| KIM.CRUZ@sakilacustomer.org              | NULL                         |
+| SHERRY.MARSHALL@sakilacustomer.org       | NULL                         |
+| SYLVIA.ORTIZ@sakilacustomer.org          | NULL                         |
+| JOSEPHINE.GOMEZ@sakilacustomer.org       | NULL                         |
+| THELMA.MURRAY@sakilacustomer.org         | NULL                         |
+| SHANNON.FREEMAN@sakilacustomer.org       | NULL                         |
+| SHEILA.WELLS@sakilacustomer.org          | NULL                         |
+| ETHEL.WEBB@sakilacustomer.org            | NULL                         |
+| ELLEN.SIMPSON@sakilacustomer.org         | NULL                         |
+| ELAINE.STEVENS@sakilacustomer.org        | NULL                         |
+| MARJORIE.TUCKER@sakilacustomer.org       | NULL                         |
+| CARRIE.PORTER@sakilacustomer.org         | NULL                         |
+| CHARLOTTE.HUNTER@sakilacustomer.org      | NULL                         |
+| MONICA.HICKS@sakilacustomer.org          | NULL                         |
+| ESTHER.CRAWFORD@sakilacustomer.org       | NULL                         |
+| PAULINE.HENRY@sakilacustomer.org         | NULL                         |
+| EMMA.BOYD@sakilacustomer.org             | NULL                         |
+| JUANITA.MASON@sakilacustomer.org         | NULL                         |
+| ANITA.MORALES@sakilacustomer.org         | NULL                         |
+| RHONDA.KENNEDY@sakilacustomer.org        | NULL                         |
+| HAZEL.WARREN@sakilacustomer.org          | NULL                         |
+| AMBER.DIXON@sakilacustomer.org           | NULL                         |
+| EVA.RAMOS@sakilacustomer.org             | NULL                         |
+| DEBBIE.REYES@sakilacustomer.org          | NULL                         |
+| APRIL.BURNS@sakilacustomer.org           | NULL                         |
+| LESLIE.GORDON@sakilacustomer.org         | NULL                         |
+| CLARA.SHAW@sakilacustomer.org            | NULL                         |
+| LUCILLE.HOLMES@sakilacustomer.org        | NULL                         |
+| JAMIE.RICE@sakilacustomer.org            | NULL                         |
+| JOANNE.ROBERTSON@sakilacustomer.org      | NULL                         |
+| ELEANOR.HUNT@sakilacustomer.org          | NULL                         |
+| VALERIE.BLACK@sakilacustomer.org         | NULL                         |
+| DANIELLE.DANIELS@sakilacustomer.org      | NULL                         |
+| MEGAN.PALMER@sakilacustomer.org          | NULL                         |
+| ALICIA.MILLS@sakilacustomer.org          | NULL                         |
+| SUZANNE.NICHOLS@sakilacustomer.org       | NULL                         |
+| MICHELE.GRANT@sakilacustomer.org         | NULL                         |
+| GAIL.KNIGHT@sakilacustomer.org           | NULL                         |
+| BERTHA.FERGUSON@sakilacustomer.org       | NULL                         |
+| DARLENE.ROSE@sakilacustomer.org          | NULL                         |
+| VERONICA.STONE@sakilacustomer.org        | NULL                         |
+| JILL.HAWKINS@sakilacustomer.org          | NULL                         |
+| ERIN.DUNN@sakilacustomer.org             | NULL                         |
+| GERALDINE.PERKINS@sakilacustomer.org     | NULL                         |
+| LAUREN.HUDSON@sakilacustomer.org         | NULL                         |
+| CATHY.SPENCER@sakilacustomer.org         | NULL                         |
+| JOANN.GARDNER@sakilacustomer.org         | NULL                         |
+| LORRAINE.STEPHENS@sakilacustomer.org     | NULL                         |
+| LYNN.PAYNE@sakilacustomer.org            | NULL                         |
+| SALLY.PIERCE@sakilacustomer.org          | NULL                         |
+| REGINA.BERRY@sakilacustomer.org          | NULL                         |
+| ERICA.MATTHEWS@sakilacustomer.org        | NULL                         |
+| BEATRICE.ARNOLD@sakilacustomer.org       | NULL                         |
+| DOLORES.WAGNER@sakilacustomer.org        | NULL                         |
+| BERNICE.WILLIS@sakilacustomer.org        | NULL                         |
+| AUDREY.RAY@sakilacustomer.org            | NULL                         |
+| YVONNE.WATKINS@sakilacustomer.org        | NULL                         |
+| ANNETTE.OLSON@sakilacustomer.org         | NULL                         |
+| JUNE.CARROLL@sakilacustomer.org          | NULL                         |
+| SAMANTHA.DUNCAN@sakilacustomer.org       | NULL                         |
+| MARION.SNYDER@sakilacustomer.org         | NULL                         |
+| DANA.HART@sakilacustomer.org             | NULL                         |
+| STACY.CUNNINGHAM@sakilacustomer.org      | NULL                         |
+| ANA.BRADLEY@sakilacustomer.org           | NULL                         |
+| RENEE.LANE@sakilacustomer.org            | NULL                         |
+| IDA.ANDREWS@sakilacustomer.org           | NULL                         |
+| VIVIAN.RUIZ@sakilacustomer.org           | NULL                         |
+| ROBERTA.HARPER@sakilacustomer.org        | NULL                         |
+| HOLLY.FOX@sakilacustomer.org             | NULL                         |
+| BRITTANY.RILEY@sakilacustomer.org        | NULL                         |
+| MELANIE.ARMSTRONG@sakilacustomer.org     | NULL                         |
+| LORETTA.CARPENTER@sakilacustomer.org     | NULL                         |
+| YOLANDA.WEAVER@sakilacustomer.org        | NULL                         |
+| JEANETTE.GREENE@sakilacustomer.org       | NULL                         |
+| LAURIE.LAWRENCE@sakilacustomer.org       | NULL                         |
+| KATIE.ELLIOTT@sakilacustomer.org         | NULL                         |
+| KRISTEN.CHAVEZ@sakilacustomer.org        | NULL                         |
+| VANESSA.SIMS@sakilacustomer.org          | NULL                         |
+| ALMA.AUSTIN@sakilacustomer.org           | NULL                         |
+| SUE.PETERS@sakilacustomer.org            | NULL                         |
+| ELSIE.KELLEY@sakilacustomer.org          | NULL                         |
+| BETH.FRANKLIN@sakilacustomer.org         | NULL                         |
+| JEANNE.LAWSON@sakilacustomer.org         | NULL                         |
+| VICKI.FIELDS@sakilacustomer.org          | NULL                         |
+| CARLA.GUTIERREZ@sakilacustomer.org       | NULL                         |
+| TARA.RYAN@sakilacustomer.org             | NULL                         |
+| ROSEMARY.SCHMIDT@sakilacustomer.org      | NULL                         |
+| EILEEN.CARR@sakilacustomer.org           | NULL                         |
+| TERRI.VASQUEZ@sakilacustomer.org         | NULL                         |
+| GERTRUDE.CASTILLO@sakilacustomer.org     | NULL                         |
+| LUCY.WHEELER@sakilacustomer.org          | NULL                         |
+| TONYA.CHAPMAN@sakilacustomer.org         | NULL                         |
+| ELLA.OLIVER@sakilacustomer.org           | NULL                         |
+| STACEY.MONTGOMERY@sakilacustomer.org     | NULL                         |
+| WILMA.RICHARDS@sakilacustomer.org        | NULL                         |
+| GINA.WILLIAMSON@sakilacustomer.org       | NULL                         |
+| KRISTIN.JOHNSTON@sakilacustomer.org      | NULL                         |
+| JESSIE.BANKS@sakilacustomer.org          | NULL                         |
+| NATALIE.MEYER@sakilacustomer.org         | NULL                         |
+| AGNES.BISHOP@sakilacustomer.org          | NULL                         |
+| VERA.MCCOY@sakilacustomer.org            | NULL                         |
+| WILLIE.HOWELL@sakilacustomer.org         | NULL                         |
+| CHARLENE.ALVAREZ@sakilacustomer.org      | NULL                         |
+| BESSIE.MORRISON@sakilacustomer.org       | NULL                         |
+| DELORES.HANSEN@sakilacustomer.org        | NULL                         |
+| MELINDA.FERNANDEZ@sakilacustomer.org     | NULL                         |
+| PEARL.GARZA@sakilacustomer.org           | NULL                         |
+| ARLENE.HARVEY@sakilacustomer.org         | NULL                         |
+| MAUREEN.LITTLE@sakilacustomer.org        | NULL                         |
+| COLLEEN.BURTON@sakilacustomer.org        | NULL                         |
+| ALLISON.STANLEY@sakilacustomer.org       | NULL                         |
+| TAMARA.NGUYEN@sakilacustomer.org         | NULL                         |
+| JOY.GEORGE@sakilacustomer.org            | NULL                         |
+| GEORGIA.JACOBS@sakilacustomer.org        | NULL                         |
+| CONSTANCE.REID@sakilacustomer.org        | NULL                         |
+| LILLIE.KIM@sakilacustomer.org            | NULL                         |
+| CLAUDIA.FULLER@sakilacustomer.org        | NULL                         |
+| JACKIE.LYNCH@sakilacustomer.org          | NULL                         |
+| MARCIA.DEAN@sakilacustomer.org           | NULL                         |
+| TANYA.GILBERT@sakilacustomer.org         | NULL                         |
+| NELLIE.GARRETT@sakilacustomer.org        | NULL                         |
+| MINNIE.ROMERO@sakilacustomer.org         | NULL                         |
+| MARLENE.WELCH@sakilacustomer.org         | NULL                         |
+| HEIDI.LARSON@sakilacustomer.org          | NULL                         |
+| GLENDA.FRAZIER@sakilacustomer.org        | NULL                         |
+| LYDIA.BURKE@sakilacustomer.org           | NULL                         |
+| VIOLA.HANSON@sakilacustomer.org          | NULL                         |
+| COURTNEY.DAY@sakilacustomer.org          | NULL                         |
+| MARIAN.MENDOZA@sakilacustomer.org        | NULL                         |
+| STELLA.MORENO@sakilacustomer.org         | NULL                         |
+| CAROLINE.BOWMAN@sakilacustomer.org       | NULL                         |
+| DORA.MEDINA@sakilacustomer.org           | NULL                         |
+| JO.FOWLER@sakilacustomer.org             | NULL                         |
+| VICKIE.BREWER@sakilacustomer.org         | NULL                         |
+| MATTIE.HOFFMAN@sakilacustomer.org        | NULL                         |
+| TERRY.CARLSON@sakilacustomer.org         | NULL                         |
+| MAXINE.SILVA@sakilacustomer.org          | NULL                         |
+| IRMA.PEARSON@sakilacustomer.org          | NULL                         |
+| MABEL.HOLLAND@sakilacustomer.org         | NULL                         |
+| MARSHA.DOUGLAS@sakilacustomer.org        | NULL                         |
+| MYRTLE.FLEMING@sakilacustomer.org        | NULL                         |
+| LENA.JENSEN@sakilacustomer.org           | NULL                         |
+| CHRISTY.VARGAS@sakilacustomer.org        | NULL                         |
+| DEANNA.BYRD@sakilacustomer.org           | NULL                         |
+| PATSY.DAVIDSON@sakilacustomer.org        | NULL                         |
+| HILDA.HOPKINS@sakilacustomer.org         | NULL                         |
+| GWENDOLYN.MAY@sakilacustomer.org         | NULL                         |
+| JENNIE.TERRY@sakilacustomer.org          | NULL                         |
+| NORA.HERRERA@sakilacustomer.org          | NULL                         |
+| MARGIE.WADE@sakilacustomer.org           | NULL                         |
+| NINA.SOTO@sakilacustomer.org             | NULL                         |
+| CASSANDRA.WALTERS@sakilacustomer.org     | NULL                         |
+| LEAH.CURTIS@sakilacustomer.org           | NULL                         |
+| PENNY.NEAL@sakilacustomer.org            | NULL                         |
+| KAY.CALDWELL@sakilacustomer.org          | NULL                         |
+| PRISCILLA.LOWE@sakilacustomer.org        | NULL                         |
+| NAOMI.JENNINGS@sakilacustomer.org        | NULL                         |
+| CAROLE.BARNETT@sakilacustomer.org        | NULL                         |
+| BRANDY.GRAVES@sakilacustomer.org         | NULL                         |
+| OLGA.JIMENEZ@sakilacustomer.org          | NULL                         |
+| BILLIE.HORTON@sakilacustomer.org         | NULL                         |
+| DIANNE.SHELTON@sakilacustomer.org        | NULL                         |
+| TRACEY.BARRETT@sakilacustomer.org        | NULL                         |
+| LEONA.OBRIEN@sakilacustomer.org          | NULL                         |
+| JENNY.CASTRO@sakilacustomer.org          | NULL                         |
+| FELICIA.SUTTON@sakilacustomer.org        | NULL                         |
+| SONIA.GREGORY@sakilacustomer.org         | NULL                         |
+| MIRIAM.MCKINNEY@sakilacustomer.org       | NULL                         |
+| VELMA.LUCAS@sakilacustomer.org           | NULL                         |
+| BECKY.MILES@sakilacustomer.org           | NULL                         |
+| BOBBIE.CRAIG@sakilacustomer.org          | NULL                         |
+| VIOLET.RODRIQUEZ@sakilacustomer.org      | NULL                         |
+| KRISTINA.CHAMBERS@sakilacustomer.org     | NULL                         |
+| TONI.HOLT@sakilacustomer.org             | NULL                         |
+| MISTY.LAMBERT@sakilacustomer.org         | NULL                         |
+| MAE.FLETCHER@sakilacustomer.org          | NULL                         |
+| SHELLY.WATTS@sakilacustomer.org          | NULL                         |
+| DAISY.BATES@sakilacustomer.org           | NULL                         |
+| RAMONA.HALE@sakilacustomer.org           | NULL                         |
+| SHERRI.RHODES@sakilacustomer.org         | NULL                         |
+| ERIKA.PENA@sakilacustomer.org            | NULL                         |
+| JAMES.GANNON@sakilacustomer.org          | NULL                         |
+| JOHN.FARNSWORTH@sakilacustomer.org       | NULL                         |
+| ROBERT.BAUGHMAN@sakilacustomer.org       | NULL                         |
+| MICHAEL.SILVERMAN@sakilacustomer.org     | NULL                         |
+| WILLIAM.SATTERFIELD@sakilacustomer.org   | NULL                         |
+| DAVID.ROYAL@sakilacustomer.org           | NULL                         |
+| RICHARD.MCCRARY@sakilacustomer.org       | NULL                         |
+| CHARLES.KOWALSKI@sakilacustomer.org      | NULL                         |
+| JOSEPH.JOY@sakilacustomer.org            | NULL                         |
+| THOMAS.GRIGSBY@sakilacustomer.org        | NULL                         |
+| CHRISTOPHER.GRECO@sakilacustomer.org     | NULL                         |
+| DANIEL.CABRAL@sakilacustomer.org         | NULL                         |
+| PAUL.TROUT@sakilacustomer.org            | NULL                         |
+| MARK.RINEHART@sakilacustomer.org         | NULL                         |
+| DONALD.MAHON@sakilacustomer.org          | NULL                         |
+| GEORGE.LINTON@sakilacustomer.org         | NULL                         |
+| KENNETH.GOODEN@sakilacustomer.org        | NULL                         |
+| STEVEN.CURLEY@sakilacustomer.org         | NULL                         |
+| EDWARD.BAUGH@sakilacustomer.org          | NULL                         |
+| BRIAN.WYMAN@sakilacustomer.org           | NULL                         |
+| RONALD.WEINER@sakilacustomer.org         | NULL                         |
+| ANTHONY.SCHWAB@sakilacustomer.org        | NULL                         |
+| KEVIN.SCHULER@sakilacustomer.org         | NULL                         |
+| JASON.MORRISSEY@sakilacustomer.org       | NULL                         |
+| MATTHEW.MAHAN@sakilacustomer.org         | NULL                         |
+| GARY.COY@sakilacustomer.org              | NULL                         |
+| TIMOTHY.BUNN@sakilacustomer.org          | NULL                         |
+| JOSE.ANDREW@sakilacustomer.org           | NULL                         |
+| LARRY.THRASHER@sakilacustomer.org        | NULL                         |
+| JEFFREY.SPEAR@sakilacustomer.org         | NULL                         |
+| FRANK.WAGGONER@sakilacustomer.org        | NULL                         |
+| SCOTT.SHELLEY@sakilacustomer.org         | NULL                         |
+| ERIC.ROBERT@sakilacustomer.org           | NULL                         |
+| STEPHEN.QUALLS@sakilacustomer.org        | NULL                         |
+| ANDREW.PURDY@sakilacustomer.org          | NULL                         |
+| RAYMOND.MCWHORTER@sakilacustomer.org     | NULL                         |
+| GREGORY.MAULDIN@sakilacustomer.org       | NULL                         |
+| JOSHUA.MARK@sakilacustomer.org           | NULL                         |
+| JERRY.JORDON@sakilacustomer.org          | NULL                         |
+| DENNIS.GILMAN@sakilacustomer.org         | NULL                         |
+| WALTER.PERRYMAN@sakilacustomer.org       | NULL                         |
+| PATRICK.NEWSOM@sakilacustomer.org        | NULL                         |
+| PETER.MENARD@sakilacustomer.org          | NULL                         |
+| HAROLD.MARTINO@sakilacustomer.org        | NULL                         |
+| DOUGLAS.GRAF@sakilacustomer.org          | NULL                         |
+| HENRY.BILLINGSLEY@sakilacustomer.org     | NULL                         |
+| CARL.ARTIS@sakilacustomer.org            | NULL                         |
+| ARTHUR.SIMPKINS@sakilacustomer.org       | NULL                         |
+| RYAN.SALISBURY@sakilacustomer.org        | NULL                         |
+| ROGER.QUINTANILLA@sakilacustomer.org     | NULL                         |
+| JOE.GILLILAND@sakilacustomer.org         | NULL                         |
+| JUAN.FRALEY@sakilacustomer.org           | NULL                         |
+| JACK.FOUST@sakilacustomer.org            | NULL                         |
+| ALBERT.CROUSE@sakilacustomer.org         | NULL                         |
+| JONATHAN.SCARBOROUGH@sakilacustomer.org  | NULL                         |
+| JUSTIN.NGO@sakilacustomer.org            | NULL                         |
+| TERRY.GRISSOM@sakilacustomer.org         | NULL                         |
+| GERALD.FULTZ@sakilacustomer.org          | NULL                         |
+| KEITH.RICO@sakilacustomer.org            | NULL                         |
+| SAMUEL.MARLOW@sakilacustomer.org         | NULL                         |
+| WILLIE.MARKHAM@sakilacustomer.org        | NULL                         |
+| RALPH.MADRIGAL@sakilacustomer.org        | NULL                         |
+| LAWRENCE.LAWTON@sakilacustomer.org       | NULL                         |
+| NICHOLAS.BARFIELD@sakilacustomer.org     | NULL                         |
+| ROY.WHITING@sakilacustomer.org           | NULL                         |
+| BENJAMIN.VARNEY@sakilacustomer.org       | NULL                         |
+| BRUCE.SCHWARZ@sakilacustomer.org         | NULL                         |
+| BRANDON.HUEY@sakilacustomer.org          | NULL                         |
+| ADAM.GOOCH@sakilacustomer.org            | NULL                         |
+| HARRY.ARCE@sakilacustomer.org            | NULL                         |
+| FRED.WHEAT@sakilacustomer.org            | NULL                         |
+| WAYNE.TRUONG@sakilacustomer.org          | NULL                         |
+| BILLY.POULIN@sakilacustomer.org          | NULL                         |
+| STEVE.MACKENZIE@sakilacustomer.org       | NULL                         |
+| LOUIS.LEONE@sakilacustomer.org           | NULL                         |
+| JEREMY.HURTADO@sakilacustomer.org        | NULL                         |
+| AARON.SELBY@sakilacustomer.org           | NULL                         |
+| RANDY.GAITHER@sakilacustomer.org         | NULL                         |
+| HOWARD.FORTNER@sakilacustomer.org        | NULL                         |
+| EUGENE.CULPEPPER@sakilacustomer.org      | NULL                         |
+| CARLOS.COUGHLIN@sakilacustomer.org       | NULL                         |
+| RUSSELL.BRINSON@sakilacustomer.org       | NULL                         |
+| BOBBY.BOUDREAU@sakilacustomer.org        | NULL                         |
+| VICTOR.BARKLEY@sakilacustomer.org        | NULL                         |
+| MARTIN.BALES@sakilacustomer.org          | NULL                         |
+| ERNEST.STEPP@sakilacustomer.org          | NULL                         |
+| PHILLIP.HOLM@sakilacustomer.org          | NULL                         |
+| TODD.TAN@sakilacustomer.org              | NULL                         |
+| JESSE.SCHILLING@sakilacustomer.org       | NULL                         |
+| CRAIG.MORRELL@sakilacustomer.org         | NULL                         |
+| ALAN.KAHN@sakilacustomer.org             | NULL                         |
+| SHAWN.HEATON@sakilacustomer.org          | NULL                         |
+| CLARENCE.GAMEZ@sakilacustomer.org        | NULL                         |
+| SEAN.DOUGLASS@sakilacustomer.org         | NULL                         |
+| PHILIP.CAUSEY@sakilacustomer.org         | NULL                         |
+| CHRIS.BROTHERS@sakilacustomer.org        | NULL                         |
+| JOHNNY.TURPIN@sakilacustomer.org         | NULL                         |
+| EARL.SHANKS@sakilacustomer.org           | NULL                         |
+| JIMMY.SCHRADER@sakilacustomer.org        | NULL                         |
+| ANTONIO.MEEK@sakilacustomer.org          | NULL                         |
+| DANNY.ISOM@sakilacustomer.org            | NULL                         |
+| BRYAN.HARDISON@sakilacustomer.org        | NULL                         |
+| TONY.CARRANZA@sakilacustomer.org         | NULL                         |
+| LUIS.YANEZ@sakilacustomer.org            | NULL                         |
+| MIKE.WAY@sakilacustomer.org              | NULL                         |
+| STANLEY.SCROGGINS@sakilacustomer.org     | NULL                         |
+| LEONARD.SCHOFIELD@sakilacustomer.org     | NULL                         |
+| NATHAN.RUNYON@sakilacustomer.org         | NULL                         |
+| DALE.RATCLIFF@sakilacustomer.org         | NULL                         |
+| MANUEL.MURRELL@sakilacustomer.org        | NULL                         |
+| RODNEY.MOELLER@sakilacustomer.org        | NULL                         |
+| CURTIS.IRBY@sakilacustomer.org           | NULL                         |
+| NORMAN.CURRIER@sakilacustomer.org        | NULL                         |
+| ALLEN.BUTTERFIELD@sakilacustomer.org     | NULL                         |
+| MARVIN.YEE@sakilacustomer.org            | NULL                         |
+| VINCENT.RALSTON@sakilacustomer.org       | NULL                         |
+| GLENN.PULLEN@sakilacustomer.org          | NULL                         |
+| JEFFERY.PINSON@sakilacustomer.org        | NULL                         |
+| TRAVIS.ESTEP@sakilacustomer.org          | NULL                         |
+| JEFF.EAST@sakilacustomer.org             | NULL                         |
+| CHAD.CARBONE@sakilacustomer.org          | NULL                         |
+| JACOB.LANCE@sakilacustomer.org           | NULL                         |
+| LEE.HAWKS@sakilacustomer.org             | NULL                         |
+| MELVIN.ELLINGTON@sakilacustomer.org      | NULL                         |
+| ALFRED.CASILLAS@sakilacustomer.org       | NULL                         |
+| KYLE.SPURLOCK@sakilacustomer.org         | NULL                         |
+| FRANCIS.SIKES@sakilacustomer.org         | NULL                         |
+| BRADLEY.MOTLEY@sakilacustomer.org        | NULL                         |
+| JESUS.MCCARTNEY@sakilacustomer.org       | NULL                         |
+| HERBERT.KRUGER@sakilacustomer.org        | NULL                         |
+| FREDERICK.ISBELL@sakilacustomer.org      | NULL                         |
+| RAY.HOULE@sakilacustomer.org             | NULL                         |
+| JOEL.FRANCISCO@sakilacustomer.org        | NULL                         |
+| EDWIN.BURK@sakilacustomer.org            | NULL                         |
+| DON.BONE@sakilacustomer.org              | NULL                         |
+| EDDIE.TOMLIN@sakilacustomer.org          | NULL                         |
+| RICKY.SHELBY@sakilacustomer.org          | NULL                         |
+| TROY.QUIGLEY@sakilacustomer.org          | NULL                         |
+| RANDALL.NEUMANN@sakilacustomer.org       | NULL                         |
+| BARRY.LOVELACE@sakilacustomer.org        | NULL                         |
+| ALEXANDER.FENNELL@sakilacustomer.org     | NULL                         |
+| BERNARD.COLBY@sakilacustomer.org         | NULL                         |
+| MARIO.CHEATHAM@sakilacustomer.org        | NULL                         |
+| LEROY.BUSTAMANTE@sakilacustomer.org      | NULL                         |
+| FRANCISCO.SKIDMORE@sakilacustomer.org    | NULL                         |
+| MARCUS.HIDALGO@sakilacustomer.org        | NULL                         |
+| MICHEAL.FORMAN@sakilacustomer.org        | NULL                         |
+| THEODORE.CULP@sakilacustomer.org         | NULL                         |
+| CLIFFORD.BOWENS@sakilacustomer.org       | NULL                         |
+| MIGUEL.BETANCOURT@sakilacustomer.org     | NULL                         |
+| OSCAR.AQUINO@sakilacustomer.org          | NULL                         |
+| JAY.ROBB@sakilacustomer.org              | NULL                         |
+| JIM.REA@sakilacustomer.org               | NULL                         |
+| TOM.MILNER@sakilacustomer.org            | NULL                         |
+| CALVIN.MARTEL@sakilacustomer.org         | NULL                         |
+| ALEX.GRESHAM@sakilacustomer.org          | NULL                         |
+| JON.WILES@sakilacustomer.org             | NULL                         |
+| RONNIE.RICKETTS@sakilacustomer.org       | NULL                         |
+| BILL.GAVIN@sakilacustomer.org            | NULL                         |
+| LLOYD.DOWD@sakilacustomer.org            | NULL                         |
+| TOMMY.COLLAZO@sakilacustomer.org         | NULL                         |
+| LEON.BOSTIC@sakilacustomer.org           | NULL                         |
+| DEREK.BLAKELY@sakilacustomer.org         | NULL                         |
+| WARREN.SHERROD@sakilacustomer.org        | NULL                         |
+| DARRELL.POWER@sakilacustomer.org         | NULL                         |
+| JEROME.KENYON@sakilacustomer.org         | NULL                         |
+| FLOYD.GANDY@sakilacustomer.org           | NULL                         |
+| LEO.EBERT@sakilacustomer.org             | NULL                         |
+| ALVIN.DELOACH@sakilacustomer.org         | NULL                         |
+| TIM.CARY@sakilacustomer.org              | NULL                         |
+| WESLEY.BULL@sakilacustomer.org           | NULL                         |
+| GORDON.ALLARD@sakilacustomer.org         | NULL                         |
+| DEAN.SAUER@sakilacustomer.org            | NULL                         |
+| GREG.ROBINS@sakilacustomer.org           | NULL                         |
+| JORGE.OLIVARES@sakilacustomer.org        | NULL                         |
+| DUSTIN.GILLETTE@sakilacustomer.org       | NULL                         |
+| PEDRO.CHESTNUT@sakilacustomer.org        | NULL                         |
+| DERRICK.BOURQUE@sakilacustomer.org       | NULL                         |
+| DAN.PAINE@sakilacustomer.org             | NULL                         |
+| LEWIS.LYMAN@sakilacustomer.org           | NULL                         |
+| ZACHARY.HITE@sakilacustomer.org          | NULL                         |
+| COREY.HAUSER@sakilacustomer.org          | NULL                         |
+| HERMAN.DEVORE@sakilacustomer.org         | NULL                         |
+| MAURICE.CRAWLEY@sakilacustomer.org       | NULL                         |
+| VERNON.CHAPA@sakilacustomer.org          | NULL                         |
+| ROBERTO.VU@sakilacustomer.org            | NULL                         |
+| CLYDE.TOBIAS@sakilacustomer.org          | NULL                         |
+| GLEN.TALBERT@sakilacustomer.org          | NULL                         |
+| HECTOR.POINDEXTER@sakilacustomer.org     | NULL                         |
+| SHANE.MILLARD@sakilacustomer.org         | NULL                         |
+| RICARDO.MEADOR@sakilacustomer.org        | NULL                         |
+| SAM.MCDUFFIE@sakilacustomer.org          | NULL                         |
+| RICK.MATTOX@sakilacustomer.org           | NULL                         |
+| LESTER.KRAUS@sakilacustomer.org          | NULL                         |
+| BRENT.HARKINS@sakilacustomer.org         | NULL                         |
+| RAMON.CHOATE@sakilacustomer.org          | NULL                         |
+| CHARLIE.BESS@sakilacustomer.org          | NULL                         |
+| TYLER.WREN@sakilacustomer.org            | NULL                         |
+| GILBERT.SLEDGE@sakilacustomer.org        | NULL                         |
+| GENE.SANBORN@sakilacustomer.org          | NULL                         |
+| MARC.OUTLAW@sakilacustomer.org           | NULL                         |
+| REGINALD.KINDER@sakilacustomer.org       | NULL                         |
+| RUBEN.GEARY@sakilacustomer.org           | NULL                         |
+| BRETT.CORNWELL@sakilacustomer.org        | NULL                         |
+| ANGEL.BARCLAY@sakilacustomer.org         | NULL                         |
+| NATHANIEL.ADAM@sakilacustomer.org        | NULL                         |
+| RAFAEL.ABNEY@sakilacustomer.org          | NULL                         |
+| LESLIE.SEWARD@sakilacustomer.org         | NULL                         |
+| EDGAR.RHOADS@sakilacustomer.org          | NULL                         |
+| MILTON.HOWLAND@sakilacustomer.org        | NULL                         |
+| RAUL.FORTIER@sakilacustomer.org          | NULL                         |
+| BEN.EASTER@sakilacustomer.org            | NULL                         |
+| CHESTER.BENNER@sakilacustomer.org        | NULL                         |
+| CECIL.VINES@sakilacustomer.org           | NULL                         |
+| DUANE.TUBBS@sakilacustomer.org           | NULL                         |
+| FRANKLIN.TROUTMAN@sakilacustomer.org     | NULL                         |
+| ANDRE.RAPP@sakilacustomer.org            | NULL                         |
+| ELMER.NOE@sakilacustomer.org             | NULL                         |
+| BRAD.MCCURDY@sakilacustomer.org          | NULL                         |
+| GABRIEL.HARDER@sakilacustomer.org        | NULL                         |
+| RON.DELUCA@sakilacustomer.org            | NULL                         |
+| MITCHELL.WESTMORELAND@sakilacustomer.org | NULL                         |
+| ROLAND.SOUTH@sakilacustomer.org          | NULL                         |
+| ARNOLD.HAVENS@sakilacustomer.org         | NULL                         |
+| HARVEY.GUAJARDO@sakilacustomer.org       | NULL                         |
+| JARED.ELY@sakilacustomer.org             | NULL                         |
+| ADRIAN.CLARY@sakilacustomer.org          | NULL                         |
+| KARL.SEAL@sakilacustomer.org             | NULL                         |
+| CORY.MEEHAN@sakilacustomer.org           | NULL                         |
+| CLAUDE.HERZOG@sakilacustomer.org         | NULL                         |
+| ERIK.GUILLEN@sakilacustomer.org          | NULL                         |
+| DARRYL.ASHCRAFT@sakilacustomer.org       | NULL                         |
+| JAMIE.WAUGH@sakilacustomer.org           | NULL                         |
+| NEIL.RENNER@sakilacustomer.org           | NULL                         |
+| JESSIE.MILAM@sakilacustomer.org          | NULL                         |
+| CHRISTIAN.JUNG@sakilacustomer.org        | NULL                         |
+| JAVIER.ELROD@sakilacustomer.org          | NULL                         |
+| FERNANDO.CHURCHILL@sakilacustomer.org    | NULL                         |
+| CLINTON.BUFORD@sakilacustomer.org        | NULL                         |
+| TED.BREAUX@sakilacustomer.org            | NULL                         |
+| MATHEW.BOLIN@sakilacustomer.org          | NULL                         |
+| TYRONE.ASHER@sakilacustomer.org          | NULL                         |
+| DARREN.WINDHAM@sakilacustomer.org        | NULL                         |
+| LONNIE.TIRADO@sakilacustomer.org         | NULL                         |
+| LANCE.PEMBERTON@sakilacustomer.org       | NULL                         |
+| CODY.NOLEN@sakilacustomer.org            | NULL                         |
+| JULIO.NOLAND@sakilacustomer.org          | NULL                         |
+| KELLY.KNOTT@sakilacustomer.org           | NULL                         |
+| KURT.EMMONS@sakilacustomer.org           | NULL                         |
+| ALLAN.CORNISH@sakilacustomer.org         | NULL                         |
+| NELSON.CHRISTENSON@sakilacustomer.org    | NULL                         |
+| GUY.BROWNLEE@sakilacustomer.org          | NULL                         |
+| CLAYTON.BARBEE@sakilacustomer.org        | NULL                         |
+| HUGH.WALDROP@sakilacustomer.org          | NULL                         |
+| MAX.PITT@sakilacustomer.org              | NULL                         |
+| DWAYNE.OLVERA@sakilacustomer.org         | NULL                         |
+| DWIGHT.LOMBARDI@sakilacustomer.org       | NULL                         |
+| ARMANDO.GRUBER@sakilacustomer.org        | NULL                         |
+| FELIX.GAFFNEY@sakilacustomer.org         | NULL                         |
+| JIMMIE.EGGLESTON@sakilacustomer.org      | NULL                         |
+| EVERETT.BANDA@sakilacustomer.org         | NULL                         |
+| JORDAN.ARCHULETA@sakilacustomer.org      | NULL                         |
+| IAN.STILL@sakilacustomer.org             | NULL                         |
+| WALLACE.SLONE@sakilacustomer.org         | NULL                         |
+| KEN.PREWITT@sakilacustomer.org           | NULL                         |
+| BOB.PFEIFFER@sakilacustomer.org          | NULL                         |
+| JAIME.NETTLES@sakilacustomer.org         | NULL                         |
+| CASEY.MENA@sakilacustomer.org            | NULL                         |
+| ALFREDO.MCADAMS@sakilacustomer.org       | NULL                         |
+| ALBERTO.HENNING@sakilacustomer.org       | NULL                         |
+| DAVE.GARDINER@sakilacustomer.org         | NULL                         |
+| IVAN.CROMWELL@sakilacustomer.org         | NULL                         |
+| JOHNNIE.CHISHOLM@sakilacustomer.org      | NULL                         |
+| SIDNEY.BURLESON@sakilacustomer.org       | NULL                         |
+| BYRON.BOX@sakilacustomer.org             | NULL                         |
+| JULIAN.VEST@sakilacustomer.org           | NULL                         |
+| ISAAC.OGLESBY@sakilacustomer.org         | NULL                         |
+| MORRIS.MCCARTER@sakilacustomer.org       | NULL                         |
+| CLIFTON.MALCOLM@sakilacustomer.org       | NULL                         |
+| WILLARD.LUMPKIN@sakilacustomer.org       | NULL                         |
+| DARYL.LARUE@sakilacustomer.org           | NULL                         |
+| ROSS.GREY@sakilacustomer.org             | NULL                         |
+| VIRGIL.WOFFORD@sakilacustomer.org        | NULL                         |
+| ANDY.VANHORN@sakilacustomer.org          | NULL                         |
+| MARSHALL.THORN@sakilacustomer.org        | NULL                         |
+| SALVADOR.TEEL@sakilacustomer.org         | NULL                         |
+| PERRY.SWAFFORD@sakilacustomer.org        | NULL                         |
+| KIRK.STCLAIR@sakilacustomer.org          | NULL                         |
+| SERGIO.STANFIELD@sakilacustomer.org      | NULL                         |
+| MARION.OCAMPO@sakilacustomer.org         | NULL                         |
+| TRACY.HERRMANN@sakilacustomer.org        | NULL                         |
+| SETH.HANNON@sakilacustomer.org           | NULL                         |
+| KENT.ARSENAULT@sakilacustomer.org        | NULL                         |
+| TERRANCE.ROUSH@sakilacustomer.org        | NULL                         |
+| RENE.MCALISTER@sakilacustomer.org        | NULL                         |
+| EDUARDO.HIATT@sakilacustomer.org         | NULL                         |
+| TERRENCE.GUNDERSON@sakilacustomer.org    | NULL                         |
+| ENRIQUE.FORSYTHE@sakilacustomer.org      | NULL                         |
+| FREDDIE.DUGGAN@sakilacustomer.org        | NULL                         |
+| WADE.DELVALLE@sakilacustomer.org         | NULL                         |
+| AUSTIN.CINTRON@sakilacustomer.org        | NULL                         |
+| NULL                                     | Mike.Hillyer@sakilastaff.com |
+| NULL                                     | Jon.Stephens@sakilastaff.com |
++------------------------------------------+------------------------------+
+601 rows in set (0.010 sec)
+
+MariaDB [sakila]> select email from staff;
++------------------------------+
+| email                        |
++------------------------------+
+| Mike.Hillyer@sakilastaff.com |
+| Jon.Stephens@sakilastaff.com |
++------------------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [sakila]> select * from film limit 10;
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+----------------------------------+---------------------+
+| film_id | title            | description                                                                                                           | release_year | language_id | original_language_id | rental_duration | rental_rate | length | replacement_cost | rating | special_features                 | last_update         |
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+----------------------------------+---------------------+
+|       1 | ACADEMY DINOSAUR | A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies                      |         2006 |           1 |                 NULL |               6 |        0.99 |     86 |            20.99 | PG     | Deleted Scenes,Behind the Scenes | 2006-02-15 05:03:42 |
+|       2 | ACE GOLDFINGER   | A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China                  |         2006 |           1 |                 NULL |               3 |        4.99 |     48 |            12.99 | G      | Trailers,Deleted Scenes          | 2006-02-15 05:03:42 |
+|       3 | ADAPTATION HOLES | A Astounding Reflection of a Lumberjack And a Car who must Sink a Lumberjack in A Baloon Factory                      |         2006 |           1 |                 NULL |               7 |        2.99 |     50 |            18.99 | NC-17  | Trailers,Deleted Scenes          | 2006-02-15 05:03:42 |
+|       4 | AFFAIR PREJUDICE | A Fanciful Documentary of a Frisbee And a Lumberjack who must Chase a Monkey in A Shark Tank                          |         2006 |           1 |                 NULL |               5 |        2.99 |    117 |            26.99 | G      | Commentaries,Behind the Scenes   | 2006-02-15 05:03:42 |
+|       5 | AFRICAN EGG      | A Fast-Paced Documentary of a Pastry Chef And a Dentist who must Pursue a Forensic Psychologist in The Gulf of Mexico |         2006 |           1 |                 NULL |               6 |        2.99 |    130 |            22.99 | G      | Deleted Scenes                   | 2006-02-15 05:03:42 |
+|       6 | AGENT TRUMAN     | A Intrepid Panorama of a Robot And a Boy who must Escape a Sumo Wrestler in Ancient China                             |         2006 |           1 |                 NULL |               3 |        2.99 |    169 |            17.99 | PG     | Deleted Scenes                   | 2006-02-15 05:03:42 |
+|       7 | AIRPLANE SIERRA  | A Touching Saga of a Hunter And a Butler who must Discover a Butler in A Jet Boat                                     |         2006 |           1 |                 NULL |               6 |        4.99 |     62 |            28.99 | PG-13  | Trailers,Deleted Scenes          | 2006-02-15 05:03:42 |
+|       8 | AIRPORT POLLOCK  | A Epic Tale of a Moose And a Girl who must Confront a Monkey in Ancient India                                         |         2006 |           1 |                 NULL |               6 |        4.99 |     54 |            15.99 | R      | Trailers                         | 2006-02-15 05:03:42 |
+|       9 | ALABAMA DEVIL    | A Thoughtful Panorama of a Database Administrator And a Mad Scientist who must Outgun a Mad Scientist in A Jet Boat   |         2006 |           1 |                 NULL |               3 |        2.99 |    114 |            21.99 | PG-13  | Trailers,Deleted Scenes          | 2006-02-15 05:03:42 |
+|      10 | ALADDIN CALENDAR | A Action-Packed Tale of a Man And a Lumberjack who must Reach a Feminist in Ancient China                             |         2006 |           1 |                 NULL |               6 |        4.99 |     63 |            24.99 | NC-17  | Trailers,Deleted Scenes          | 2006-02-15 05:03:42 |
++---------+------------------+-----------------------------------------------------------------------------------------------------------------------+--------------+-------------+----------------------+-----------------+-------------+--------+------------------+--------+----------------------------------+---------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [sakila]> show columns from sakila.film;
++----------------------+---------------------------------------------------------------------+------+-----+---------------------+-------------------------------+
+| Field                | Type                                                                | Null | Key | Default             | Extra                         |
++----------------------+---------------------------------------------------------------------+------+-----+---------------------+-------------------------------+
+| film_id              | smallint(5) unsigned                                                | NO   | PRI | NULL                | auto_increment                |
+| title                | varchar(128)                                                        | NO   | MUL | NULL                |                               |
+| description          | text                                                                | YES  |     | NULL                |                               |
+| release_year         | year(4)                                                             | YES  |     | NULL                |                               |
+| language_id          | tinyint(3) unsigned                                                 | NO   | MUL | NULL                |                               |
+| original_language_id | tinyint(3) unsigned                                                 | YES  | MUL | NULL                |                               |
+| rental_duration      | tinyint(3) unsigned                                                 | NO   |     | 3                   |                               |
+| rental_rate          | decimal(4,2)                                                        | NO   |     | 4.99                |                               |
+| length               | smallint(5) unsigned                                                | YES  |     | NULL                |                               |
+| replacement_cost     | decimal(5,2)                                                        | NO   |     | 19.99               |                               |
+| rating               | enum('G','PG','PG-13','R','NC-17')                                  | YES  |     | G                   |                               |
+| special_features     | set('Trailers','Commentaries','Deleted Scenes','Behind the Scenes') | YES  |     | NULL                |                               |
+| last_update          | timestamp                                                           | NO   |     | current_timestamp() | on update current_timestamp() |
++----------------------+---------------------------------------------------------------------+------+-----+---------------------+-------------------------------+
+13 rows in set (0.002 sec)
+
+MariaDB [sakila]> show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.001 sec)
+
+MariaDB [sakila]> show columns from sakila.actor;
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| Field       | Type                 | Null | Key | Default             | Extra                         |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| actor_id    | smallint(5) unsigned | NO   | PRI | NULL                | auto_increment                |
+| first_name  | varchar(45)          | NO   |     | NULL                |                               |
+| last_name   | varchar(45)          | NO   | MUL | NULL                |                               |
+| last_update | timestamp            | NO   |     | current_timestamp() | on update current_timestamp() |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+4 rows in set (0.002 sec)
+
+MariaDB [sakila]> show columns from sakila.film_actor;
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| Field       | Type                 | Null | Key | Default             | Extra                         |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| actor_id    | smallint(5) unsigned | NO   | PRI | NULL                |                               |
+| film_id     | smallint(5) unsigned | NO   | PRI | NULL                |                               |
+| last_update | timestamp            | NO   |     | current_timestamp() | on update current_timestamp() |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+3 rows in set (0.002 sec)
+
+MariaDB [sakila]> show columns from sakila.film;
++----------------------+---------------------------------------------------------------------+------+-----+---------------------+-------------------------------+
+| Field                | Type                                                                | Null | Key | Default             | Extra                         |
++----------------------+---------------------------------------------------------------------+------+-----+---------------------+-------------------------------+
+| film_id              | smallint(5) unsigned                                                | NO   | PRI | NULL                | auto_increment                |
+| title                | varchar(128)                                                        | NO   | MUL | NULL                |                               |
+| description          | text                                                                | YES  |     | NULL                |                               |
+| release_year         | year(4)                                                             | YES  |     | NULL                |                               |
+| language_id          | tinyint(3) unsigned                                                 | NO   | MUL | NULL                |                               |
+| original_language_id | tinyint(3) unsigned                                                 | YES  | MUL | NULL                |                               |
+| rental_duration      | tinyint(3) unsigned                                                 | NO   |     | 3                   |                               |
+| rental_rate          | decimal(4,2)                                                        | NO   |     | 4.99                |                               |
+| length               | smallint(5) unsigned                                                | YES  |     | NULL                |                               |
+| replacement_cost     | decimal(5,2)                                                        | NO   |     | 19.99               |                               |
+| rating               | enum('G','PG','PG-13','R','NC-17')                                  | YES  |     | G                   |                               |
+| special_features     | set('Trailers','Commentaries','Deleted Scenes','Behind the Scenes') | YES  |     | NULL                |                               |
+| last_update          | timestamp                                                           | NO   |     | current_timestamp() | on update current_timestamp() |
++----------------------+---------------------------------------------------------------------+------+-----+---------------------+-------------------------------+
+13 rows in set (0.002 sec)
+
+MariaDB [sakila]> a.first_name, a.last_name from sakila.actor a left join sakila.film_actor fa on a.actor_id = fa.actor_id left join sakila.film f on f.film_id = fa.film_id where f.title = 'ACADEMY DINOSAUR';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'a.first_name, a.last_name from sakila.actor a left join sakila.film_actor fa ...' at line 1
+MariaDB [sakila]> select a.first_name, a.last_name from sakila.actor a left join sakila.film_actor fa on a.actor_id = fa.actor_
+id left join sakila.film f on f.film_id = fa.film_id where f.title = 'ACADEMY DINOSAUR';
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| PENELOPE   | GUINESS   |
+| CHRISTIAN  | GABLE     |
+| LUCILLE    | TRACY     |
+| SANDRA     | PECK      |
+| JOHNNY     | CAGE      |
+| MENA       | TEMPLE    |
+| WARREN     | NOLTE     |
+| OPRAH      | KILMER    |
+| ROCK       | DUKAKIS   |
+| MARY       | KEITEL    |
++------------+-----------+
+10 rows in set (0.005 sec)
+
+MariaDB [sakila]> SELECT a.first_name, a.last_name 
+    -> FROM actor a 
+    -> INNER JOIN film_actor fa ON a.actor_id = fa.actor_id 
+    -> INNER JOIN film f ON f.film_id = fa.film_id 
+    -> WHERE f.title = 'ACADEMY DINOSAUR';
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| PENELOPE   | GUINESS   |
+| CHRISTIAN  | GABLE     |
+| LUCILLE    | TRACY     |
+| SANDRA     | PECK      |
+| JOHNNY     | CAGE      |
+| MENA       | TEMPLE    |
+| WARREN     | NOLTE     |
+| OPRAH      | KILMER    |
+| ROCK       | DUKAKIS   |
+| MARY       | KEITEL    |
++------------+-----------+
+10 rows in set (0.001 sec)
+
+MariaDB [sakila]> show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.001 sec)
+
+MariaDB [sakila]> show columns from sakila.store;
++------------------+----------------------+------+-----+---------------------+-------------------------------+
+| Field            | Type                 | Null | Key | Default             | Extra                         |
++------------------+----------------------+------+-----+---------------------+-------------------------------+
+| store_id         | tinyint(3) unsigned  | NO   | PRI | NULL                | auto_increment                |
+| manager_staff_id | tinyint(3) unsigned  | NO   | UNI | NULL                |                               |
+| address_id       | smallint(5) unsigned | NO   | MUL | NULL                |                               |
+| last_update      | timestamp            | NO   |     | current_timestamp() | on update current_timestamp() |
++------------------+----------------------+------+-----+---------------------+-------------------------------+
+4 rows in set (0.002 sec)
+
+MariaDB [sakila]> show columns from sakila.staff;
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| Field       | Type                 | Null | Key | Default             | Extra                         |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| staff_id    | tinyint(3) unsigned  | NO   | PRI | NULL                | auto_increment                |
+| first_name  | varchar(45)          | NO   |     | NULL                |                               |
+| last_name   | varchar(45)          | NO   |     | NULL                |                               |
+| address_id  | smallint(5) unsigned | NO   | MUL | NULL                |                               |
+| picture     | blob                 | YES  |     | NULL                |                               |
+| email       | varchar(50)          | YES  |     | NULL                |                               |
+| store_id    | tinyint(3) unsigned  | NO   | MUL | NULL                |                               |
+| active      | tinyint(1)           | NO   |     | 1                   |                               |
+| username    | varchar(16)          | NO   |     | NULL                |                               |
+| password    | varchar(40)          | YES  |     | NULL                |                               |
+| last_update | timestamp            | NO   |     | current_timestamp() | on update current_timestamp() |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+11 rows in set (0.002 sec)
+
+MariaDB [sakila]> select str.store_id as Store, count(stf.staff_id) as total_working_staff from sakila.store str left join sakila.staff stf on str.store_id = stf.store_id;
++-------+---------------------+
+| Store | total_working_staff |
++-------+---------------------+
+|     1 |                   2 |
++-------+---------------------+
+1 row in set (0.005 sec)
+
+MariaDB [sakila]> select str.store_id as Store, count(stf.staff_id) as total_working_staff from sakila.store str left join sakila.staff stf on str.store_id = stf.store_id group by str.store_id;
++-------+---------------------+
+| Store | total_working_staff |
++-------+---------------------+
+|     1 |                   1 |
+|     2 |                   1 |
++-------+---------------------+
+2 rows in set (0.004 sec)
+
+MariaDB [sakila]> show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.001 sec)
+
+MariaDB [sakila]> show columns from sakila.customer;\
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| Field       | Type                 | Null | Key | Default             | Extra                         |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+| customer_id | smallint(5) unsigned | NO   | PRI | NULL                | auto_increment                |
+| store_id    | tinyint(3) unsigned  | NO   | MUL | NULL                |                               |
+| first_name  | varchar(45)          | NO   |     | NULL                |                               |
+| last_name   | varchar(45)          | NO   | MUL | NULL                |                               |
+| email       | varchar(50)          | YES  |     | NULL                |                               |
+| address_id  | smallint(5) unsigned | NO   | MUL | NULL                |                               |
+| active      | tinyint(1)           | NO   |     | 1                   |                               |
+| create_date | datetime             | NO   |     | NULL                |                               |
+| last_update | timestamp            | YES  |     | current_timestamp() | on update current_timestamp() |
++-------------+----------------------+------+-----+---------------------+-------------------------------+
+9 rows in set (0.002 sec)
+
+MariaDB [sakila]> show columns from sakila.rental;
++--------------+-----------------------+------+-----+---------------------+-------------------------------+
+| Field        | Type                  | Null | Key | Default             | Extra                         |
++--------------+-----------------------+------+-----+---------------------+-------------------------------+
+| rental_id    | int(11)               | NO   | PRI | NULL                | auto_increment                |
+| rental_date  | datetime              | NO   | MUL | NULL                |                               |
+| inventory_id | mediumint(8) unsigned | NO   | MUL | NULL                |                               |
+| customer_id  | smallint(5) unsigned  | NO   | MUL | NULL                |                               |
+| return_date  | datetime              | YES  |     | NULL                |                               |
+| staff_id     | tinyint(3) unsigned   | NO   | MUL | NULL                |                               |
+| last_update  | timestamp             | NO   |     | current_timestamp() | on update current_timestamp() |
++--------------+-----------------------+------+-----+---------------------+-------------------------------+
+7 rows in set (0.002 sec)
+
+MariaDB [sakila]> select c.first_name, c.last_name, count(r.customer_id) as rental_count from customer c inner join sakila.rental r on c.customer_id = r.customer_id group by c.customer_id having count(r.customer_id)>5;
++-------------+--------------+--------------+
+| first_name  | last_name    | rental_count |
++-------------+--------------+--------------+
+| MARY        | SMITH        |           32 |
+| PATRICIA    | JOHNSON      |           27 |
+| LINDA       | WILLIAMS     |           26 |
+| BARBARA     | JONES        |           22 |
+| ELIZABETH   | BROWN        |           38 |
+| JENNIFER    | DAVIS        |           28 |
+| MARIA       | MILLER       |           33 |
+| SUSAN       | WILSON       |           24 |
+| MARGARET    | MOORE        |           23 |
+| DOROTHY     | TAYLOR       |           25 |
+| LISA        | ANDERSON     |           24 |
+| NANCY       | THOMAS       |           28 |
+| KAREN       | JACKSON      |           27 |
+| BETTY       | WHITE        |           28 |
+| HELEN       | HARRIS       |           32 |
+| SANDRA      | MARTIN       |           28 |
+| DONNA       | THOMPSON     |           21 |
+| CAROL       | GARCIA       |           22 |
+| RUTH        | MARTINEZ     |           24 |
+| SHARON      | ROBINSON     |           30 |
+| MICHELLE    | CLARK        |           35 |
+| LAURA       | RODRIGUEZ    |           22 |
+| SARAH       | LEWIS        |           30 |
+| KIMBERLY    | LEE          |           25 |
+| DEBORAH     | WALKER       |           29 |
+| JESSICA     | HALL         |           34 |
+| SHIRLEY     | ALLEN        |           31 |
+| CYNTHIA     | YOUNG        |           32 |
+| ANGELA      | HERNANDEZ    |           36 |
+| MELISSA     | KING         |           34 |
+| BRENDA      | WRIGHT       |           26 |
+| AMY         | LOPEZ        |           29 |
+| ANNA        | HILL         |           21 |
+| REBECCA     | SCOTT        |           24 |
+| VIRGINIA    | GREEN        |           32 |
+| KATHLEEN    | ADAMS        |           27 |
+| PAMELA      | BAKER        |           23 |
+| MARTHA      | GONZALEZ     |           34 |
+| DEBRA       | NELSON       |           29 |
+| AMANDA      | CARTER       |           27 |
+| STEPHANIE   | MITCHELL     |           25 |
+| CAROLYN     | PEREZ        |           30 |
+| CHRISTINE   | ROBERTS      |           24 |
+| MARIE       | TURNER       |           26 |
+| JANET       | PHILLIPS     |           27 |
+| CATHERINE   | CAMPBELL     |           34 |
+| FRANCES     | PARKER       |           22 |
+| ANN         | EVANS        |           17 |
+| JOYCE       | EDWARDS      |           28 |
+| DIANE       | COLLINS      |           35 |
+| ALICE       | STEWART      |           33 |
+| JULIE       | SANCHEZ      |           29 |
+| HEATHER     | MORRIS       |           30 |
+| TERESA      | ROGERS       |           29 |
+| DORIS       | REED         |           22 |
+| GLORIA      | COOK         |           30 |
+| EVELYN      | MORGAN       |           28 |
+| JEAN        | BELL         |           27 |
+| CHERYL      | MURPHY       |           27 |
+| MILDRED     | BAILEY       |           25 |
+| KATHERINE   | RIVERA       |           14 |
+| JOAN        | COOPER       |           23 |
+| ASHLEY      | RICHARDSON   |           25 |
+| JUDITH      | COX          |           33 |
+| ROSE        | HOWARD       |           22 |
+| JANICE      | WARD         |           34 |
+| KELLY       | TORRES       |           22 |
+| NICOLE      | PETERSON     |           22 |
+| JUDY        | GRAY         |           25 |
+| CHRISTINA   | RAMIREZ      |           18 |
+| KATHY       | JAMES        |           30 |
+| THERESA     | WATSON       |           30 |
+| BEVERLY     | BROOKS       |           24 |
+| DENISE      | KELLY        |           27 |
+| TAMMY       | SANDERS      |           41 |
+| IRENE       | PRICE        |           23 |
+| JANE        | BENNETT      |           28 |
+| LORI        | WOOD         |           31 |
+| RACHEL      | BARNES       |           22 |
+| MARILYN     | ROSS         |           30 |
+| ANDREA      | HENDERSON    |           22 |
+| KATHRYN     | COLEMAN      |           26 |
+| LOUISE      | JENKINS      |           25 |
+| SARA        | PERRY        |           33 |
+| ANNE        | POWELL       |           23 |
+| JACQUELINE  | LONG         |           33 |
+| WANDA       | PATTERSON    |           30 |
+| BONNIE      | HUGHES       |           21 |
+| JULIA       | FLORES       |           32 |
+| RUBY        | WASHINGTON   |           28 |
+| LOIS        | BUTLER       |           35 |
+| TINA        | SIMMONS      |           28 |
+| PHYLLIS     | FOSTER       |           23 |
+| NORMA       | GONZALES     |           21 |
+| PAULA       | BRYANT       |           18 |
+| DIANA       | ALEXANDER    |           27 |
+| ANNIE       | RUSSELL      |           18 |
+| LILLIAN     | GRIFFIN      |           25 |
+| EMILY       | DIAZ         |           24 |
+| ROBIN       | HAYES        |           24 |
+| PEGGY       | MYERS        |           24 |
+| CRYSTAL     | FORD         |           33 |
+| GLADYS      | HAMILTON     |           31 |
+| RITA        | GRAHAM       |           24 |
+| DAWN        | SULLIVAN     |           26 |
+| CONNIE      | WALLACE      |           23 |
+| FLORENCE    | WOODS        |           30 |
+| TRACY       | COLE         |           30 |
+| EDNA        | WEST         |           26 |
+| TIFFANY     | JORDAN       |           14 |
+| CARMEN      | OWENS        |           26 |
+| ROSA        | REYNOLDS     |           30 |
+| CINDY       | FISHER       |           29 |
+| GRACE       | ELLIS        |           33 |
+| WENDY       | HARRISON     |           30 |
+| VICTORIA    | GIBSON       |           27 |
+| EDITH       | MCDONALD     |           19 |
+| KIM         | CRUZ         |           21 |
+| SHERRY      | MARSHALL     |           34 |
+| SYLVIA      | ORTIZ        |           32 |
+| JOSEPHINE   | GOMEZ        |           26 |
+| THELMA      | MURRAY       |           32 |
+| SHANNON     | FREEMAN      |           24 |
+| SHEILA      | WELLS        |           18 |
+| ETHEL       | WEBB         |           32 |
+| ELLEN       | SIMPSON      |           28 |
+| ELAINE      | STEVENS      |           24 |
+| MARJORIE    | TUCKER       |           32 |
+| CARRIE      | PORTER       |           34 |
+| CHARLOTTE   | HUNTER       |           24 |
+| MONICA      | HICKS        |           30 |
+| ESTHER      | CRAWFORD     |           28 |
+| PAULINE     | HENRY        |           27 |
+| EMMA        | BOYD         |           23 |
+| JUANITA     | MASON        |           30 |
+| ANITA       | MORALES      |           15 |
+| RHONDA      | KENNEDY      |           39 |
+| HAZEL       | WARREN       |           34 |
+| AMBER       | DIXON        |           27 |
+| EVA         | RAMOS        |           18 |
+| DEBBIE      | REYES        |           32 |
+| APRIL       | BURNS        |           26 |
+| LESLIE      | GORDON       |           22 |
+| CLARA       | SHAW         |           42 |
+| LUCILLE     | HOLMES       |           28 |
+| JAMIE       | RICE         |           29 |
+| JOANNE      | ROBERTSON    |           34 |
+| ELEANOR     | HUNT         |           46 |
+| VALERIE     | BLACK        |           26 |
+| DANIELLE    | DANIELS      |           25 |
+| MEGAN       | PALMER       |           27 |
+| ALICIA      | MILLS        |           21 |
+| SUZANNE     | NICHOLS      |           24 |
+| MICHELE     | GRANT        |           30 |
+| GAIL        | KNIGHT       |           25 |
+| BERTHA      | FERGUSON     |           25 |
+| DARLENE     | ROSE         |           31 |
+| VERONICA    | STONE        |           32 |
+| JILL        | HAWKINS      |           21 |
+| ERIN        | DUNN         |           27 |
+| GERALDINE   | PERKINS      |           30 |
+| LAUREN      | HUDSON       |           20 |
+| CATHY       | SPENCER      |           29 |
+| JOANN       | GARDNER      |           16 |
+| LORRAINE    | STEPHENS     |           21 |
+| LYNN        | PAYNE        |           28 |
+| SALLY       | PIERCE       |           32 |
+| REGINA      | BERRY        |           34 |
+| ERICA       | MATTHEWS     |           22 |
+| BEATRICE    | ARNOLD       |           26 |
+| DOLORES     | WAGNER       |           26 |
+| BERNICE     | WILLIS       |           33 |
+| AUDREY      | RAY          |           29 |
+| YVONNE      | WATKINS      |           21 |
+| ANNETTE     | OLSON        |           24 |
+| JUNE        | CARROLL      |           37 |
+| SAMANTHA    | DUNCAN       |           23 |
+| MARION      | SNYDER       |           39 |
+| DANA        | HART         |           29 |
+| STACY       | CUNNINGHAM   |           23 |
+| ANA         | BRADLEY      |           34 |
+| RENEE       | LANE         |           26 |
+| IDA         | ANDREWS      |           23 |
+| VIVIAN      | RUIZ         |           23 |
+| ROBERTA     | HARPER       |           23 |
+| HOLLY       | FOX          |           31 |
+| BRITTANY    | RILEY        |           28 |
+| MELANIE     | ARMSTRONG    |           25 |
+| LORETTA     | CARPENTER    |           22 |
+| YOLANDA     | WEAVER       |           27 |
+| JEANETTE    | GREENE       |           20 |
+| LAURIE      | LAWRENCE     |           23 |
+| KATIE       | ELLIOTT      |           25 |
+| KRISTEN     | CHAVEZ       |           18 |
+| VANESSA     | SIMS         |           19 |
+| ALMA        | AUSTIN       |           35 |
+| SUE         | PETERS       |           40 |
+| ELSIE       | KELLEY       |           37 |
+| BETH        | FRANKLIN     |           25 |
+| JEANNE      | LAWSON       |           27 |
+| VICKI       | FIELDS       |           25 |
+| CARLA       | GUTIERREZ    |           26 |
+| TARA        | RYAN         |           20 |
+| ROSEMARY    | SCHMIDT      |           35 |
+| EILEEN      | CARR         |           18 |
+| TERRI       | VASQUEZ      |           27 |
+| GERTRUDE    | CASTILLO     |           34 |
+| LUCY        | WHEELER      |           26 |
+| TONYA       | CHAPMAN      |           32 |
+| ELLA        | OLIVER       |           31 |
+| STACEY      | MONTGOMERY   |           34 |
+| WILMA       | RICHARDS     |           20 |
+| GINA        | WILLIAMSON   |           28 |
+| KRISTIN     | JOHNSTON     |           31 |
+| JESSIE      | BANKS        |           26 |
+| NATALIE     | MEYER        |           23 |
+| AGNES       | BISHOP       |           23 |
+| VERA        | MCCOY        |           18 |
+| WILLIE      | HOWELL       |           26 |
+| CHARLENE    | ALVAREZ      |           27 |
+| BESSIE      | MORRISON     |           28 |
+| DELORES     | HANSEN       |           21 |
+| MELINDA     | FERNANDEZ    |           17 |
+| PEARL       | GARZA        |           22 |
+| ARLENE      | HARVEY       |           26 |
+| MAUREEN     | LITTLE       |           21 |
+| COLLEEN     | BURTON       |           24 |
+| ALLISON     | STANLEY      |           27 |
+| TAMARA      | NGUYEN       |           25 |
+| JOY         | GEORGE       |           33 |
+| GEORGIA     | JACOBS       |           26 |
+| CONSTANCE   | REID         |           25 |
+| LILLIE      | KIM          |           23 |
+| CLAUDIA     | FULLER       |           26 |
+| JACKIE      | LYNCH        |           25 |
+| MARCIA      | DEAN         |           42 |
+| TANYA       | GILBERT      |           33 |
+| NELLIE      | GARRETT      |           21 |
+| MINNIE      | ROMERO       |           34 |
+| MARLENE     | WELCH        |           26 |
+| HEIDI       | LARSON       |           34 |
+| GLENDA      | FRAZIER      |           32 |
+| LYDIA       | BURKE        |           24 |
+| VIOLA       | HANSON       |           32 |
+| COURTNEY    | DAY          |           32 |
+| MARIAN      | MENDOZA      |           23 |
+| STELLA      | MORENO       |           22 |
+| CAROLINE    | BOWMAN       |           15 |
+| DORA        | MEDINA       |           23 |
+| JO          | FOWLER       |           20 |
+| VICKIE      | BREWER       |           31 |
+| MATTIE      | HOFFMAN      |           22 |
+| TERRY       | CARLSON      |           29 |
+| MAXINE      | SILVA        |           32 |
+| IRMA        | PEARSON      |           18 |
+| MABEL       | HOLLAND      |           30 |
+| MARSHA      | DOUGLAS      |           37 |
+| MYRTLE      | FLEMING      |           24 |
+| LENA        | JENSEN       |           32 |
+| CHRISTY     | VARGAS       |           31 |
+| DEANNA      | BYRD         |           26 |
+| PATSY       | DAVIDSON     |           28 |
+| HILDA       | HOPKINS      |           29 |
+| GWENDOLYN   | MAY          |           25 |
+| JENNIE      | TERRY        |           29 |
+| NORA        | HERRERA      |           28 |
+| MARGIE      | WADE         |           36 |
+| NINA        | SOTO         |           29 |
+| CASSANDRA   | WALTERS      |           30 |
+| LEAH        | CURTIS       |           25 |
+| PENNY       | NEAL         |           18 |
+| KAY         | CALDWELL     |           20 |
+| PRISCILLA   | LOWE         |           35 |
+| NAOMI       | JENNINGS     |           35 |
+| CAROLE      | BARNETT      |           30 |
+| BRANDY      | GRAVES       |           28 |
+| OLGA        | JIMENEZ      |           32 |
+| BILLIE      | HORTON       |           26 |
+| DIANNE      | SHELTON      |           31 |
+| TRACEY      | BARRETT      |           27 |
+| LEONA       | OBRIEN       |           14 |
+| JENNY       | CASTRO       |           27 |
+| FELICIA     | SUTTON       |           28 |
+| SONIA       | GREGORY      |           28 |
+| MIRIAM      | MCKINNEY     |           26 |
+| VELMA       | LUCAS        |           27 |
+| BECKY       | MILES        |           29 |
+| BOBBIE      | CRAIG        |           24 |
+| VIOLET      | RODRIQUEZ    |           30 |
+| KRISTINA    | CHAMBERS     |           28 |
+| TONI        | HOLT         |           23 |
+| MISTY       | LAMBERT      |           27 |
+| MAE         | FLETCHER     |           31 |
+| SHELLY      | WATTS        |           26 |
+| DAISY       | BATES        |           38 |
+| RAMONA      | HALE         |           30 |
+| SHERRI      | RHODES       |           33 |
+| ERIKA       | PENA         |           26 |
+| JAMES       | GANNON       |           30 |
+| JOHN        | FARNSWORTH   |           31 |
+| ROBERT      | BAUGHMAN     |           21 |
+| MICHAEL     | SILVERMAN    |           29 |
+| WILLIAM     | SATTERFIELD  |           26 |
+| DAVID       | ROYAL        |           26 |
+| RICHARD     | MCCRARY      |           25 |
+| CHARLES     | KOWALSKI     |           32 |
+| JOSEPH      | JOY          |           30 |
+| THOMAS      | GRIGSBY      |           25 |
+| CHRISTOPHER | GRECO        |           31 |
+| DANIEL      | CABRAL       |           20 |
+| PAUL        | TROUT        |           23 |
+| MARK        | RINEHART     |           26 |
+| DONALD      | MAHON        |           23 |
+| GEORGE      | LINTON       |           33 |
+| KENNETH     | GOODEN       |           17 |
+| STEVEN      | CURLEY       |           29 |
+| EDWARD      | BAUGH        |           28 |
+| BRIAN       | WYMAN        |           12 |
+| RONALD      | WEINER       |           30 |
+| ANTHONY     | SCHWAB       |           20 |
+| KEVIN       | SCHULER      |           22 |
+| JASON       | MORRISSEY    |           28 |
+| MATTHEW     | MAHAN        |           31 |
+| GARY        | COY          |           25 |
+| TIMOTHY     | BUNN         |           22 |
+| JOSE        | ANDREW       |           25 |
+| LARRY       | THRASHER     |           26 |
+| JEFFREY     | SPEAR        |           23 |
+| FRANK       | WAGGONER     |           32 |
+| SCOTT       | SHELLEY      |           25 |
+| ERIC        | ROBERT       |           27 |
+| STEPHEN     | QUALLS       |           28 |
+| ANDREW      | PURDY        |           27 |
+| RAYMOND     | MCWHORTER    |           30 |
+| GREGORY     | MAULDIN      |           23 |
+| JOSHUA      | MARK         |           30 |
+| JERRY       | JORDON       |           29 |
+| DENNIS      | GILMAN       |           28 |
+| WALTER      | PERRYMAN     |           30 |
+| PATRICK     | NEWSOM       |           31 |
+| PETER       | MENARD       |           23 |
+| HAROLD      | MARTINO      |           32 |
+| DOUGLAS     | GRAF         |           25 |
+| HENRY       | BILLINGSLEY  |           18 |
+| CARL        | ARTIS        |           23 |
+| ARTHUR      | SIMPKINS     |           32 |
+| RYAN        | SALISBURY    |           30 |
+| ROGER       | QUINTANILLA  |           36 |
+| JOE         | GILLILAND    |           29 |
+| JUAN        | FRALEY       |           23 |
+| JACK        | FOUST        |           24 |
+| ALBERT      | CROUSE       |           23 |
+| JONATHAN    | SCARBOROUGH  |           18 |
+| JUSTIN      | NGO          |           36 |
+| TERRY       | GRISSOM      |           20 |
+| GERALD      | FULTZ        |           30 |
+| KEITH       | RICO         |           26 |
+| SAMUEL      | MARLOW       |           21 |
+| WILLIE      | MARKHAM      |           25 |
+| RALPH       | MADRIGAL     |           34 |
+| LAWRENCE    | LAWTON       |           31 |
+| NICHOLAS    | BARFIELD     |           32 |
+| ROY         | WHITING      |           29 |
+| BENJAMIN    | VARNEY       |           23 |
+| BRUCE       | SCHWARZ      |           23 |
+| BRANDON     | HUEY         |           37 |
+| ADAM        | GOOCH        |           22 |
+| HARRY       | ARCE         |           35 |
+| FRED        | WHEAT        |           25 |
+| WAYNE       | TRUONG       |           19 |
+| BILLY       | POULIN       |           35 |
+| STEVE       | MACKENZIE    |           34 |
+| LOUIS       | LEONE        |           35 |
+| JEREMY      | HURTADO      |           28 |
+| AARON       | SELBY        |           24 |
+| RANDY       | GAITHER      |           28 |
+| HOWARD      | FORTNER      |           26 |
+| EUGENE      | CULPEPPER    |           19 |
+| CARLOS      | COUGHLIN     |           23 |
+| RUSSELL     | BRINSON      |           36 |
+| BOBBY       | BOUDREAU     |           35 |
+| VICTOR      | BARKLEY      |           24 |
+| MARTIN      | BALES        |           27 |
+| ERNEST      | STEPP        |           25 |
+| PHILLIP     | HOLM         |           26 |
+| TODD        | TAN          |           29 |
+| JESSE       | SCHILLING    |           26 |
+| CRAIG       | MORRELL      |           30 |
+| ALAN        | KAHN         |           26 |
+| SHAWN       | HEATON       |           33 |
+| CLARENCE    | GAMEZ        |           30 |
+| SEAN        | DOUGLASS     |           23 |
+| PHILIP      | CAUSEY       |           31 |
+| CHRIS       | BROTHERS     |           22 |
+| JOHNNY      | TURPIN       |           19 |
+| EARL        | SHANKS       |           27 |
+| JIMMY       | SCHRADER     |           29 |
+| ANTONIO     | MEEK         |           16 |
+| DANNY       | ISOM         |           21 |
+| BRYAN       | HARDISON     |           28 |
+| TONY        | CARRANZA     |           21 |
+| LUIS        | YANEZ        |           20 |
+| MIKE        | WAY          |           35 |
+| STANLEY     | SCROGGINS    |           30 |
+| LEONARD     | SCHOFIELD    |           32 |
+| NATHAN      | RUNYON       |           32 |
+| DALE        | RATCLIFF     |           27 |
+| MANUEL      | MURRELL      |           30 |
+| RODNEY      | MOELLER      |           23 |
+| CURTIS      | IRBY         |           38 |
+| NORMAN      | CURRIER      |           26 |
+| ALLEN       | BUTTERFIELD  |           21 |
+| MARVIN      | YEE          |           21 |
+| VINCENT     | RALSTON      |           25 |
+| GLENN       | PULLEN       |           23 |
+| JEFFERY     | PINSON       |           31 |
+| TRAVIS      | ESTEP        |           25 |
+| JEFF        | EAST         |           30 |
+| CHAD        | CARBONE      |           25 |
+| JACOB       | LANCE        |           21 |
+| LEE         | HAWKS        |           27 |
+| MELVIN      | ELLINGTON    |           26 |
+| ALFRED      | CASILLAS     |           26 |
+| KYLE        | SPURLOCK     |           30 |
+| FRANCIS     | SIKES        |           26 |
+| BRADLEY     | MOTLEY       |           27 |
+| JESUS       | MCCARTNEY    |           24 |
+| HERBERT     | KRUGER       |           20 |
+| FREDERICK   | ISBELL       |           21 |
+| RAY         | HOULE        |           22 |
+| JOEL        | FRANCISCO    |           23 |
+| EDWIN       | BURK         |           23 |
+| DON         | BONE         |           25 |
+| EDDIE       | TOMLIN       |           27 |
+| RICKY       | SHELBY       |           25 |
+| TROY        | QUIGLEY      |           30 |
+| RANDALL     | NEUMANN      |           23 |
+| BARRY       | LOVELACE     |           33 |
+| ALEXANDER   | FENNELL      |           36 |
+| BERNARD     | COLBY        |           22 |
+| MARIO       | CHEATHAM     |           28 |
+| LEROY       | BUSTAMANTE   |           32 |
+| FRANCISCO   | SKIDMORE     |           22 |
+| MARCUS      | HIDALGO      |           30 |
+| MICHEAL     | FORMAN       |           26 |
+| THEODORE    | CULP         |           31 |
+| CLIFFORD    | BOWENS       |           29 |
+| MIGUEL      | BETANCOURT   |           29 |
+| OSCAR       | AQUINO       |           20 |
+| JAY         | ROBB         |           26 |
+| JIM         | REA          |           33 |
+| TOM         | MILNER       |           32 |
+| CALVIN      | MARTEL       |           23 |
+| ALEX        | GRESHAM      |           33 |
+| JON         | WILES        |           24 |
+| RONNIE      | RICKETTS     |           25 |
+| BILL        | GAVIN        |           28 |
+| LLOYD       | DOWD         |           19 |
+| TOMMY       | COLLAZO      |           38 |
+| LEON        | BOSTIC       |           25 |
+| DEREK       | BLAKELY      |           28 |
+| WARREN      | SHERROD      |           33 |
+| DARRELL     | POWER        |           25 |
+| JEROME      | KENYON       |           16 |
+| FLOYD       | GANDY        |           17 |
+| LEO         | EBERT        |           23 |
+| ALVIN       | DELOACH      |           29 |
+| TIM         | CARY         |           39 |
+| WESLEY      | BULL         |           40 |
+| GORDON      | ALLARD       |           32 |
+| DEAN        | SAUER        |           27 |
+| GREG        | ROBINS       |           30 |
+| JORGE       | OLIVARES     |           34 |
+| DUSTIN      | GILLETTE     |           26 |
+| PEDRO       | CHESTNUT     |           24 |
+| DERRICK     | BOURQUE      |           22 |
+| DAN         | PAINE        |           22 |
+| LEWIS       | LYMAN        |           19 |
+| ZACHARY     | HITE         |           31 |
+| COREY       | HAUSER       |           22 |
+| HERMAN      | DEVORE       |           29 |
+| MAURICE     | CRAWLEY      |           29 |
+| VERNON      | CHAPA        |           18 |
+| ROBERTO     | VU           |           30 |
+| CLYDE       | TOBIAS       |           29 |
+| GLEN        | TALBERT      |           26 |
+| HECTOR      | POINDEXTER   |           26 |
+| SHANE       | MILLARD      |           22 |
+| RICARDO     | MEADOR       |           21 |
+| SAM         | MCDUFFIE     |           24 |
+| RICK        | MATTOX       |           27 |
+| LESTER      | KRAUS        |           16 |
+| BRENT       | HARKINS      |           23 |
+| RAMON       | CHOATE       |           31 |
+| CHARLIE     | BESS         |           26 |
+| TYLER       | WREN         |           21 |
+| GILBERT     | SLEDGE       |           28 |
+| GENE        | SANBORN      |           27 |
+| MARC        | OUTLAW       |           30 |
+| REGINALD    | KINDER       |           28 |
+| RUBEN       | GEARY        |           21 |
+| BRETT       | CORNWELL     |           34 |
+| ANGEL       | BARCLAY      |           32 |
+| NATHANIEL   | ADAM         |           28 |
+| RAFAEL      | ABNEY        |           21 |
+| LESLIE      | SEWARD       |           35 |
+| EDGAR       | RHOADS       |           25 |
+| MILTON      | HOWLAND      |           25 |
+| RAUL        | FORTIER      |           20 |
+| BEN         | EASTER       |           26 |
+| CHESTER     | BENNER       |           24 |
+| CECIL       | VINES        |           26 |
+| DUANE       | TUBBS        |           31 |
+| FRANKLIN    | TROUTMAN     |           22 |
+| ANDRE       | RAPP         |           28 |
+| ELMER       | NOE          |           26 |
+| BRAD        | MCCURDY      |           25 |
+| GABRIEL     | HARDER       |           26 |
+| RON         | DELUCA       |           23 |
+| MITCHELL    | WESTMORELAND |           32 |
+| ROLAND      | SOUTH        |           23 |
+| ARNOLD      | HAVENS       |           33 |
+| HARVEY      | GUAJARDO     |           22 |
+| JARED       | ELY          |           19 |
+| ADRIAN      | CLARY        |           19 |
+| KARL        | SEAL         |           45 |
+| CORY        | MEEHAN       |           24 |
+| CLAUDE      | HERZOG       |           25 |
+| ERIK        | GUILLEN      |           29 |
+| DARRYL      | ASHCRAFT     |           23 |
+| JAMIE       | WAUGH        |           25 |
+| NEIL        | RENNER       |           32 |
+| JESSIE      | MILAM        |           33 |
+| CHRISTIAN   | JUNG         |           24 |
+| JAVIER      | ELROD        |           32 |
+| FERNANDO    | CHURCHILL    |           25 |
+| CLINTON     | BUFORD       |           25 |
+| TED         | BREAUX       |           29 |
+| MATHEW      | BOLIN        |           22 |
+| TYRONE      | ASHER        |           24 |
+| DARREN      | WINDHAM      |           24 |
+| LONNIE      | TIRADO       |           18 |
+| LANCE       | PEMBERTON    |           22 |
+| CODY        | NOLEN        |           22 |
+| JULIO       | NOLAND       |           21 |
+| KELLY       | KNOTT        |           25 |
+| KURT        | EMMONS       |           23 |
+| ALLAN       | CORNISH      |           19 |
+| NELSON      | CHRISTENSON  |           20 |
+| GUY         | BROWNLEE     |           32 |
+| CLAYTON     | BARBEE       |           26 |
+| HUGH        | WALDROP      |           21 |
+| MAX         | PITT         |           24 |
+| DWAYNE      | OLVERA       |           22 |
+| DWIGHT      | LOMBARDI     |           17 |
+| ARMANDO     | GRUBER       |           21 |
+| FELIX       | GAFFNEY      |           24 |
+| JIMMIE      | EGGLESTON    |           28 |
+| EVERETT     | BANDA        |           28 |
+| JORDAN      | ARCHULETA    |           30 |
+| IAN         | STILL        |           27 |
+| WALLACE     | SLONE        |           25 |
+| KEN         | PREWITT      |           29 |
+| BOB         | PFEIFFER     |           24 |
+| JAIME       | NETTLES      |           29 |
+| CASEY       | MENA         |           34 |
+| ALFREDO     | MCADAMS      |           20 |
+| ALBERTO     | HENNING      |           21 |
+| DAVE        | GARDINER     |           32 |
+| IVAN        | CROMWELL     |           26 |
+| JOHNNIE     | CHISHOLM     |           24 |
+| SIDNEY      | BURLESON     |           25 |
+| BYRON       | BOX          |           29 |
+| JULIAN      | VEST         |           28 |
+| ISAAC       | OGLESBY      |           29 |
+| MORRIS      | MCCARTER     |           34 |
+| CLIFTON     | MALCOLM      |           27 |
+| WILLARD     | LUMPKIN      |           22 |
+| DARYL       | LARUE        |           27 |
+| ROSS        | GREY         |           27 |
+| VIRGIL      | WOFFORD      |           27 |
+| ANDY        | VANHORN      |           25 |
+| MARSHALL    | THORN        |           23 |
+| SALVADOR    | TEEL         |           30 |
+| PERRY       | SWAFFORD     |           24 |
+| KIRK        | STCLAIR      |           19 |
+| SERGIO      | STANFIELD    |           26 |
+| MARION      | OCAMPO       |           29 |
+| TRACY       | HERRMANN     |           28 |
+| SETH        | HANNON       |           25 |
+| KENT        | ARSENAULT    |           27 |
+| TERRANCE    | ROUSH        |           29 |
+| RENE        | MCALISTER    |           26 |
+| EDUARDO     | HIATT        |           27 |
+| TERRENCE    | GUNDERSON    |           30 |
+| ENRIQUE     | FORSYTHE     |           28 |
+| FREDDIE     | DUGGAN       |           25 |
+| WADE        | DELVALLE     |           22 |
+| AUSTIN      | CINTRON      |           19 |
++-------------+--------------+--------------+
+599 rows in set (0.010 sec)
+
+MariaDB [sakila]> select c.first_name, c.last_name, count(r.customer_id) as rental_count from customer c inner join sakila.rental r on c.customer_id = r.customer_id group by c.customer_id having count(r.customer_id)>5;
+
