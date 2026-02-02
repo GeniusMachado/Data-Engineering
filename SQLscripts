@@ -1,3 +1,6 @@
+Hello this is just my testing playground where I write and test my SQL queries on Databases like Sakila to practice and learn and sometimes also test and tweak my assignment questions from Data-Engineering.
+
+
 SELECT * FROM SAKILA.actor;
 
 
