@@ -1,0 +1,24 @@
+Good morning today the class started a bit early at 8 am PST. 
+Rutwik gave us a review on the last clast class and gave us a bried recap.
+When Ruchik sir asked questions about last class on difference between CTEand Subqueries and their scopes then she was not able to answer correctly.
+We also found that Vishnu had some wrong answers too. 
+Then Karthik had some what understanding of the scope of CTE and Subquery but even he lacked understanding of re-usability. 
+Vishnu who was asked this question before Karthik still meanins confused and not ableto answer the question correctly. 
+Hitesh did not completely understand either. And then Yashwanth tried to explain them with recursion making it even more confused and seems like he himself wasnt clear about it. 
+We spent almost on hour till 9 am while we were revising last class and also Ruchik sir joined the meeting late.
+Now we start with today's class and it is about stored procdures.
+We were given an example of using stored procedures when we have to check for username and password of a user in the database everytime they login to the application. 
+So we achieve stored procedures with input parameters.
+It works just like a function in python where we first define the stored procedure and then we call it with parameter. 
+Then we also saw the use of DELIMITER.
+Will have to look more into the syntax of stored procedures. 
+Then there are also Dynamic SQL procedures.
+When we create a dynamic sql query from a stored procedure then we call it dynamic sql procedure.
+We saw multiple examples of Dynamic SQL procedures. 
+The ones which were not even familiar with the syntax just for understanding how to achieve dynamic SQL procedures.
+I will still have to go throgh the big example where we obtained the dynamic select queries for all the rows in the table using Dynamic SQL procedures for better understanding. 
+Class ended at 9:37 am and tomorrow we will talk about indexes and query fine tuning and then we will wrap up SQL this week. 
+Other topics like Partitioning, etc. have to be covered by us. 
+For the assessment on thursday we have to learn everything till stored procedures and then we will have to live code SQL for 10 minutes and will be assessed base on that performance. 
+Class ended at 9:40 am and I asked Ruchik sir to upload the notes and SQL dynamic procedure on drive for me to revise again. 
+Only a few of the students will be having to give assessments with Ruchik sir due to shorter time constraint and then the remaining ones will have to give it with Amar Sir. 
