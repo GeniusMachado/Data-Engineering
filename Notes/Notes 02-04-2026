@@ -1,0 +1,74 @@
+We got a recap of last class of Stored Procedures from Rutwik and then began the class.
+Sushma asked sir to explain Stored procedures again. 
+Ruchik sir was telling us that we will have to work in jobs for client where they expect us to do optimizations. 
+For example we will need to get the previous years medical records. 
+So Indexing helps in this case for optimization. 
+Two ways of creating a table.
+Clustering index and non-clustered tables.
+Primary key is always the clustered index key.
+By default the primary key acts as a clustered index and will hold the index values for the tables. 
+We also saw the EXPALIN keyword where it gives the detailed description of the SELECT query that we run. 
+So we need to add index column when we have a lot of data like millions of rows so it will select that query from all the millions of rows so when we index the table then it is faster and optimized. 
+We got to know that our select query is scanning for all the rows in the table using the EXPLAIN keyword at the begining of the query. 
+Non clustered indexes are not added as columns to the original tables rather it creates and refers to a pointer table inthe memory. 
+So indexing helps us to optimize the search of data from the tables in MySQL.
+There are two types of indexing: 
+
+
+1) Clustered Indexing: where we index the primary key of the table to become the index. 
+
+
+2) Non-clustered Index: where the table does not have a primary key so index to a column where there is somewhat similarity to group by but there is no unique primary key so it will be like group by.
+
+
+And the syntax for creating indexes is by 
+
+CREATE INDEX idx_product_name on sakila.sales_data(product_name);
+
+Now we talk about Natural Key and Surrogate key.
+
+Surrogate keys are replaced when you leave the organization and then your employee ID is given to the new joinee. 
+
+But even when you die your SSN number is always unique to your own identity so it is a Natural key.
+
+Natural Keys are forever assigned. 
+
+Surrogate keys are temporary. 
+
+primary key --surrogate key 
+
+So basically these are the options we can consider while creating a primary key.
+
+All Natural keys are primary keys by default. But not all Primary keys might be Natural keys as they could be surrogate keys as well. 
+
+Seems like Bhuvansai was confused btween Natural key and primary key. We again wasted around more than 15 minutes in this.
+
+Class ended at 9:30 am today and we were told that in the next and last class of SQL we will go through query fine tuning. Like we only use particular column names instead of Select * to get only the required columns and we should always use WHERE clause before using GROUP BY and HAVING clause.
+
+And we should always use joins instead of subqueries because subqueries are not efficient. 
+We should always avoid functions on indexed columns.
+
+Alwasy use LIMIT keyword while fetching data.
+
+We should use CTE for readability purpose. 
+
+We should also use EXPLAIN to understand the query execution plan. 
+
+Run maintainence commands periodically. (ANALYZE, OPTIMIZE)
+
+Avoid large OFFSET  in tabes.
+
+Then Sushma asked her doubt about stored procedures where she was not able to run the bigger example of Stored procedure but it seemed to run successfully when she ran in by sharing her screen. 
+
+
+We extended the class till 10  am 
+
+And then i found the opportunity to ask Ruchik sir to perform the EXPLAIN query to check the time complexity on Subquery or  joins to check which one was faster and obviously Joins was better and had reduced operations and also dealing with less number of rows. 
+
+
+
+
+
+
+
+
