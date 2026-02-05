@@ -1,0 +1,26 @@
+Today the class began at around 9:12 am and we shall be starting with Python from Today. 
+We saw some common modules and libraries that are used in Python.
+Now we go through the data types first. 
+we went through integers and then its type convesion with str  for concatenation. 
+Before that we also saw implicit convesion and explicit data type conversion.
+In implicitly it automatically converts integer to float and something we have to do manually is explicitly.
+Then also we saw float data type. 
+The next data type is boolean. 
+Then we saw strings data type.
+Then we also use naming convention in python. 
+We also have another data type which is complex data type for the complex numbers.
+We saw pythons dynamic typing nature where python automatically assigns a value to a variable. 
+And ofcourse we can also have forced type where we forcefully assign a particular data type. 
+Now we move forward with the operators in Python. 
+Then we also saw how operators play a role for assignment and increment when placed on left or right side of the = operator. 
+We then saw the input() function. 
+By default nature of the input() is string data type.
+Then we saw what is f"string in {python} which is cool".
+Fstring is used to pass parameters in the output string from the variale values. 
+There is also an alternative to f"string" which is .format(a,b) function.
+Then we saw the truth table of Boolean evaluations. Like true or true , falso and true, etc.
+Then we also saw about branching concept which is nothing but the if/elif/else conditions.
+Class ended at around 10:30 am after a discussion with everybody about different web frameworks like fastapi and django and also flask. Then we had some folks from Javascript and they were asking some questions too about the data types. 
+I asked a question too about how efficient is python's garbage collector but seems like we did not get a relevant answer for this. 
+Something I would save for my own research. 
+ 
