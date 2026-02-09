@@ -1,0 +1,36 @@
+
+SQL Practice Questions
+---------------------------------
+
+
+1. Get all customers whose first name starts with 'J' and who are active.
+
+2. Find all films where the title contains the word 'ACTION' or the description contains 'WAR'.
+
+3. List all customers whose last name is not 'SMITH' and whose first name ends with 'a'.
+
+4. Get all films where the rental rate is greater than 3.0 and the replacement cost is not null.
+
+5. Count how many customers exist in each store who have active status = 1.
+
+6. Show distinct film ratings available in the film table.
+
+7. Find the number of films for each rental duration where the average length is more than 100 minutes.
+
+8. List payment dates and total amount paid per date, but only include days where more than 100 payments were made.
+
+9. Find customers whose email address is null or ends with '.org'.
+
+10. List all films with rating 'PG' or 'G', and order them by rental rate in descending order.
+
+11. Count how many films exist for each length where the film title starts with 'T' and the count is more than 5.
+
+12. List all actors who have appeared in more than 10 films.
+
+13. Find the top 5 films with the highest rental rates and longest lengths combined, ordering by rental rate first and length second.
+
+14. Show all customers along with the total number of rentals they have made, ordered from most to least rentals.
+
+15. List the film titles that have never been rented.
+
+

@@ -10,7 +10,7 @@ By default the primary key acts as a clustered index and will hold the index val
 We also saw the EXPALIN keyword where it gives the detailed description of the SELECT query that we run. 
 So we need to add index column when we have a lot of data like millions of rows so it will select that query from all the millions of rows so when we index the table then it is faster and optimized. 
 We got to know that our select query is scanning for all the rows in the table using the EXPLAIN keyword at the begining of the query. 
-Non clustered indexes are not added as columns to the original tables rather it creates and refers to a pointer table inthe memory. 
+Non clustered indexes are not added as columns to the original tables rather it creates and refers to a pointer table in the memory. 
 So indexing helps us to optimize the search of data from the tables in MySQL.
 There are two types of indexing: 
 
