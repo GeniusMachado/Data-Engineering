@@ -1,0 +1,142 @@
+Today the session began at around 9 am in the morning where we continued the assessments for SQL of the remaining students and then the first person was Akhila Locan to go withe test question. 
+The question was to bring the total count of currently rented films per store.
+
+MariaDB [sakila]> select * from inventory limit 4;
++--------------+---------+----------+---------------------+
+| inventory_id | film_id | store_id | last_update         |
++--------------+---------+----------+---------------------+
+|            1 |       1 |        1 | 2006-02-15 05:09:17 |
+|            2 |       1 |        1 | 2006-02-15 05:09:17 |
+|            3 |       1 |        1 | 2006-02-15 05:09:17 |
+|            4 |       1 |        1 | 2006-02-15 05:09:17 |
++--------------+---------+----------+---------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [sakila]> select * from rental limit 4;
++-----------+---------------------+--------------+-------------+---------------------+----------+---------------------+
+| rental_id | rental_date         | inventory_id | customer_id | return_date         | staff_id | last_update         |
++-----------+---------------------+--------------+-------------+---------------------+----------+---------------------+
+|         1 | 2005-05-24 22:53:30 |          367 |         130 | 2005-05-26 22:04:30 |        1 | 2006-02-15 21:30:53 |
+|         2 | 2005-05-24 22:54:33 |         1525 |         459 | 2005-05-28 19:40:33 |        1 | 2006-02-15 21:30:53 |
+|         3 | 2005-05-24 23:03:39 |         1711 |         408 | 2005-06-01 22:12:39 |        1 | 2006-02-15 21:30:53 |
+|         4 | 2005-05-24 23:04:41 |         2452 |         333 | 2005-06-03 01:43:41 |        2 | 2006-02-15 21:30:53 |
++-----------+---------------------+--------------+-------------+---------------------+----------+---------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [sakila]> select count( distinct film_id) from sakila.rental r join inventory i on i.inventory_id=r.inventory_id where return_date is null;
++--------------------------+
+| count( distinct film_id) |
++--------------------------+
+|                      169 |
++--------------------------+
+1 row in set (0.121 sec)
+
+MariaDB [sakila]> select count( distinct film_id) from sakila.rental r join inventory i on i.inventory_id=r.inventory_id where return_date is null;
+
+
+
+
+I was able to execute the query myself but seems like students were still struggling to get their outputs.
+
+Akhila couldnt solve it so she picked Sushma to solve the query next and then i was able to see her shared screen where she was using left joins and bridge tables to join store table and also inventory table and also rental tables. Very complex. I dont know if it runs an her logic is correct because she is bringing the total count of currently rented films per store so she might need to join the bridge table. 
+
+Btw she got a differet question that was :
+Using CTE customers with rental details who made atleast 30 rentals.
+She solved the question but with left joins and then it was giving null values but then she had to use a whre clause again to filter them and then finally she ended up using an inner join. But she was able to execute the query . Finally someone !
+
+Sushma picked the next person as Yashwanth. 
+His question was : 
+find customers who rented the same film atleast twice  or more than twice. 
+
+select c.first_name, c.last_name from customer c join rental r on r.customer_id=c.customer_id group by customer_id having count(inventory_id)>=2;
+
+We did not have time to go through that exectution. 
+Next person was picked as Sanjay by Amar and Sanjay said he did not have his laptop today so arrangements were made for him to run the SQL query by screen sharing Sushma's screen.
+
+he got a question from CTE and it was : 
+using CTE find payments by customers in london city.
+
+select c.customer_id, c.first_name, c.last_name, ci.city from customer c join payment p on c.customer_id = p.customer_id where city ="London"
+
+
+I did not solve the query completely but I was able to identify both the joins in the bridge table for CTE and the actual joins for Payments and cutomer table as well. 
+
+
+
+
+MariaDB [sakila]> select * from city limit 5;
++---------+------------------------+------------+---------------------+
+| city_id | city                   | country_id | last_update         |
++---------+------------------------+------------+---------------------+
+|       1 | A Coruña (La Coruña)   |         87 | 2006-02-15 04:45:25 |
+|       2 | Abha                   |         82 | 2006-02-15 04:45:25 |
+|       3 | Abu Dhabi              |        101 | 2006-02-15 04:45:25 |
+|       4 | Acuña                  |         60 | 2006-02-15 04:45:25 |
+|       5 | Adana                  |         97 | 2006-02-15 04:45:25 |
++---------+------------------------+------------+---------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [sakila]> select * from customer limit 5;
++-------------+----------+------------+-----------+-------------------------------------+------------+--------+---------------------+---------------------+
+| customer_id | store_id | first_name | last_name | email                               | address_id | active | create_date         | last_update         |
++-------------+----------+------------+-----------+-------------------------------------+------------+--------+---------------------+---------------------+
+|           1 |        1 | MARY       | SMITH     | MARY.SMITH@sakilacustomer.org       |          5 |      1 | 2006-02-14 22:04:36 | 2006-02-15 04:57:20 |
+|           2 |        1 | PATRICIA   | JOHNSON   | PATRICIA.JOHNSON@sakilacustomer.org |          6 |      1 | 2006-02-14 22:04:36 | 2006-02-15 04:57:20 |
+|           3 |        1 | LINDA      | WILLIAMS  | LINDA.WILLIAMS@sakilacustomer.org   |          7 |      1 | 2006-02-14 22:04:36 | 2006-02-15 04:57:20 |
+|           4 |        2 | BARBARA    | JONES     | BARBARA.JONES@sakilacustomer.org    |          8 |      1 | 2006-02-14 22:04:36 | 2006-02-15 04:57:20 |
+|           5 |        1 | ELIZABETH  | BROWN     | ELIZABETH.BROWN@sakilacustomer.org  |          9 |      1 | 2006-02-14 22:04:36 | 2006-02-15 04:57:20 |
++-------------+----------+------------+-----------+-------------------------------------+------------+--------+---------------------+---------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [sakila]> select * from address  limit 5;
++------------+----------------------+----------+----------+---------+-------------+-------------+---------------------+
+| address_id | address              | address2 | district | city_id | postal_code | phone       | last_update         |
++------------+----------------------+----------+----------+---------+-------------+-------------+---------------------+
+|          1 | 47 MySakila Drive    | NULL     | Alberta  |     300 |             |             | 2014-09-25 22:30:27 |
+|          2 | 28 MySQL Boulevard   | NULL     | QLD      |     576 |             |             | 2014-09-25 22:30:09 |
+|          3 | 23 Workhaven Lane    | NULL     | Alberta  |     300 |             | 14033335568 | 2014-09-25 22:30:27 |
+|          4 | 1411 Lillydale Drive | NULL     | QLD      |     576 |             | 6172235589  | 2014-09-25 22:30:09 |
+|          5 | 1913 Hanoi Way       |          | Nagasaki |     463 | 35200       | 28303384290 | 2014-09-25 22:31:53 |
++------------+----------------------+----------+----------+---------+-------------+-------------+---------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [sakila]> select * from payment limit 5;
++------------+-------------+----------+-----------+--------+---------------------+---------------------+
+| payment_id | customer_id | staff_id | rental_id | amount | payment_date        | last_update         |
++------------+-------------+----------+-----------+--------+---------------------+---------------------+
+|          1 |           1 |        1 |        76 |   2.99 | 2005-05-25 11:30:37 | 2006-02-15 22:12:30 |
+|          2 |           1 |        1 |       573 |   0.99 | 2005-05-28 10:35:23 | 2006-02-15 22:12:30 |
+|          3 |           1 |        1 |      1185 |   5.99 | 2005-06-15 00:54:12 | 2006-02-15 22:12:30 |
+|          4 |           1 |        2 |      1422 |   0.99 | 2005-06-15 18:02:53 | 2006-02-15 22:12:30 |
+|          5 |           1 |        2 |      1476 |   9.99 | 2005-06-15 21:08:46 | 2006-02-15 22:12:30 |
++------------+-------------+----------+-----------+--------+---------------------+---------------------+
+5 rows in set (0.001 sec)
+
+
+
+
+Next was Vishnu who got a question: 
+Using subquery get customers who made any payment greater than 8.
+
+MariaDB [sakila]> select customer_id, first_name, last_name from customer where customer_id in (select customer_id from payment where amount > 8) limit 5;
++-------------+------------+-----------+
+| customer_id | first_name | last_name |
++-------------+------------+-----------+
+|           1 | MARY       | SMITH     |
+|           2 | PATRICIA   | JOHNSON   |
+|           3 | LINDA      | WILLIAMS  |
+|           4 | BARBARA    | JONES     |
+|           5 | ELIZABETH  | BROWN     |
++-------------+------------+-----------+
+5 rows in set (0.017 sec)
+
+
+my computer shutdown because the meeting went over two hours and it was 11 am when it crashed but luckily I was able to recover my notes file using vim -r (for recovery of the swp file). 
+
+Now we are back again and the session is still on and seems like Sai teja is helping Chaitanya to solve the question. 
+Its been a long discussion not gonna lie :)
+They were trying to solve the question with group by and having clause.
+
+Finally at around 11:30 am we ended the class and we meet early for tomorrow's session in the morning as said by Amar Sir. 
+
+
