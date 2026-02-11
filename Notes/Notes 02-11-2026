@@ -1,0 +1,24 @@
+Today the class began at around 9:10 am PST and then we had a quick recap of the last Python class by Mohinipriya.
+Now we start learning Loops from today's lecture. 
+I answered question of what are the two types of loops and I said that one is the entry controlled loop and then other one is the exit controlled loop. 
+So for loops and while loops. 
+Then we were going on towards how to approach any problem to solve it efficiently for example if we have to find sum of elements in a list. 
+And then we saw how we have to breakown the steps and the solve it. 
+Then we also explored the range() function in python which we most of the times use it with loops. 
+Then we saw how to use for loops with len() and range() function.
+example : for i range(len(list_a)+1):
+We spent a lot of time on range() function in for loops.
+For loops can be used to reverse a string as well and I feel that is more space complexity higher because strings are imutable so every time you keep adding the reversed character into the new string it will create a new string until the original list is reversed so we can do the same with list for efficiency. 
+Range() function is only used when you want to deal with indexes or else if you want to directly deal with the actual list elements then you can say for example :
+for i in list_A:
+
+People got a lot confused with the len and range function today and to make it even more confusing Ruchik sir had an example of sorted numbers list for input. 
+
+Then we moved on to while loops at around 10 am and then we saw an example of again addition of elements with while loop. 
+WHile loops are very sensitive so we have to be careful becuase if the exit condition is not defined then it will keep on going forever and then the kernel will crash. 
+
+Then we moved to break and continue statements. 
+
+We ended the class at around 10:19 am. 
+
+ 
