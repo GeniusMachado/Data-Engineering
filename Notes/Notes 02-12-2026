@@ -1,0 +1,39 @@
+Good morning Today's class began at around 8:10 am and then I was at my new place in Long Beach, CA taking the class from my new room. 
+Sushma gave us a brief recap on the last class.
+Finally we started learning today's class concepts at around 8:23 am and it was Strings and lists. 
+We saw the use of '\n' for a new line.
+then we saw that there is a len() function in python too just like we had it in SQL.
+We saw what is string indexing and how it starts wiht 0.
+Then we saw the slicing on strings.
+s[::] So the first parameter is lower limit and then the upper limit and then the step size.
+then there is negative slicing as well. 
+Then we saw the string slicing for reversal s[::-1]
+Then we saw the most important property of Strings which is immutability so we cannot change or modifiy the string once created.
+We can also multiply a string which is assigned to a variable to print patterns.
+
+
+Then we have built-in functions for strings which are split() and also partition(), count(), find(), expandtabs(), isalnum(), isalpha(), islower(), isspace(), istitle(), isupper(), endswith(), split(), partition()
+
+ //partition includes that character on which we perform the parttion whereas split() does not include the character based upon which we split the string()//
+
+
+Now lets see lists. 
+
+They are mutable. Sometimes called arrays in other programming languages.
+Strings has almost the same concepts of lists and even the builtin fucnitons are almost similar. 
+We can do slicing, indexing and also concatenation on lists as well. 
+Then we saw how to shallow copy and deep copy permanently wiht the assignment operator and not just reference to the pointer. 
+We saw other methods on lists like append(), insert(), pop(), reverse(), sort(),
+Then we saw the comcept of Nesting Lists. We use the concept of nested lists to create matrixes. 
+
+List Comprehensions is an important topic:
+We use it to reduce the number of lines of code becuase people came up with a solution as we anyways use for loops and expressions to perform any operations on lists. So we use list comprehension. 
+
+Then there are other list functions like extend() and append().
+In append you can only append one value at a time but in extend function we can pass multiple parameters.
+
+We also saw the other builtin functions similar to strings like the reverse(), sort(), etc.
+
+In tomorrows class we will talk about sets, tupples, dictionaries. 
+
+The class ended at 9:20 am. We meet tomorrow for the next session. 
