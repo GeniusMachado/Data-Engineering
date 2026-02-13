@@ -1,0 +1,32 @@
+TOdays class began at around 8 am PST  and then after getting a breif recap of lists and strings from last class we now started with tuples data type.
+We can do slicing concepts as well on Tuples too and the builtin functions of lists can be used on the tuple too. 
+But the only difference between list and tuple it is mutablity. 
+Tuple cannot be changed but list can be changed.
+if you want to change or modify the tuple then you will first have to change its type to list and then you can perform the operations to change the elements.
+Then we saw Set data type.
+We use tupple to get unique data we use tuples. And also the other advantage is that we can perform set operation on the sets like union and intersection , etc.
+set has two builtin methods of discard() and remove()
+So in set pop() works from the begining .
+you can use set to convert a list into unique elements.
+Then we moved on to dictionaries.
+They dont use indexing but rather use Key, Value pair.
+A dictionary can hold multiple data types. 
+Nested Dictionaires are also widely used and is a broad concept.
+some dictionary methods are like keys(), values().
+Now we have dictionary comprehension.
+It is just like list comprehensions using for loops.
+Now we move on to deep copy and shallow copy. 
+shallow copy can be done with copy.copy() which only references the object of original variable so when you change it will be changed in the orginal value as well. 
+Whereas in deep copy which is copy.deepcopy() it creates an actuall new copy of the variable and it does not change the reference. 
+Theses both the methods have to be imported from the copy module in python first before calling them.
+
+Now we move on to function() in python. 
+Which bring in dynamic nature of code in python and provide code reusability and also makes functionality more useful.
+We also saw the difference of print output and also reutrn output which only stores the result into a vairable where as the print only shows it on the console.
+We use return statement in function to save the value or read the functions output into the further code so you can use it ahead.
+
+In the next class we will learn iterators and generators and also map() and reduce(). 
+The next sessoin should be on Monday which I believe is the president's day holiday in the US. 
+We were told that we will be having to build projects and then this should come up with a complex idea till wedndessday and then the idea should hold the potential enough to do something with Machine Learning and data visualtization and then perform some analytics on it. We should also be able to integrate this python project with the My SQL database concepts that we have leearnt until now and then create a UI or something with Streamlit and then also do some ML and GenAI stuff on it. It should be something that gets us thinking and creative. He gave us an example where a last batch student created an app that extracted Youtube video trascripts with API and then did some operations on it. 
+Ritwik sir suggested me that I create something for the fitness community as he had seen my status in the Gym yesterday :)
+Okay the zoom meeting ended at around 9:16 am and now lets get back to all the recruiter calls that are flooding since morning ! 
