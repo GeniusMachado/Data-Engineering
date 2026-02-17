@@ -1,0 +1,35 @@
+We started the class today at 8:30 am and then before that I was connected with the marketer for appliations and then I hopped onto this meeting for training session and we got a brief recap of the last sesssion from Mohinipriya about tuples and sets and dictionaries. 
+Also revised how to access the nested dictionary values and its items as well then followed by a quick recap of shallow and deep copy as well. Also went over the functions what we touched in the last class. 
+We started the class by learning what are iterators and how they are used over the for loops and how they bring next iterable object from the list using itertools. 
+So you can do the same thing without using for loop instead by using iter() and next() functions by creating iter object and using the next() method over that iter object to go over the iterbale list or say array or iter object. 
+Goal can be achieved both ways. 
+
+Now we learn what a generator is:
+It is a way to create a iterator. So it is basically the "yield" keyword that we use to return the values of a function one at a time. 
+It is returning the values just like an iter() and next() method. 
+It does not return the function value directly entirely at once like standard functions. 
+
+
+So what we do with iter() and next()  together multiple times top return all the values of the object we can use that instead with a function and yield keyword so we dont have to do it with a function and then just use yield instead of return in the function.
+
+We use iterators and generators for memory efficiency becasuse we use it in our code to yield that in our function. 
+
+So we saw iterators and generators. 
+Now we move on to map() and reduce() and filter().
+
+1) map(function, values) : so a map function will map the input to a funcion that does some operation on the input values and then gives us a number of output values.
+We can also map lambda functions with values and then also we can use list comprehensions instead of map().
+
+2) For reduce() we have to import it from functools. 
+It is used to reduce the the input values and finally return ultimately one single value. 
+
+3) filter() : This is builtin funciton and is used to go over the list of iterable objects where we filter some data based upon some condition.
+
+So when I asked my doubt about the three real time differences between lambda functions and also list comprehensions and the map() and reduce() functions then Ruchik gave me examples of where they are used. 
+So he said that we use map() and reduce() funcitons in spark architecture what we studied in the begining of the training sessions and then they are used to store and map the data chunks to the  specific memory locations. 
+Then for list comprehension we use them only when we want to reduce the lines of codes say for example we write more lines of code using for loop and the iterable object but we can shorten that using list comprehension. 
+And for the lambda function we only use them for quick volatile requirements like say I need to have a temporary function which I wont be calling anytime again in the code so I will use that lambda function to do that small operation and will not be having any use of that function in the future code. Thats it like one and done use case over there itself. 
+
+We saw these core concepts of python today and we were reminded of the project to start with it and that there is a deadline for it by thursday so we have to use streamlit to create a UI and make a working application not just a prototype and have it submitted and pushed onto github. 
+The class ended early today at around 9:45 am and now we get back to marketing.  
+
