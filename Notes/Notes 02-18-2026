@@ -1,0 +1,26 @@
+Today the class started a bit late and we started at around 9:45 am and then we started straight away without any recap of last class. 
+We move to Modules and libraries in today's class.
+I answered the question to what a module or a library is. 
+It is nothing but a python script which can be imported in another python program where we have need the class or function in that module or library.
+It is also used to overcome the shortcoming of builtin functions which are not there in python so we use some modules or libraries which are writen by anther developers. 
+Now we move forward to exception handling.
+Try: Except: Finally:
+try: except: else:
+
+We can also use try except in a nested way.
+
+Then we saw file operations and how to open and write and append the file contents in python 'WITH' context keyword that helps manage the memory efficiently with python's inbuilt garbage collector. 
+We can also iterate over the lines inside a text file with a for loop and then we can also save those lines into lists.
+We can also open a file in read and write mode at the same time using the argument r+ 
+
+Then we saw what the pd.dataframe structure is in pandas and its basically a tabular data structure of pandas to deal with csv or xlsx file. 
+
+We use that once we read or load our csv file into pyton and then want to hold it in that data structure and then try to do some operations on it using pandas methods.
+
+Now we saw the database connectivity with Python's sqlite3 .
+Seems like sqlite is way more easier to initialize and connect to python code and database very easily and fast but I dont know about its ORM model for object relational mapping. 
+
+Then I asked him a question about database connectivity and race condition for cold starting the database and connecting but seems like in Ruchik's macbook he is not having any issues like that maybe due to faster processing but for my old laptop runninx Antix linux takes time to initialize and connect to database slowly so I have to add safety healthcheck everytime I do operations on DB. 
+
+And my another follow up question was about reading documentation and he said that it will be okay to adapt and getting used to the new way of reading and finding for documentation on google using gemini's enabled ai searhc on so that way it is more easy and faster. There is no such thing called one platform for all the python documentation as everything is dispersed and segragated and so google is your best friend. 
+Class ended early at raound 10:36 am and then we had to drop off as the remaining students who were left with assessment on SQL were gonna be taken care of by Amar sir.  
