@@ -1,0 +1,34 @@
+Today the class began a bit early at 8 am PST.
+We started with some Pandas dataframe operations and were given exploaratory analysis with the pandas library.
+We also saw an example of jupyter notebook with matploit lib data visualizations of graphs and charts and pie chart diagrams.
+we saw scatterplot and also found out some realtions with corelation matrix and standard deviation just to find relations between columns or say the data from the data frame table.
+We basically saw the data visualtization with Pandas.
+We saw how to use boxplot for ploting outliers. 
+we saw area chart and also the surface charts.
+df.iplot() method of pandas. 
+there is also scattered3d() plot which is even more graphical. 
+Then we saw bubble charts, bar chart, heatmap.
+The heatmap is again the corelation between x and y axis. the table has multiple columns like height and weight. So we can corelate these two columns and plot the corelation matrix. 
+It is 8:30 am PST and I have to drop of the meeting to connect with Yulia for an interview on linkedin. 
+datagen3d(). We should also explore matplot and seaborns and keras and kaggle for database and also many others.
+Also saw the stacked barchart for daily sales comparison as an example.
+I have Yogesh in the loop regarding this and will be rejoining the training session in 10-15 minutes. 
+I got back into the meeting at 8:50 am and then I saw that the class had moved on to Pandas pd.series functions. 
+Ruchik was explaining the builtin functions of pandas and numpy which we have to use with logic as per the reuirement. 
+we also saw the df.iloc[] and also df.loc[].
+It all depends on what you want on that data for filtering. 
+we saw df.drop() in padas. 
+also saw the df.reset_index() to reset the numberical data of index values in pandas.
+we saw where to df.drop() and where to use the df.fillna('A', mean)
+also saw the groupby fucntion and df.transpose() and also df.describe()
+there is also concatenation on the multiple dataframes. 
+pd.concat(df1,df2,df3)
+We also have dataframe mergings 
+pd.merge(left,right,how='inner', on = 'key1', 'key2')
+then we saw how to apply lambda functions in pandas.
+df['FuncApplied'] = df['col3'].apply(lambda x: x^2)
+then sorting of values with df.sort_values()
+so basically today we saw data visualizations with numpy and pandas and also the builtin functions . 
+We can try to do the same operations by downloading a dataset from Kaggle and do the same ML and AI operations to better understand the concepts. 
+We took a status update on the project as they are due on Wednessday. Vinay will be taking the project assessments. 
+The class ended at around 9:10 am today. We meet tomorrow again to continue with statistics concepts. 
