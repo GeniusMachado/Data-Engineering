@@ -1,0 +1,16 @@
+We started the class at around 8:20 am. and then went to a quick recap of yesterday's statistics class. 
+Seems like many people were blank from the concepts that we learnt new yesterday in our statistics class.
+Now we start with the different types of distributions work. How data is distributed as per the central tendency. 
+We see what is Probability Desnisity Function. 
+We saw Bernouli's distribution and probability distribution and normal distritbution and also Poisson distribution in depth with examples. 
+We saw with a good example what variance is and also what bias is. 
+Variance is like you have a sequence of integeres 3,5,6,7,888,3,56,1. So as we can see all of the sudden the next prediction is fluctuated very high and low so this is variance. 
+We saw some exploratory data analysis in jupyter notebook after studying the concepts and did the EDA on some data.
+We also some other graphs and charts and corelation matrix.
+we saw the importance of corelation matrix where we only consider the two columns of the corelation matrix which are important and then there we use seanborns to plot the features and important column relations. 
+and so before that we first clean the data and also make sure that transformations are done and then there is something called getting rid of null values and also and outliers and then we train the model. 
+We use a heatmap or corelation matrix to find the relation between two columns. 
+We saw a lot of Data Science and ML operations on Data which came from a CSV file and the we cleaned it and did some EDA on it and then once it is looking good we also train the model to get good accuracy. 
+All the statistical concepts we saw and learn during the last two sessions or class were also demontrated on the libraries such as pandas and numpy and and seaborns and scikitlearn and other ML modules of python. 
+We meet next on tuesday as friday and monday Ruchik will be traveling and then he also released a new assignment for EDA. He will upload the Problem Statement and also the dataset files from Kaggle. 
+The class ended at around 10:10 am.

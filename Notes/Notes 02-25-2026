@@ -9,15 +9,15 @@ They both represent numbers.
 
 Now lets identify central tendancy: 
 
-1)
+1)Mean: 
 With an example of recommending sales quantitiy to a customer we understood how to use mean/avg of the previous dataset to predict the quantity size for the next purchase. 
 
 
-2)
+2)Median: 
 But then we also saw that it has a drawback when we have uncertain outliers and then we have to introduce median which deals more closely to the central value after sorting the dataset.
 
 
-3)
+3)Mode: 
 The next one is Mode which considers most repeated value.
 
 Then we see what are the measures of Dispersion: 
