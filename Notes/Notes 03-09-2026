@@ -1,0 +1,29 @@
+Today we started the class at around 9:30 am PST and then Karthik gave us a quick recap of the last sesssion which was around a week ago. We saw what a machine learning is and then that is the next step in the course after we do the EDA. 
+So one type of Machine Learning is Linear Regression. 
+So we use Machine Learning for automation purposes. To reduce human errors and also increase the accuracy to same time. 
+Thereby saving time. 
+There are 4 types of Machine Learning algorithms :
+
+1) Supervised Learning : 
+
+	a)  Regression : 
+	       	Linear
+
+	b)  Classification Model :
+		Logistics
+
+2) Unsupervised Learning :
+
+
+3) Semi-Supervised Learning :
+
+
+4) Reinforcement Learning : 
+
+After a huge theory talk we saw what a gradient descent is and also came across global and local minima nad maxima and also saw the loss function and some other parameters for the linear regression for the gradient descent. 
+
+We also saw Ruchik's code for tuning the Linear regression model to reduce the residual distance. 
+
+We spent the lecture for about 1 hour and 30 minutes where we just trying to plot a line and tune it to pass through maximum number of points. 
+I am 100% sure that I am gonna have to look up for other online resources and Youtube tutorials for understanding this ML and AI concepts  to understand it and then the class ended at 11 am. We also had some more project demonstration with project.
+We ended the meeting at 11:15 a.m.  and then Vinay took over for the project session again.  
