@@ -1,0 +1,51 @@
+Today class began at around 11:13 am PST and then we also got a brief recap on Object Oriented Programing until positional arguments and also keyword arguments by Swetha. 
+We then continued from Encapsulation in OOPS where we left since yesterday's class.
+
+Encapsulation is achieved using composition and dynamic extension.
+
+1) Composition : Like we saw an example of a Class Engine : and then how is it is triggered when the class Car : has a  def method start(): which invokes the engine to start as well. So we have protected the functionality of engine using the car class. This encapsulation is achieved. 
+
+2) dynamic extension : we saw with the example of class text : which uses two classes to choose out of which class to choose depending on the input type or variable type. That is dynamic nature which we use in encapsulation. 
+
+
+
+
+Next topic is Polymorphism and Duck Typing.
+A good example of this is when we add two variables with different data types like add an integer value and also a variable with string value then it will not add and throw an error. So we see when the same add or sum function adds both similar data types using polymorphism or duck typing when you have a same function with same name but can operate for adding two integers or adding two strings (concat). 
+But it only fails when there is one integer and the other variable is another data type like string. 
+
+for that we have implicit and explicit typing or casting. 
+
+Next topic is Class variables and instance variables. 
+
+
+so for instance variables we have them defined as self.name = name # which is at instance level and will be only unique to that instance. 
+Whereas the class variables are at class variables and can be accessed without self.parameter.
+
+Then we also have class and instance methods.
+
+We learnt that instances can inherit class variables but the  class will not be able to inherit the instance variables. 
+We saw this with a good example of how children inherit parents properties but when children buy something the parents dont get anything. 
+
+We saw @classmethod decorator where we can make an instance method into a class method. 
+
+we cannot pass parameters into class variables because we need self parameter first so only to the instance variables/methods is which we can pass the parameters having the self parameter. 
+
+
+@staticmethod
+This are basic operations that we want to do some basic mathematical operations. 
+
+Now we move to @decorators we use decorators by modifying the functionality of some existing function without actually modifying the code or behaviour inside the existing functions. 
+So for some functionality to occur before or after executing the existing function. 
+
+We also saw with an example of @dataclass decorator where we dont need to use the self. parameter while defining instance attributes in a class.
+
+We saw the Single Responsibility Principle for how long does a class should be ? 
+So we try to put just one method or say only one responsibility per class. 
+Because if something fails then debugging becomes very hard if everything is stuffed into one class. And this is the same for functions as well. Each one should try to keep only one responsibility. 
+
+That was all about the Object Oriented Programming in Python. 
+
+The class ended at 12:12 pm and then we were reminded to also have our documentation SDD for our project too once the project repo is ready and also Ruchik will add the template inside google drive folder for us to write the documentation without a boiler plate and he also mentioned that we can use flowchart.io
+
+Back to marketing now.

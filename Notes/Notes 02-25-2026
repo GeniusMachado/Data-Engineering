@@ -1,0 +1,48 @@
+Today's class began at 8:30 am and then we all gave a brief update about our projects and then we told to not build a production ready app and just to use database and pandas data frame to do some operations and then save it in database. 
+Then we stated learning statistics at around 8:50 am and then we saw the definition of statistics. 
+It is a science of conducting studies to collect , organize and summarize and analyze and draw a conclusion out of data.
+There are two types : Descriptive and Inferential.
+That was a lot of theory and then i was paying more attention on the teaching then to take notes but here is some of the important part:
+Quantitative analysis which we can convert into numerical representations and then qualitative analysis is the one that we cannot convert into numerical data representation or cannot be ranked or say it can be only descriptive like the colour of eye is black. 
+There are two quantitative levels : interval and ratio.
+They both represent numbers. 
+
+Now lets identify central tendancy: 
+
+1)Mean: 
+With an example of recommending sales quantitiy to a customer we understood how to use mean/avg of the previous dataset to predict the quantity size for the next purchase. 
+
+
+2)Median: 
+But then we also saw that it has a drawback when we have uncertain outliers and then we have to introduce median which deals more closely to the central value after sorting the dataset.
+
+
+3)Mode: 
+The next one is Mode which considers most repeated value.
+
+Then we see what are the measures of Dispersion: 
+
+Range, Variation, Standard Deviation.
+
+We saw what is symmetric curve and also assymetric curve for mean, median and mode. 
+There is skewness which is defined as a measure of the dataset's symmetry. 
+
+So there is left skewness and symmetric and right skewness.
+
+We try to clean teh dataset from left skewness or right skewness by getting it as closs to symmetric curve which is also called teh bell curve. 
+
+I also know that we call it gaussian curve. 
+
+While training model we have to make sure that the outliers are removed or else we will get a overfit modal. which contains a lot of noise. So prediction will be wrong. 
+
+The training will be wrong and so will there be some very unexpected outputs. 
+
+We also saw that we have to fill the null values as well. 
+
+Then we saw the last topic for today's class which was a random variable.
+
+a random variable is a set of all the possible values from a random experiment.
+
+Then we saw that we can do set operations too.
+
+We wrapped up the class at 10:10 am and then we will meet tomorrow to continue studying different types of distributions. 

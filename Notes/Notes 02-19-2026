@@ -1,0 +1,37 @@
+Today I was about 5 minutes late to class as I had an interview with Alyssa Knight from linkedin and then when I jumped into the python training method I was able to catch up from Object Oriented programming. 
+So we were going on through the concept of Class as a blueprint for OOPs concept. 
+Then we saw the __init___(self, name): constructor.
+Then we saw the class and instance initialization. 
+__str__(self):
+
+ is a special method that is used to call inorder to print something bydefault in a class when the instance is created.
+
+
+
+__repr__(self): 
+
+this is also a special method in Object oriented programming where it is used by developers for debugging and then that one is more developer friendly whereas __str__() is more user friendly .
+
+
+there is also __dict__() in OOPs which we can use the information about the private function/methods or variables. this is also more for developer use. 
+
+
+Now we go ahead and see abstraction which is nothing but adding an underscore infront of variable and function names and then there is one more step ahead which is adding adding double underscore in front of variable and functions to added privacy or say more abstraction. 
+self._name = name
+self.__name = name
+
+
+To access your private and protected variables in OOPS you have to call them wiht _class__variablename()
+
+ 
+Let us move to inheritance now.
+we can inherit the methods and variables of parent class using the super() keyword. 
+
+Then we saw that we can do method overiding where instance attributes or methods can rule over or say they be also modified and used in the instance. 
+
+Then we saw what are positional arguments and also keyword arguments. 
+
+*args and **kwargs
+
+The class ended at 9:20 am after a reminder that we have to submit the project by coming thursday wehre we have to show some data visualizations on top of that and also use streamlit for UI. 
+
