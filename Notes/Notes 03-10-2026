@@ -1,0 +1,20 @@
+The class began at around 10:00 am and we started with the last lecture's revision and then we got a recap from Krushi Nagireddy. 
+We spent the first 30 minutes on the questions from last session and then I was also paying adked the question too.
+Now at 10:30 am we finally move forward with the new concept.
+We saw how variance and bias are inversely proportional. 
+So we have to find a good point in common to maintain the bias and variance to avoid model underfit and overfit. 
+This is called the Bias-variance trade off. 
+and it has 4 types. 
+We use Regularization to reduce the variance without loosing any important features of the data. We have three types of regularization. 
+We use these techniques to handle the bias and variance from our dataset. 
+Then we saw what is regularization which is used when we have multiple dependencies like two or more m1, m2, m3 values is slope equation like y = (m1+m2+m3)x + c
+
+We have Lasso , Ridge , and Elastic regression methods.
+Lasso model is used for feature selection. 
+Elastic Net is combination of Ridge and Lasso.
+
+So now we say Linear regression now lets move on to Polynomial regression. 
+This is where the parabola and curves and other degree of curves come in play to pass our line of regression through maximum data points.
+This is all just to get that best fit line to pass through the majority of the data points.
+The class ended at 11:13 am . 
+
