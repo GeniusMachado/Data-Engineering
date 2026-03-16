@@ -1,0 +1,41 @@
+The class started at 9 am PST and Yashwant gave us a recap about the last class which was about Decission tree. 
+Then he explained what are inpure and pure nodes. 
+There is overfitting problems in Decission tree when Model can get overtrained on too much of sample data so we just train it on new data.
+To overcome this we have Decission Tree Prunning. 
+There is pre and post prunning. 
+Pre-prunning happens pre construction of decission tree where it gives the signigicant weights. 
+Concepts like information gain and also antropy and gini index are something I need to read. I have missed the last two sessions.
+Then he also mentioned the Cross validation and K-fold methods which we use to check the decission trees for testing the data training test. 
+Then he also mentioned about hyper parameter. 
+Mentioned Essmeble learning and also random forest algorithm where we combine multiple decission trees to compare and get a better model output. 
+There is also something called regression model .
+Ruchik asked a question about how we use bagging technique.
+We were done with the revision on last class at around 9:18 am and then we moved on to new topic. 
+
+Boosting technique : we use sample data and then we also tune and ajust the weights and do fine tuning with multiple passes and then we finally classify the missed data points. That is what adaptive boosting is. 
+The adaptive boosting technique has some drawbacks like it does not address the root issue because it only adjusts the weights. 
+So pople came up with something called;
+
+Gradient Boosted Trees : It will try to move towards the weeker loss function and by reducing the loss and it will try to reach the missed classified data values. But there is one more which is called :
+
+XGBoost : Techniques were not optimized for Bigger data so we are using Regulariztions over the two previous boosting techniques to prevent the overfitting issue and deal with the higher volumes of data we use the regularization methods like Laso and one more to call it the XGBoost (extreme boosting) techinique. We also use paralled processing and tree pruning and many others which names it Extreme Gradient Desscent Boost. 
+
+Then RUchik had asked some questions about the categorical data and also other boosting techniques. 
+So today I guess we wrapped up the Supervised learning models with training the dataset by trainig it by providing the data by user and training the model in supervised environment. 
+Moving forward we will be studying the unsupervised learning where is we will see the clustering techniques for unsupervised learning.
+
+Aglomarative Clustering & Divisive Clustering. 
+
+The first approach is K-means clustering: where we calculate the distance between all the data points from centroid points and then classify. 
+
+
+Then there is Elbow method which initialize K values and then calculate the squared distances and then see where the elbow is fitting on the graph plotted of all the squared distances from the centroid point.
+
+Then we also plot the dendrogram to see which are nearby to which. 
+we keep doing this till the point we have reached where we have one single big Dendrogram which covers or connects all the data points. So we keep adding untill the final step so that is the Aglomarative Clustering approach. 
+
+DBSCAN : (density beased spatial clusterning of Applications with Noise)
+
+For tomorrow's session we have to do some research about K-means algorithm and also SVM
+
+The session ended at around 10:46 a.m. PST..
