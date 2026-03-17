@@ -1,0 +1,10 @@
+I joined the meeting like around 10 minutes late and found out that Ruchik was asking questions about Supervised and unsupervised learning.
+It is now 10:30 am and we are still learning questions and discussing about KNN and Kmeans and also SVM algorithm.So we had a dicussion on both the algorithms and then we jumped on to the next topic of Text processing for Machilne learning. 
+That is NLP. (NLTK)
+I need to start and finish Andrej Karpathy's zero to her NLP playlist on youutube and mainly do the trasformer architectures.
+In the next lecutre we will see the transformer architecture. 
+This is how NLP evolved from TF-IDF  to bag of words and word to wick and then Transformers.
+We are told to go through the white paper published by Google about "Attention is all you need" by LLM for discussing about Transformers and youtube video of 40 minutes . Not go into mathematics but the architecture is important. Fine tunning LLMs are also to be self studied. But majorly for tomorrow we are supposed to understand the components of Transformers and then understand encoder and decoders as well. 
+The class ended at 11:41 a.m. PST.
+Ruchik said that he uploaded the white paper document on Google Drive. 
+We meet next on Thursday for the next session.  
