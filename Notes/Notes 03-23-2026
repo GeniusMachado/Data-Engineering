@@ -1,0 +1,7 @@
+Today the class began at around 10:30 am PST and then we were all discussing about the white paper from Google explaining Attention is Everything.
+We first went on throgh the drawbacks of CNN and RNN and then why we needed transformers.
+The flow of this models is like CNN, RNN, LSTM, GRU, Transformers.
+We saw what the vanishing gradient problem is occured during back propagation. 
+We jumped onto the components of Transformer like encoder/decoder.
+We also went across the normalization of layers in transformers.
+
