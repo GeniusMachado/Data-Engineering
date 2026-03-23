@@ -4,4 +4,4 @@ The flow of this models is like CNN, RNN, LSTM, GRU, Transformers.
 We saw what the vanishing gradient problem is occured during back propagation. 
 We jumped onto the components of Transformer like encoder/decoder.
 We also went across the normalization of layers in transformers.
-
+I had to drop off the class at 12 noon PST for my initial round of screening. 
