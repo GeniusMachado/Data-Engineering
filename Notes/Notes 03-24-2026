@@ -1,0 +1,137 @@
+The class began at aorund 9 am PST and then we were asked to research something about white papers it seems but nobody had any output. 
+We started the lecture with Temperature settings in LLM with White papers.
+So we can handle LLM helucination with tuning Top P and Top Q and one more paramter. 
+We can also limit token values. 
+Also the temperature is adjusted to avoid LLM helucination. 
+We have to always come up with optimal temperature value when we are tuning for Top P and Top K values. 
+Then we saw how to do prompt engineering.
+Few techniques are : 
+zero shot, one shot and few shots.
+Then we also saw the system, contentual and role prompting. 
+We also saw Step Back prompting. 
+We saw what is chain of thoughts. 
+We saw Reason and Act prompting. 
+Then there is automatic prompting.
+Then there was code prompting. 
+We also saw guardrails and topic of groudning. 
+
+Topics for tomorrow : 
+
+1. What is langchain, langgraph and langsmith 
+
+use cases and difference. 
+
+2. Components of langchain. ( RAG ) 
+
+3. Chunking techniques in RAG
+
+4. Different types of Vector embedding models.
+
+5. Different types of vector databases. 
+
+6. What is a retriever. 
+
+7. What is output template. 
+
+8. WHat is query decomposition. 
+
+9. What are the optimzation techniques for storing vector embedings to vector databases.
+
+10. What are offline and online pipelines.
+
+11. What are the different tuypes of memory. 
+
+12. WHat are different types of tools.
+
+13. What are token limits and how do we handle them. 
+
+14. Types of RAGs ?
+
+
+
+
+
+
+
+
+1. LangChain, LangGraph, & LangSmith
+
+    LangChain: A framework to "chain" different components (LLMs, databases, prompts) together. Use case: Building a basic RAG app.
+    LangGraph: An extension for building stateful, multi-actor agents. It allows for "loops" (e.g., if the AI fails, it tries again). Use case: An agent that researches, writes, and then critiques its own work.
+    LangSmith: A platform to debug, test, and monitor your LLM apps. Use case: Seeing exactly where a chain failed or how much a prompt cost in tokens.
+
+2. Components of LangChain (RAG)
+RAG (Retrieval-Augmented Generation) involves:
+
+    Document Loaders: Bringing in PDFs, URLs, or text.
+    Text Splitters: Breaking docs into chunks.
+    Embeddings: Turning text into numbers.
+    Vector Stores: Storing those numbers.
+    Retrievers: Finding the right context for a query.
+
+3. Chunking Techniques
+
+    Fixed-size: Chunks of exactly X characters/tokens.
+    Recursive Character: Splits by paragraphs, then sentences, then words to keep context together.
+    Semantic: Splits based on when the "meaning" of the text changes.
+
+4. Vector Embedding Models
+
+    Open Source: HuggingFace (e.g., BGE, E5 models).
+    Proprietary: OpenAI (text-embedding-3-small), Cohere, or Google (Gecko).
+
+5. Vector Databases
+
+    Managed/Cloud: Pinecone, Weaviate, Zilliz.
+    Self-hosted/Open Source: ChromaDB, FAISS, Milvus, Qdrant.
+
+6. What is a Retriever?
+A logic layer that takes a user query, searches the vector database, and pulls out the most relevant "chunks" to give to the LLM.
+7. Output Template (Structured Output)
+Instructions (often via Pydantic or JSON) that force the LLM to respond in a specific format instead of free-form text.
+8. Query Decomposition
+Breaking a complex user question ("How did sales change and who was responsible?") into smaller, searchable sub-questions.
+9. Optimization for Storing Embeddings
+
+    Indexing: Using HNSW (Hierarchical Navigable Small World) for faster searching.
+    Compression: Product Quantization (PQ) to reduce the memory size of vectors.
+    Metadata Filtering: Tagging chunks (e.g., "Year: 2024") to narrow the search before it starts.
+
+10. Offline vs. Online Pipelines
+
+    Offline (Ingestion): The "prep" phase—loading data, chunking, embedding, and saving to the database.
+    Online (Inference): The "live" phase—user asks a question, the system retrieves data and generates an answer.
+
+11. Types of Memory
+
+    ConversationBuffer: Stores the whole transcript.
+    ConversationSummary: Summarizes the past chat to save tokens.
+    Entity Memory: Remembers specific facts about a person or object.
+
+12. Types of Tools
+Functions an LLM can "call," such as: Search (Google/Tavily), Calculators, Python Interpreters, or API connectors (Slack/Jira).
+13. Token Limits and Handling
+Token limits are the maximum "words" an LLM can process at once.
+
+    Handling: Chunking can be used to fit context, summarization to shorten history, or long-context models such as Gemini 1.5 Pro.
+
+14. Types of RAG
+
+    Naive RAG: This is a simple "Retrieve -> Generate" process.
+    Advanced RAG: Adds pre-processing (query expansion) and post-processing (re-ranking results).
+    Modular RAG: Allows flexible routing between different data sources.
+
+Project Idea: "The Smart Legal/Policy Auditor"
+This chatbot allows a company to upload internal policy documents (White Papers/PDFs) and ask compliance questions.
+Recommended Tools and Techniques:
+
+    LangGraph: Legal questions often need a loop; if the initial search fails, the agent should rephrase the query and retry.
+    Recursive Character Chunking: This is crucial for legal text to avoid cutting sentences and losing meaning.
+    Hybrid Search (Retrieval): Combine vector search (for meaning) with keyword search (for specific legal terms or section numbers).
+    Grounding: Force the model to cite the exact page and paragraph used to prevent hallucination.
+    Low Temperature (0.0 - 0.2): This is essential for factual accuracy over creativity
+
+
+
+
+The lecture ended at around 10:30 am and then we meet tomorrow for the next session. .
